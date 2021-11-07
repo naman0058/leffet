@@ -1,0 +1,1 @@
+$(document).ready(function(){if("undefined"!=typeof leoslideshow_list_functions)for(var o=0;o<leoslideshow_list_functions.length;o++)leoslideshow_list_functions[o]()});

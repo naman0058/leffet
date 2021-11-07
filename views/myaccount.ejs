@@ -1,0 +1,97 @@
+<%- include ('./indexheader.ejs') %>    
+
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+			
+			
+			
+			
+			<!-- =========================== Account Settings =================================== -->
+			<section class="gray">
+				<div class="container">
+					<div class="row">
+					
+                        <div class="col-lg-3 col-md-3">
+							<nav class="dashboard-nav mb-10 mb-md-0">
+							  <div class="list-group list-group-sm list-group-strong list-group-flush-x">
+								<a class="list-group-item list-group-item-action dropright-toggle" href="/myorder">
+								  My Order
+								</a>
+								
+							
+								<a class="list-group-item list-group-item-action dropright-toggle active" href="/myaccount">
+								  Account Settings
+								</a>
+								<a class="list-group-item list-group-item-action dropright-toggle" href="/address">
+								  Address
+								</a>
+								<a class="list-group-item list-group-item-action dropright-toggle" href="/logout">
+								  Logout
+								</a>
+							  </div>
+							</nav>
+						</div>
+						
+						<div class="col-lg-9 col-md-9">
+							<!-- Total Items -->
+							<div class="card style-2">
+								<div class="card-header">
+									<h4 class="mb-0">Account Detail  </h4>
+									<br>
+									<h5 style="color: green;">* <%=msg%></h5>
+								</div>
+								<div class="card-body">
+									<form class="submit-page" action="/myaccount-update" method="POST">
+										<div class="row">
+										
+											<div class="col-12 col-md-6">
+											  <!-- Email -->
+											  <div class="form-group">
+												<label>Full Name *</label>
+												<input class="form-control" type="text" name="name" placeholder="Full Name *" value="<%=result[1][0].name%>" required="">
+											  </div>
+
+											</div>
+										
+											<div class="col-12 col-md-6">
+											  <!-- Last Name -->
+											  <div class="form-group">
+												<label>Mobile Number *</label>
+												<input class="form-control" type="text" name="number" placeholder="Mobile Number *" value="<%=result[1][0].number%>" readonly required="">
+											  </div>
+
+											</div>
+										
+											<div class="col-12">
+												<!-- Email -->
+												<div class="form-group">
+													<label> Email Address *</label>
+													<input class="form-control" type="email" name="email" placeholder="Email Address *" value="<%=result[1][0].email%>" required="">
+												</div>
+											</div>
+										
+										
+											<div class="col-12">
+											  <button class="btn btn-dark" type="submit">Save Changes</button>
+											</div>
+										
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+			<!-- =========================== Account Settings =================================== -->
+
+			
+			<!-- ============================ Call To Action ================================== --> 
+			
+			<!-- ============================ Call To Action End ================================== -->
+			
+		    <%- include ('./indexfooter.ejs') %>    

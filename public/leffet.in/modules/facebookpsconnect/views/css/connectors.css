@@ -1,0 +1,5 @@
+#fbpsc.displayTop{display: inline-block;z-index: 999999;text-align: center !important;width: 100%;padding:10px 10px 10px 10px;margin:0px 0px 0px 0px;color:#333333;font-size:15px;background:#f3f3f3;border:2px solid #BBBBBB;}
+#fbpsc.displayFooter{display: inline-block;z-index: 999999;text-align: center !important;width: 100%;padding:10px 10px 10px 10px;margin:0px 0px 0px 0px;color:#333333;font-size:15px;background:#f3f3f3;border:2px solid #BBBBBB;}
+#fbpsc.authentication{display: inline-block;z-index: 999999;text-align: center !important;width: 100%;padding:22px 10px 10px 10px;margin:0px 0px 0px 0px;color:#333;font-size:15px;background:#ffffff;border:2px solid #ffffff;}
+#fbpsc.blockUser{display: inline-block;z-index: 999999;text-align: center !important;width: 100%;padding:10px 10px 10px 10px;margin:0px 0px 0px 0px;color:#333333;font-size:15px;background:#f3f3f3;border:2px solid #BBBBBB;}
+#fbpsc.orderFunnel{display: inline-block;z-index: 999999;text-align: center !important;width: 100%;padding:10px 10px 10px 10px;margin:0px 0px 0px 0px;color:#333333;font-size:15px;background:#f3f3f3;border:2px solid #BBBBBB;}
