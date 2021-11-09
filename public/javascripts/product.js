@@ -84,6 +84,8 @@ function makeTable(categories){
 <table id="myTable" class="table table-bordered table-striped mb-0">
 <thead>
 <tr>
+
+<th>Type</th>
 <th>Product</th>
 <th>Category</th>
 <th>Price</th>
@@ -100,6 +102,7 @@ function makeTable(categories){
 $.each(categories,(i,item)=>{
 table+=`<tr>
 
+<td>${item.type}</td>
 <td>${item.name}</td>
 <td>${item.categoryname}</td>
 <td>${item.price}</td>
