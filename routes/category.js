@@ -34,6 +34,7 @@ router.post('/storeEditId',(req,res)=>{
 router.post('/insert',upload.single('image'),(req,res)=>{
 	let body = req.body
     body['image'] = req.file.filename;
+    console.log('body h',req.body)
 	pool.query(`insert into ${table} set ?`,body,(err,result)=>{
 		if(err) {
             res.json({

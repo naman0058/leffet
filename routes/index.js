@@ -609,8 +609,42 @@ router.get('/address',(req,res)=>{
 })
 
 
+router.get('/shipping',(req,res)=>{
+  res.render('shipping')
+})
 
 
+
+
+router.get('/payment',(req,res)=>{
+  res.render('payment')
+})
+
+
+router.get('/size-chart',(req,res)=>{
+  res.render('sizechart')
+})
+
+
+router.get('/wishlist',(req,res)=>{
+  res.render('wishlist')
+})
+
+
+
+router.get('/identity',(req,res)=>{
+  res.render('identity')
+})
+
+
+router.get('/alert',(req,res)=>{
+  res.render('alert')
+})
+
+
+router.get('/helpdesk',(req,res)=>{
+  res.render('helpdesk')
+})
 
 
 
@@ -800,7 +834,7 @@ router.get('/myorder',(req,res)=>{
     from booking b where usernumber = '${req.session.usernumber}' order by id desc `
     pool.query(query+query1,(err,result)=>{
       if(err) throw err;
-      else res.render('myaccount',{result:result,login:true})
+      else res.render('myorder',{result:result,login:true})
     })
   }
   else{
@@ -1318,7 +1352,7 @@ router.post('/razorpay-response',(req,res)=>{
 
 
 
-router.get('/address',(req,res)=>{
+router.get('/myaddress',(req,res)=>{
   if(req.session.usernumber){
     var query = `select * from category order by id desc;`
     var query1 = `select * from address where usernumber = '${req.session.usernumber}';`
@@ -1334,6 +1368,8 @@ res.redirect('/login')
   
   
 })
+
+
 
 
 
@@ -1359,7 +1395,9 @@ router.get('/delete-address',(req,res)=>{
 })
 
 
-
+router.get('/update-address',(req,res)=>{
+  res.render('update-address')
+})
 
 
 router.post('/update-address', (req, res) => {

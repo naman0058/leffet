@@ -85,10 +85,7 @@ function makeTable(categories){
 <thead>
 <tr>
 <th>Product</th>
-<th>Short Name</th>
 <th>Category</th>
-<th>Subcategory</th>
-<th>Brand</th>
 <th>Price</th>
 <th>Discount</th>
 <th>Net Amount</th>
@@ -104,10 +101,7 @@ $.each(categories,(i,item)=>{
 table+=`<tr>
 
 <td>${item.name}</td>
-<td>${item.short_name}</td>
 <td>${item.categoryname}</td>
-<td>${item.subcategoryname}</td>
-<td>${item.brandname}</td>
 <td>${item.price}</td>
 <td>${item.discount}</td>
 <td>${item.net_amount}</td>
@@ -192,6 +186,12 @@ $('#result').on('click', '.edits', function () {
     $('#pquantity').val(result.quantity);
     $('#pdescription').val(result.description);
 
+    $('#pfb_link').val(result.fb_link);
+    $('#ptwitter_link').val(result.twitter_link);
+    $('#ppintrest_link').val(result.pintrest_link);
+    $('#pkeywords').val(result.keywords);
+
+
     // $('.peditor').val(result.description);
     console.log('dhdg',result.description)
     // $container.html($container.text());
@@ -224,11 +224,18 @@ $('#update').click(function () {  //data insert in database
     // alert(content)
 
     let updateobj = {
-        id: $('#pid').val(),
-        type: $('#ptype').val(),
+         id: $('#pid').val(),
+         categoryid: $('#pcategoryid').val(),
          name: $('#pname').val(),
-         description : content
-       
+         description : content,
+         keywords : $('#pkeywords').val(),
+         pintrest_link : $('#ppintrest_link').val(),
+         twitter_link : $('#ptwitter_link').val(),
+         fb_link : $('#fb_link').val(),
+         price : $('#pprice').val(),
+         quantity : $('#pquantity').val(),
+         discount : $('#pdiscount').val(),
+      
     }
 
     $.post(`/purchase-product/update`, updateobj, function (data) {

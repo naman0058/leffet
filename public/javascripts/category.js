@@ -116,6 +116,10 @@ $('#result').on('click', '.edits', function() {
     $('#insertdiv').hide() 
     $('#pid').val(result.id)
      $('#pname').val(result.name)
+
+     let table = `<p>${result.description}</p>
+     `
+     $('.peditor').html(table)
    
  })
 
@@ -131,9 +135,14 @@ $('#result').on('click', '.edits', function() {
 
  
 $('#update').click(function(){  //data insert in database
+
+    let content = $(".peditor").html().trim();
+
     let updateobj = {
         id: $('#pid').val(),
         name: $('#pname').val(),
+        description : content
+
        
         }
 

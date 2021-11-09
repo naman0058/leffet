@@ -15,7 +15,7 @@ router.get('/',(req,res)=>{
 })
 
 
-router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 },{ name: 'image2', maxCount: 1 }]) ,(req,res)=>{
+router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 },{ name: 'image2', maxCount: 1 },{ name: 'image3', maxCount: 1 }]) ,(req,res)=>{
 	let body = req.body
     if(req.files.image){
         body['image'] = req.files.image[0].filename
@@ -31,6 +31,10 @@ router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'im
       if(req.files.image2){
           body['image2'] = req.files.image2[0].filename
         }
+
+        if(req.files.image3){
+            body['image3'] = req.files.image3[0].filename
+          }
       
 
     // console.log('files data',req.files)
@@ -76,10 +80,8 @@ console.log('body hai',req.body)
 
 router.get('/all',(req,res)=>{
 	pool.query(`select s.* , 
-    (select c.name from category c where c.id = s.categoryid) as categoryname,
-    (select s.name from subcategory s where s.id = s.subcategoryid) as subcategoryname,
-    (select b.name from brand b where b.id = s.brandid) as brandname,
-    (select si.name from size si where si.id = s.sizeid) as sizename
+    (select c.name from category c where c.id = s.categoryid) as categoryname
+   
      from ${table} s `,(err,result)=>{
 		if(err) throw err;
         else res.json(result)
@@ -140,7 +142,7 @@ let body = req.body
 
 
 
-router.post('/update_image',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 },{ name: 'image2', maxCount: 1 }]), (req, res) => {
+router.post('/update_image',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 },{ name: 'image2', maxCount: 1 },{ name: 'image3', maxCount: 1 }]), (req, res) => {
     let body = req.body
  console.log('files data',req.files)
 
@@ -158,6 +160,11 @@ if(req.files.image){
   if(req.files.image2){
       body['image2'] = req.files.image2[0].filename
     }
+
+
+    if(req.files.image3){
+        body['image3'] = req.files.image3[0].filename
+      }
   
 
     pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
