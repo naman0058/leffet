@@ -190,6 +190,8 @@ $('#result').on('click', '.edits', function () {
     $('#ptwitter_link').val(result.twitter_link);
     $('#ppintrest_link').val(result.pintrest_link);
     $('#pkeywords').val(result.keywords);
+    $('#ptype').val(result.type);
+
 
 
     // $('.peditor').val(result.description);
@@ -235,6 +237,8 @@ $('#update').click(function () {  //data insert in database
          price : $('#pprice').val(),
          quantity : $('#pquantity').val(),
          discount : $('#pdiscount').val(),
+         type : $('#ptype').val(),
+
       
     }
 

@@ -88,7 +88,7 @@ unselectable {
                   <div class="card-body">
                   
                       <div class="row">
-                          <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label>Category Name</label>
                                <select name="categoryid" id="categoryid" class="form-control" required></select>
@@ -96,10 +96,25 @@ unselectable {
                               
                           </div>
 
-                          <div class="col-lg-6 col-md-6 col-sm-12">
+                          <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label>Product Name</label>
                                <input type="text" name="name" class="form-control" required>
+                              </div>
+                              
+                          </div>
+
+
+                          <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label>Product Type</label>
+                              <select class="form-control" name="type">
+                                <option value="Most Loved">Most Loved</option>
+                                <option value="Best Sellers">Best Sellers</option>
+                                <option value="None">None</option>
+
+                              </select>
+
                               </div>
                               
                           </div>
@@ -318,7 +333,7 @@ unselectable {
         <form>
            
           <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="col-lg-4 col-md-4 col-sm-12">
               <div class="form-group">
                   <label>Category Name</label>
                  <select name="categoryid" id="pcategoryid" class="form-control" required></select>
@@ -337,6 +352,21 @@ unselectable {
             </div>
 
           
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                  <label>Product Type</label>
+                <select class="form-control" id="ptype">
+                  <option value="Most Loved">Most Loved</option>
+                  <option value="Best Sellers">Best Sellers</option>
+                  <option value="None">None</option>
+
+                </select>
+
+                </div>
+                
+            </div>
+
             
         </div>
 
