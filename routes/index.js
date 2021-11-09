@@ -11,26 +11,12 @@ router.get('/', function(req, res, next) {
  if(req.session.usernumber){
   var query = `select * from category order by id desc;`
   var query1 = `select * from banner where type = 'Front Banner' order by id desc;`
-  var query2=` SELECT bannerid ,productid , (select t.name from promotional_text t where t.id = bannerid) as textname ,
-  (select p.name from product p where p.id = productid) as productname,
-  (select p.price from product p where p.id = productid) as productprice,
-  (select p.quantity from product p where p.id = productid) as productquantity,
-  (select p.discount from product p where p.id = productid) as productdiscount,
-  (select p.image from product p where p.id = productid) as productimage,
-  (select p.categoryid from product p where p.id = productid) as productcategoryid,
-  (select p.subcategoryid from product p where p.id = productid) as productsubcategoryid,
-  (select p.net_amount from product p where p.id = productid) as productnetamount
   
-    FROM
-     (SELECT *,
-                   ROW_NUMBER() OVER (PARTITION BY bannerid ORDER BY id DESC) as country_rank
-       FROM promotional_text_management p) ranked
-    WHERE country_rank <= 5 order by bannerid desc , productquantity desc;`
   var query3 = `select * from promotional_text order by id desc;`
   var query4 = `select * from cart where usernumber = '${req.session.number}';`
   var query5 = `select * from banner where type = 'Bottom Banner' order by id desc;`
 
-  pool.query(query+query1+query2+query3+query4+query5,(err,result)=>{
+  pool.query(query+query1+query3+query4+query5,(err,result)=>{
     if(err) throw err;
     else  res.render('index', { title: 'Express',result,login:true });
   })
@@ -38,25 +24,11 @@ router.get('/', function(req, res, next) {
  else{
   var query = `select * from category order by id desc;`
   var query1 = `select * from banner where type = 'Front Banner' order by id desc;`
-  var query2=` SELECT bannerid ,productid , (select t.name from promotional_text t where t.id = bannerid) as textname ,
-  (select p.name from product p where p.id = productid) as productname,
-  (select p.price from product p where p.id = productid) as productprice,
-  (select p.quantity from product p where p.id = productid) as productquantity,
-  (select p.discount from product p where p.id = productid) as productdiscount,
-  (select p.image from product p where p.id = productid) as productimage,
-  (select p.categoryid from product p where p.id = productid) as productcategoryid,
-  (select p.subcategoryid from product p where p.id = productid) as productsubcategoryid,
-  (select p.net_amount from product p where p.id = productid) as productnetamount
-  
-    FROM
-     (SELECT *,
-                   ROW_NUMBER() OVER (PARTITION BY bannerid ORDER BY id DESC) as country_rank
-       FROM promotional_text_management p) ranked
-    WHERE country_rank <= 5 order by bannerid desc , productquantity desc;`
+ 
   var query3 = `select * from promotional_text order by id desc;`
   var query4 = `select * from cart where usernumber = '${req.session.number}';`
   var query5 = `select * from banner where type = 'Bottom Banner' order by id desc;`
-  pool.query(query+query1+query2+query3+query4+query5,(err,result)=>{
+  pool.query(query+query1+query3+query4+query5,(err,result)=>{
     if(err) throw err;
     else  res.render('index', { title: 'Express',result,login:false });
   })
