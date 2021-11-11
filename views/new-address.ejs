@@ -870,7 +870,7 @@ $(".dor-page-loading").css("display", "none");
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
               <a itemprop="item" href="#">
-                <span itemprop="name">Addresses</span>
+                <span itemprop="name">New Address</span>
               </a>
               <meta itemprop="position" content="3">
             </li>
@@ -899,7 +899,7 @@ $(".dor-page-loading").css("display", "none");
       
         <header class="page-header">
           <h1>
-      Update your address
+      New Address
   </h1>
         </header>
       
@@ -927,8 +927,8 @@ $(".dor-page-loading").css("display", "none");
     
     <form
       method="POST"
-      action="/update-myaddress"
-      data-id-address="<%=result[1][0].id%>"
+      action="/save-myaddress"
+      data-id-address="0"
       data-refresh-url="//leffet.in/address?ajax=1&action=addressForm"
     >
     
@@ -937,9 +937,17 @@ $(".dor-page-loading").css("display", "none");
         <section class="form-fields">
           
                           
+         
+  
+
+
+
+              
+                          
                 
-  <input type="hidden" name="id" value="<%=result[1][0].id%>">
-    
+  
+    <input type="hidden" name="usernumber" value="<%=result[1][0].id%>">
+  
 
 
 
@@ -958,7 +966,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="alias"
             type="text"
-            value="<%=result[1][0].alias%>"
+            value=""
                         maxlength="32"                      >
                   
 
@@ -992,7 +1000,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="firstname"
             type="text"
-            value="<%=result[1][0].firstname%>"
+            value="naman"
                         maxlength="255"            required          >
                   
 
@@ -1025,7 +1033,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="lastname"
             type="text"
-            value="<%=result[1][0].lastname%>"
+            value="Jain"
                         maxlength="255"            required          >
                   
 
@@ -1058,7 +1066,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="company"
             type="text"
-            value="<%=result[1][0].company%>"
+            value=""
                         maxlength="255"                      >
                   
 
@@ -1092,7 +1100,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="vat_number"
             type="text"
-            value="<%=result[1][0].vat_number%>"
+            value=""
                                               >
                   
 
@@ -1126,7 +1134,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="address1"
             type="text"
-            value="<%=result[1][0].address1%>"
+            value=""
                         maxlength="128"            required          >
                   
 
@@ -1159,7 +1167,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="address2"
             type="text"
-            value="<%=result[1][0].address2%>"
+            value=""
                         maxlength="128"                      >
                   
 
@@ -1193,7 +1201,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="city"
             type="text"
-            value="<%=result[1][0].city%>"
+            value=""
                         maxlength="64"            required          >
                   
 
@@ -1226,7 +1234,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="postcode"
             type="text"
-            value="<%=result[1][0].postcode%>"
+            value=""
                         maxlength="12"            required          >
                   
 
@@ -1257,7 +1265,6 @@ $(".dor-page-loading").css("display", "none");
         
           <select class="form-control form-control-select" name="id_state" required>
             <option value disabled selected>-- please choose --</option>
-            <option value="<%=result[1][0].id_state%>" selected><%=result[1][0].id_state%></option>
                           <option value="325" >Andhra Pradesh</option>
                           <option value="326" >Arunachal Pradesh</option>
                           <option value="327" >Assam</option>
@@ -1326,10 +1333,7 @@ $(".dor-page-loading").css("display", "none");
           class="form-control form-control-select js-country"
           name="id_country"
           required          >
-
             <option value disabled selected>-- please choose --</option>
-          <option value="<%=result[1][0].id_country%>" selected><%=result[1][0].id_country%></option>
-
                           <option value="231" >Afghanistan</option>
                           <option value="39" >American Samoa</option>
                           <option value="43" >Antigua and Barbuda</option>
@@ -1351,7 +1355,7 @@ $(".dor-page-loading").css("display", "none");
                           <option value="80" >East Timor</option>
                           <option value="93" >Georgia</option>
                           <option value="22" >HongKong</option>
-                          <option value="110" >India</option>
+                          <option value="110"  selected >India</option>
                           <option value="111" >Indonesia</option>
                           <option value="112" >Iran</option>
                           <option value="113" >Iraq</option>
@@ -1423,7 +1427,7 @@ $(".dor-page-loading").css("display", "none");
             class="form-control"
             name="phone"
             type="tel"
-            value="<%=result[1][0].phone%>"
+            value=""
                         maxlength="12"            required          >
                   
 
@@ -1497,5 +1501,273 @@ $(".dor-page-loading").css("display", "none");
               	
       </section>
 
-      <%- include ('./indexfooter.ejs') %> 
-  
+      <footer id="footer" class="footer-container">
+        
+          
+  <div class="footer-top">
+          <div class="inner"><!-- @file modules\appagebuilder\views\templates\hook\ApRow -->
+<div class="wrapper"
+>
+
+<div class="container">
+    <div        class="row section-footer ApRow  has-bg bg-boxed"
+                            style="background: no-repeat;"        data-bg_data=" no-repeat"        >
+                                            <!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
+<div    class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-sp-12  ApColumn "
+	    >
+                    <!-- @file modules\appagebuilder\views\templates\hook\ApBlockLink -->
+            <div class="block ApLink ApBlockLink">
+                        
+                            <ul>
+                                                            <li><a href="https://leffet.in/contact-us" target="_self">Contact Us</a></li>
+                                                                                <li><a href="https://leffet.in/content/4-about-us" target="_self">About Us</a></li>
+                                                                                <li><a href="https://leffet.in/content/6-privacy-policy" target="_self">Privacy Policy</a></li>
+                                                    </ul>
+                    </div>
+    
+    </div><!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
+<div    class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-sp-12  ApColumn "
+	    >
+                    <!-- @file modules\appagebuilder\views\templates\hook\ApBlockLink -->
+            <div class="block ApLink ApBlockLink">
+                        
+                            <ul>
+                                                            <li><a href="https://leffet.in/content/8-leffet-s-art-elements" target="_self">Leffet&#039;s Art Elements</a></li>
+                                                                                <li><a href="https://leffet.in/content/11-size-chart" target="_self">Size Chart</a></li>
+                                                                                <li><a href="https://leffet.in/content/3-terms-and-conditions" target="_self">Terms &amp; Conditions</a></li>
+                                                                                <li><a href="https://leffet.in/content/7-shipping-refund-policy" target="_self">Shipping &amp; Refund Policy</a></li>
+                                                    </ul>
+                    </div>
+    
+    </div><!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
+<div    class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-sp-12 section-social ApColumn "
+	    >
+                    <!-- @file modules\appagebuilder\views\templates\hook\ApModule -->
+
+  <div class="block-social block links accordion_small_screen">
+  	<p class="h4 title_block hidden-sm-down">Follow Us On Social</p>
+  	<div class="title clearfix hidden-md-up" data-target="#footer_block_social" data-toggle="collapse">
+	    <span class="h4 title_block">Follow Us On Social</span>
+	    <span class="float-xs-right">
+	      <span class="navbar-toggler collapse-icons">
+	        <i class="material-icons add">&#xE313;</i>
+	        <i class="material-icons remove">&#xE316;</i>
+	      </span>
+	    </span>
+	</div>
+    <ul class="collapse" id="footer_block_social">
+              <li class="facebook"><a href="https://www.facebook.com/leffetpret" title="Facebook" target="_blank"><span>Facebook</span></a></li>
+              <li class="twitter"><a href="https://twitter.com/leffetbysm" title="Twitter" target="_blank"><span>Twitter</span></a></li>
+              <li class="youtube"><a href="https://www.youtube.com/channel/UCNT648_JaIf1K2Ad1DkzRLQ/featured" title="YouTube" target="_blank"><span>YouTube</span></a></li>
+              <li class="pinterest"><a href="https://in.pinterest.com/leffetbysanjevmarwaaha" title="Pinterest" target="_blank"><span>Pinterest</span></a></li>
+              <li class="instagram"><a href="https://www.instagram.com/leffet_pret/" title="Instagram" target="_blank"><span>Instagram</span></a></li>
+          </ul>
+  </div>
+
+
+    </div><!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
+<div    class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12 col-sp-12  ApColumn "
+	    >
+                    <!-- @file modules\appagebuilder\views\templates\hook\ApGeneral -->
+<div     class="block copyright p-0 ApRawHtml">
+	                    © 2021 leffet.in. All rights reserved    	</div><!-- @file modules\appagebuilder\views\templates\hook\ApGeneral -->
+<div     class="block card-row ApRawHtml">
+	                    <i class="fab fa-cc-visa fa-2x fa-fw" ></i><i class="fab fa-cc-mastercard fa-2x fa-fw"></i><i class="fab fa-cc-amex fa-2x fa-fw"></i><i class="fab fa-cc-amazon-pay fa-2x fa-fw"></i>    	</div>
+    </div>            </div>
+</div>
+</div>
+    </div>
+      </div>
+
+
+  <div class="footer-center">
+          <div class="inner"><!-- @file modules\appagebuilder\views\templates\hook\ApRow -->
+<div class="wrapper"
+>
+
+<div class="container">
+    <div        class="row ApRow  has-bg bg-boxed"
+                            style="background: no-repeat;"        data-bg_data=" no-repeat"        >
+                                            <!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
+<div    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12  ApColumn "
+	    >
+                    
+    </div>            </div>
+</div>
+</div>
+    <div class="bootstrap">
+	</div>
+
+<style type="text/css">
+            </style>
+<script>
+    var lcpWidgetInterval;
+    var closePopupTimeout;
+    var lzWidgetInterval;
+    var paldeskInterval;
+    var hubspotInterval;
+    var arcuOptions;
+        var arcItems = [];
+        window.addEventListener('load', function(){
+        jQuery('#arcontactus').remove();
+        var $arcuWidget = jQuery('<div>', {
+            id: 'arcontactus'
+        });
+        jQuery('body').append($arcuWidget);
+                    arCuClosedCookie = arCuGetCookie('arcu-closed');
+                jQuery('#arcontactus').on('arcontactus.init', function(){
+            jQuery('#arcontactus').addClass('arcuAnimated').addClass('slideInRight');
+            setTimeout(function(){
+                jQuery('#arcontactus').removeClass('slideInRight');
+            }, 1000);
+            var $key = $('<input>', {
+                type: 'hidden',
+                name: 'key',
+                value: '67VY6KW9'
+            });
+            jQuery('#arcontactus .callback-countdown-block-phone form').append($key);
+                    });
+                                                var arcItem = {
+            };
+                            arcItem.id = 'msg-item-2';
+                                    arcItem.class = 'msg-item-whatsapp ';
+            arcItem.title = "Chat with us";                         arcItem.icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>';
+            arcItem.noContainer = 1;
+            arcItem.href = 'https://wa.me/919167860709';
+            arcItem.target = '_blank';
+            arcItem.color = '#1ebea5';
+                        arcItems.push(arcItem);
+                arcuOptions = {
+            drag: true,
+            mode: 'regular',
+            align: 'right',
+            reCaptcha: false,
+            reCaptchaKey: '',
+            countdown: 0,
+            theme: '#008749',
+                                                buttonIcon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>',
+                                                                    showHeaderCloseBtn: true,
+                                        headerCloseBtnBgColor: '#008749',
+                                        buttonText: false,
+                        itemsIconType: 'non-rounded',
+            buttonSize: 'medium',
+            buttonIconSize: 24,
+            menuSize: 'small',
+            phonePlaceholder: "+XXX-XX-XXX-XX-XX",
+            callbackSubmitText: "Waiting for call",
+            errorMessage: "Connection error. Please refresh the page and try again.",
+            callProcessText: "We are calling you to phone",
+            callSuccessText: "Thank you.<br />We are call you back soon.",
+            iconsAnimationSpeed: 800,
+            iconsAnimationPause: 2000,
+            callbackFormText: "Please enter your phone number<br /> and we call you back soon",
+            items: arcItems,
+            ajaxUrl: 'https://leffet.in/module/arcontactus/ajax',                             promptPosition: 'top',
+                                                            popupAnimation: 'fadeinup',
+                                style: '',
+                                    callbackFormFields: {
+                                                phone: {
+                    name: 'phone',
+                    enabled: true,
+                    required: true,
+                    type: 'tel',
+                    label: '',
+                    placeholder: "+XXX-XX-XXX-XX-XX"
+                },
+                            },
+        };
+        jQuery('#arcontactus').contactUs(arcuOptions);
+                                            });
+                                                                        </script>
+
+
+
+</div>
+      </div>
+
+
+  <div class="footer-bottom">
+          <div class="inner"></div>
+      </div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+        
+                            <div id="back-top"><a href="#" class="fa fa-angle-double-up"></a></div>
+              </footer>
+
+    </main>
+
+    
+        <script type="text/javascript" src="https://leffet.in/themes/core.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/themes/leo_qos/assets/js/theme.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/ps_emailsubscription/views/js/ps_emailsubscription.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/blockreassurance/views/js/front.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leoslideshow/views/js/iView/raphael-min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leoslideshow/views/js/iView/iview.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leoslideshow/views/js/leoslideshow.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leoquicklogin/views/js/leoquicklogin.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leofeature/views/js/leofeature_cart.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leofeature/views/js/jquery.mousewheel.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leofeature/views/js/jquery.mCustomScrollbar.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leofeature/views/js/jquery.rating.pack.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leofeature/views/js/leofeature_review.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leofeature/views/js/leofeature_wishlist.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/facebookpsconnect/views/js/module.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/arcontactus/views/js/jquery.contactus.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/arcontactus/views/js/scripts.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/baproductscarousel/views/js/slidebutton.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/baproductscarousel/views/js/assets/owl.carousel.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/g_testimonial/views/js/front/testimonial.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/ps_googleanalytics/views/js/GoogleAnalyticActionLib.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/countdown.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/boninstagramslick/views/js/slick.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/boninstagramslick//views/js/slick-front.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/js/jquery/ui/jquery-ui.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/js/jquery/plugins/fancybox/jquery.fancybox.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/ps_searchbar/ps_searchbar.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leobootstrapmenu/views/js/leobootstrapmenu.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/ps_shoppingcart/ps_shoppingcart.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/blockgrouptop/views/js/blockgrouptop.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leoproductsearch/views/js/jquery.autocomplete_productsearch.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/leoproductsearch/views/js/leosearch.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/themes/leo_qos/assets/js/custom.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/themes/leo_qos/assets/js/jquery.bpopup.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/waypoints.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/instafeed.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/jquery.stellar.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/owl.carousel.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/imagesloaded.pkgd.min.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/slick.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/jquery.elevatezoom.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/ApImageHotspot.js" ></script>
+  <script type="text/javascript" src="https://leffet.in/modules/appagebuilder/views/js/script.js" ></script>
+
+
+<script type="text/javascript">
+	var choosefile_text = "Choose file";
+	var turnoff_popup_text = "Do not show this popup again";
+
+	var size_item_quickview = 144;
+	var style_scroll_quickview = 'horizontal';
+	
+	var size_item_page = 144;
+	var style_scroll_page = 'horizontal';
+	
+	var size_item_quickview_attr = 144;	
+	var style_scroll_quickview_attr = 'horizontal';
+	
+	var size_item_popup = 190;
+	var style_scroll_popup = 'vertical';
+</script>    
+
+    
+      <div data-type="dropup" style="position: fixed; bottom:20px; left:20px" class="leo-fly-cart solo type-fixed enable-dropdown">
+	<div class="leo-fly-cart-icon-wrapper">
+		<a href="javascript:void(0)" class="leo-fly-cart-icon" data-type="dropup"><i class="material-icons">&#xE8CC;</i></a>
+		<span class="leo-fly-cart-total"></span>
+	</div>
+		<div class="leo-fly-cart-cssload-loader"></div>
+</div>
+    
+  </body>
+</html>

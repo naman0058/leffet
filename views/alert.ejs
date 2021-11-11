@@ -1,4 +1,4 @@
-<%- include ('./checkoutheader.ejs') %>
+<%- include ('./otherheader.ejs') %>
 
       <section id="wrapper">
        
@@ -8,7 +8,7 @@
       
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="https://leffet.in/">
+              <a itemprop="item" href="/">
                 <span itemprop="name">Home</span>
               </a>
               <meta itemprop="position" content="1">
@@ -16,8 +16,15 @@
           
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="https://leffet.in/my-account">
+              <a itemprop="item" href="/myaccount">
                 <span itemprop="name">My Account</span>
+              </a>
+              <meta itemprop="position" content="2">
+            </li>
+
+            <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+              <a itemprop="item" href="#">
+                <span itemprop="name">Alerts</span>
               </a>
               <meta itemprop="position" content="2">
             </li>
@@ -77,11 +84,11 @@
         
   
     
-  <a href="https://leffet.in/my-account" class="account-link btn">
+  <a href="/myaccount" class="account-link btn">
     <i class="material-icons">&#xE5CB;</i>
     <span>Back to your account</span>
   </a>
-  <a href="https://leffet.in/" class="account-link btn">
+  <a href="/" class="account-link btn">
     <i class="material-icons">&#xE88A;</i>
     <span>Home</span>
   </a>

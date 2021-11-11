@@ -35,7 +35,7 @@
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
               <a itemprop="item" href="#">
-                <span itemprop="name"><%=result[2][0].name%></span>
+                <span itemprop="name"><%=title%></span>
               </a>
               <meta itemprop="position" content="3">
             </li>
@@ -66,9 +66,9 @@
   <div id="js-product-list-header">
 
     <div class="block-category-section card card-block">
-            <h4 class="title_block"><%=result[2][0].name%></h4>
+            <h4 class="title_block"><%=title%></h4>
 
-            <input type="hidden" id="categoryid" class="msg" value="<%=result[2][0].name%>">
+            <input type="hidden" id="categoryid" class="msg" value="<%=title%>">
                             <div id="category-description" class="text-center">
 <div id="result"></div>
 

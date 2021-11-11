@@ -30,7 +30,7 @@
           
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="https://leffet.in/cart?action=show">
+              <a itemprop="item" href="#">
                 <span itemprop="name">Cart</span>
               </a>
               <meta itemprop="position" content="2">
@@ -74,25 +74,29 @@
             
   <div class="cart-overview js-cart" data-refresh-url="//leffet.in/cart?ajax=1&action=refresh">
         <ul class="cart-items">
+
+          <% for(i=0;i<result[1].length;i++){%>
+
+
               <li class="cart-item">
           
             <div class="product-line-grid row">
   <!--  product left content: image-->
   <div class="product-line-grid-left col-md-3 col-xs-4">
     <span class="product-image media-middle">
-      <img src="https://leffet.in/518-cart_default/lp007.jpg" alt="LP007">
+      <img src="/images/<%=result[1][i].bookingimage%>" alt="<%=result[1][i].name%>" style="width: 100px;">
     </span>
   </div>
 <!-- ₹5,500 -->
   <!--  product left body: description -->
   <div class="product-line-grid-body col-md-4 col-xs-8">
     <div class="product-line-info">
-      <a class="label" href="https://leffet.in/all-collections/92-362-lp007.html#/1-size-s" data-id_customization="0">LP007</a>
+      <a class="label" href="/product?id=<%=result[1][i].booking_id%>" data-id_customization="0"><%=result[1][i].bookingname%></a>
     </div>
 
     <div class="product-line-info product-price h5 ">
             <div class="current-price">
-        <span class="price">₹5,500</span>
+        <span class="price">₹<%=result[1][i].oneprice%></span>
               </div>
     </div>
 
@@ -102,7 +106,7 @@
 
         
             <span class="label">Size:</span>
-            <span class="value">S</span>
+            <span class="value"><%=result[1][i].size%></span>
 
       </div>
     
@@ -113,24 +117,26 @@
     <div class="row">
       <div class="col-xs-4 hidden-md-up"></div>
       <div class="col-md-10 col-xs-5">
-        <div class="row">
+        <div class="row" onClick="myfun()">
           <div class="col-md-6 col-xs-6 col-sp-12 qty">
                           <input
                 class="js-cart-line-product-quantity"
-                data-down-url="https://leffet.in/cart?update=1&amp;id_product=92&amp;id_product_attribute=362&amp;token=b68a7b36e8930a00073a73a5e6feb04a&amp;op=down"
-                data-up-url="https://leffet.in/cart?update=1&amp;id_product=92&amp;id_product_attribute=362&amp;token=b68a7b36e8930a00073a73a5e6feb04a&amp;op=up"
-                data-update-url="https://leffet.in/cart?update=1&amp;id_product=92&amp;id_product_attribute=362&amp;token=b68a7b36e8930a00073a73a5e6feb04a"
-                data-product-id="92"
+                data-down-url="/cart-handler?quantity=<%=result[1][i].quantity-1%>&price=<%=result[1][i].oneprice%>&booking_id=<%=result[1][i].booking_id%>&categoryid=<%=result[1][i].categoryid%>&size=<%=result[1][i].size%>"
+                data-up-url="/cart-handler?quantity=<%=(+result[1][i].quantity)+1%>&price=<%=result[1][i].oneprice%>&booking_id=<%=result[1][i].booking_id%>&categoryid=<%=result[1][i].categoryid%>&size=<%=result[1][i].size%>"
+                data-update-url="/mycart12"
+                
+                data-product-id="<%=result[1][i].booking_id%>"
                 type="text"
-                value="1"
+                value="<%=result[1][i].quantity%>"
                 name="product-quantity-spin"
                 min="1"
+                readonly
               />
                       </div>
           <div class="col-md-6 col-xs-2  col-sp-12 price">
             <span class="product-price">
               <strong>
-                                  ₹5,500
+                <%=result[1][i].price%>
                               </strong>
             </span>
           </div>
@@ -141,7 +147,7 @@
           <a
               class                       = "remove-from-cart"
               rel                         = "nofollow"
-              href                        = "https://leffet.in/cart?delete=1&amp;id_product=92&amp;id_product_attribute=362&amp;token=b68a7b36e8930a00073a73a5e6feb04a"
+              href                        = "/delete?id=<%=result[1][i].id%>"
               data-link-action            = "delete-from-cart"
               data-id-product             = "92"
               data-id-product-attribute   = "362"
@@ -163,95 +169,9 @@
 </div>
           
         </li>
-                      <li class="cart-item">
-          
-            <div class="product-line-grid row">
-  <!--  product left content: image-->
-  <div class="product-line-grid-left col-md-3 col-xs-4">
-    <span class="product-image media-middle">
-      <img src="https://leffet.in/558-cart_default/lp0012.jpg" alt="LP0012">
-    </span>
-  </div>
-<!-- ₹10,500 -->
-  <!--  product left body: description -->
-  <div class="product-line-grid-body col-md-4 col-xs-8">
-    <div class="product-line-info">
-      <a class="label" href="https://leffet.in/all-collections/66-222-lp0012.html#/1-size-s" data-id_customization="0">LP0012</a>
-    </div>
 
-    <div class="product-line-info product-price h5 ">
-            <div class="current-price">
-        <span class="price">₹10,500</span>
-              </div>
-    </div>
-
-    <br/>
-
-          <div class="product-line-info">
-
-        
-            <span class="label">Size:</span>
-            <span class="value">S</span>
-
-      </div>
-    
-      </div>
-
-  <!--  product left body: description -->
-  <div class="product-line-grid-right product-line-actions col-md-5 col-xs-12">
-    <div class="row">
-      <div class="col-xs-4 hidden-md-up"></div>
-      <div class="col-md-10 col-xs-5">
-        <div class="row">
-          <div class="col-md-6 col-xs-6 col-sp-12 qty">
-                          <input
-                class="js-cart-line-product-quantity"
-                data-down-url="https://leffet.in/cart?update=1&amp;id_product=66&amp;id_product_attribute=222&amp;token=b68a7b36e8930a00073a73a5e6feb04a&amp;op=down"
-                data-up-url="https://leffet.in/cart?update=1&amp;id_product=66&amp;id_product_attribute=222&amp;token=b68a7b36e8930a00073a73a5e6feb04a&amp;op=up"
-                data-update-url="https://leffet.in/cart?update=1&amp;id_product=66&amp;id_product_attribute=222&amp;token=b68a7b36e8930a00073a73a5e6feb04a"
-                data-product-id="66"
-                type="text"
-                value="1"
-                name="product-quantity-spin"
-                min="1"
-              />
-                      </div>
-          <div class="col-md-6 col-xs-2  col-sp-12 price">
-            <span class="product-price">
-              <strong>
-                                  ₹10,500
-                              </strong>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 col-xs-3">
-        <div class="cart-line-product-actions ">
-          <a
-              class                       = "remove-from-cart"
-              rel                         = "nofollow"
-              href                        = "https://leffet.in/cart?delete=1&amp;id_product=66&amp;id_product_attribute=222&amp;token=b68a7b36e8930a00073a73a5e6feb04a"
-              data-link-action            = "delete-from-cart"
-              data-id-product             = "66"
-              data-id-product-attribute   = "222"
-              data-id-customization   	  = ""
-          >
-                        <i class="material-icons float-xs-left">delete</i>
-                      </a>
-
-          
-            
-          
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="clearfix"></div>
-</div>
-          
-        </li>
+        <% } %>
+                   
                   </ul>
       </div>
 
@@ -287,9 +207,9 @@
   <div class="card-block">
                   <div class="cart-summary-line" id="cart-subtotal-products">
           <span class="label js-subtotal">
-                          2 items
+            <%=result[3][0].counter%> items
                       </span>
-          <span class="value">₹16,000</span>
+          <span class="value">₹<%=result[2][0].totalprice%></span>
                   </div>
                                   <div class="cart-summary-line" id="cart-subtotal-shipping">
           <span class="label">
@@ -308,7 +228,7 @@
   <div class="card-block">
     <div class="cart-summary-line cart-total">
       <span class="label">Total (tax incl.)</span>
-      <span class="value">₹16,000</span>
+      <span class="value">₹<%=result[2][0].totalprice%></span>
     </div>
 
     <div class="cart-summary-line">
@@ -387,3 +307,9 @@
    
 
 <%- include ('./indexfooter.ejs') %> 
+
+<script>
+  function myfun(){
+    alert('hi')
+  }
+</script>

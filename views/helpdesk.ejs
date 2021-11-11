@@ -18,7 +18,7 @@
       
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="https://leffet.in/">
+              <a itemprop="item" href="/">
                 <span itemprop="name">Home</span>
               </a>
               <meta itemprop="position" content="1">
@@ -26,7 +26,7 @@
           
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="https://leffet.in/my-account">
+              <a itemprop="item" href="/myaccount">
                 <span itemprop="name">My Account</span>
               </a>
               <meta itemprop="position" content="2">
@@ -80,10 +80,37 @@ $('.selector').css('background-position','0 0px !important');
 </script>
 
 
-	<div class="block"><h1 class="title_block page-subheading">My Tickets</h1></div>
-			<p class="warning">No tickets have been posted yet.</p>
-	
-	<div style="clear:both;"></div>
+<div class="block"><h1 class="title_block page-subheading">My Tickets</h1></div>
+<div class="block-center" id="block-history">
+<table class="table table-bordered table-striped table-labeled">
+	<thead>
+		<tr>
+			<th>Ticket No.</th>
+			<th>Subject</th>
+			<th>Posted</th>
+			<th>Last Staff Response</th>
+			<th>Department</th>
+			<th>Priority</th>
+			<th>Status</th>
+			<th>Threads</th>
+		</tr>
+	</thead>
+	<tbody>
+					<tr onclick="window.location.href='https://leffet.in/helpdesk?ticket_id=68&detail=1'" style="cursor: pointer;">
+		<td>68</td>
+		<td>ggh</td>
+		<td>Nov 11, 2021</td>
+		<td></td>
+		<td>Software</td>
+		<td>Critical</td>
+		<td>Open</td>
+		<td>0</td>
+	</tr>
+					</tbody>
+</table>
+</div>
+
+<div style="clear:both;"></div>
 
 
 
@@ -91,54 +118,54 @@ $('.selector').css('background-position','0 0px !important');
 
 <div class="box">
 <form action="https://leffet.in/helpdesk" method="post" id="add_ticket" name="helpdesk_form" enctype="multipart/form-data" class="std">
-		<h3 class="page-subheading">Post a New Ticket</h3>
-		<div class="form-group">
-			<div class="required text">
-				<label for="title">Title <sup>*</sup> </label>
-				<input type="text" name="ticket_subject" id="ticket_subject" title="Title" class="form-control is_required validate" data-validate="isGenericName" />
-			</div>
-									<div class="required form-group">
-				<label for="t_department_id">Department <sup>*</sup> </label>
-				<select name="t_department_id" id="t_department_id" title="Department " class="form-control" style="width: 500px !important;">
-					<option value="">Select Department</option>
-										<option value="1">Software</option>
-										<option value="2">Accounts</option>
-										<option value="3">Shipping</option>
-										<option value="4">Delivery</option>
-									</select>
-			</div>
-										
+<h3 class="page-subheading">Post a New Ticket</h3>
+<div class="form-group">
+<div class="required text">
+	<label for="title">Title <sup>*</sup> </label>
+	<input type="text" name="ticket_subject" id="ticket_subject" title="Title" class="form-control is_required validate" data-validate="isGenericName" />
+</div>
 						<div class="required form-group">
-				<label for="priority">Priority <sup>*</sup> </label>
-				<select name="t_priority_id" id="t_priority_id" title="Priority " class="form-control" style="width: 500px !important;">
-					<option value="">Select Priority</option>
-										<option value="1">Critical</option>
-										<option value="2">Scheduled</option>
-										<option value="3">Major</option>
-									</select>
-			</div>
-									<div class="required form-group">
-				<label for="content">Message <sup>*</sup> </label>
-				<textarea name="content" id="content" title="Message" class="form-control" rows="3" cols="26"></textarea>
-			</div>
-						<div class="form-group">
-				<label for="content">Attachment</label>
-				<input name="helpdesk_attachment" id="helpdesk_attachment" value="" class="form-control" type="file" />
-			</div>
-			<p class="inline-infos required">Supported Types: jpg,doc,pdf,jpeg,png</p>						
-						<p class="submit2">
-				<input type="hidden" name="action" id="action" value="ticketsubmit" />
-				<input type="submit" class="btn btn-primary button" value="Post Ticket"  id="submitAddress" name="submitAddress">
-			</p>
-			
-		</div>
-	
+	<label for="t_department_id">Department <sup>*</sup> </label>
+	<select name="t_department_id" id="t_department_id" title="Department " class="form-control" style="width: 500px !important;">
+		<option value="">Select Department</option>
+							<option value="1">Software</option>
+							<option value="2">Accounts</option>
+							<option value="3">Shipping</option>
+							<option value="4">Delivery</option>
+						</select>
+</div>
+							
+			<div class="required form-group">
+	<label for="priority">Priority <sup>*</sup> </label>
+	<select name="t_priority_id" id="t_priority_id" title="Priority " class="form-control" style="width: 500px !important;">
+		<option value="">Select Priority</option>
+							<option value="1">Critical</option>
+							<option value="2">Scheduled</option>
+							<option value="3">Major</option>
+						</select>
+</div>
+						<div class="required form-group">
+	<label for="content">Message <sup>*</sup> </label>
+	<textarea name="content" id="content" title="Message" class="form-control" rows="3" cols="26"></textarea>
+</div>
+			<div class="form-group">
+	<label for="content">Attachment</label>
+	<input name="helpdesk_attachment" id="helpdesk_attachment" value="" class="form-control" type="file" />
+</div>
+<p class="inline-infos required">Supported Types: jpg,doc,pdf,jpeg,png</p>						
+			<p class="submit2">
+	<input type="hidden" name="action" id="action" value="ticketsubmit" />
+	<input type="submit" class="btn btn-primary button" value="Post Ticket"  id="submitAddress" name="submitAddress">
+</p>
+
+</div>
+
 </form>
 </div>
 
 <ul class="footer_links">
-	<li class="fleft">
-		<a href="https://leffet.in/my-account">Back to your account.</a></li>
+<li class="fleft">
+<a href="/myaccount">Back to your account.</a></li>
 </ul>
 
 <script>
@@ -147,29 +174,28 @@ function VerifyCallback(response) { $('.DataTrigger_test').show('submit');}
 
 </div>
 
-      </section>
-    
-  
-    
-      <footer class="page-footer">
-        
-          <!-- Footer content -->
-        
-      </footer>
-    
-
-  </section>
+</section>
 
 
-    
-  </div>
+
+<footer class="page-footer">
+
+<!-- Footer content -->
+
+</footer>
 
 
-            
-          </div>
-                  </div>
-              	
-      </section>
+</section>
 
-      <%- include ('./indexfooter.ejs') %> 
-   
+
+
+</div>
+
+
+
+</div>
+	  </div>
+	  
+</section>
+
+<%- include ('./indexfooter.ejs') %> 

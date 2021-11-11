@@ -60,7 +60,7 @@
       
   
     <p class="identity">
-            Connected as <a href='/identity'>naman Jain</a>.
+            Connected as <a href='https://leffet.in/identity'>naman Jain</a>.
     </p>
     <p>
             Not you? <a href='https://leffet.in/?mylogout='>Log out</a>
@@ -87,7 +87,7 @@
   <div class="js-address-form">
     <form
       method="POST"
-      action="/save-address"
+      action="/update-address"
       data-refresh-url="//leffet.in/order?ajax=1&action=addressForm"
     >
 
@@ -103,8 +103,8 @@
     
     <form
       method="POST"
-      action="/save-address"
-      data-id-address="0"
+      action="/update-address"
+      data-id-address="<%=result[1][0].id%>"
       data-refresh-url="//leffet.in/order?ajax=1&action=addressForm"
     >
 
@@ -113,6 +113,7 @@
         <section class="form-fields">
           
                           
+  <input type="hidden" name="id" value="<%=result[5][0].id%>">
       
                 
   
@@ -139,6 +140,7 @@
             class="form-control"
             name="firstname"
             type="text"
+            value="<%=result[5][0].firstname%>"
             
                         maxlength="255"            required          >
                   
@@ -174,6 +176,8 @@
             class="form-control"
             name="lastname"
             type="text"
+            value="<%=result[5][0].lastname%>"
+
             
                         maxlength="255"            required          >
                   
@@ -209,7 +213,8 @@
             class="form-control"
             name="company"
             type="text"
-            value=""
+            value="<%=result[5][0].company%>"
+
                         maxlength="255"                      >
                   
 
@@ -245,7 +250,8 @@
             class="form-control"
             name="vat_number"
             type="text"
-            value=""
+            value="<%=result[5][0].vat_number%>"
+
                                               >
                   
 
@@ -281,7 +287,8 @@
             class="form-control"
             name="address1"
             type="text"
-            value=""
+            value="<%=result[5][0].address1%>"
+
                         maxlength="128"            required          >
                   
 
@@ -316,7 +323,8 @@
             class="form-control"
             name="address2"
             type="text"
-            value=""
+            value="<%=result[5][0].address2%>"
+
                         maxlength="128"                      >
                   
 
@@ -352,7 +360,8 @@
             class="form-control"
             name="city"
             type="text"
-            value=""
+            value="<%=result[5][0].city%>"
+
                         maxlength="64"            required          >
                   
 
@@ -387,7 +396,8 @@
             class="form-control"
             name="postcode"
             type="text"
-            value=""
+            value="<%=result[5][0].postcode%>"
+
                         maxlength="12"            required          >
                   
 
@@ -420,6 +430,8 @@
         
           <select class="form-control form-control-select" name="id_state" required>
             <option value disabled selected>-- please choose --</option>
+            <option value="<%=result[5][0].id_state%>" selected><%=result[5][0].id_state%></option>
+            
                           <option value="325" >Andhra Pradesh</option>
                           <option value="326" >Arunachal Pradesh</option>
                           <option value="327" >Assam</option>
@@ -491,6 +503,8 @@
           name="id_country"
           required          >
             <option value disabled selected>-- please choose --</option>
+          <option value="<%=result[5][0].id_country%>" selected><%=result[5][0].id_country%></option>
+
                           <option value="231" >Afghanistan</option>
                           <option value="39" >American Samoa</option>
                           <option value="43" >Antigua and Barbuda</option>
@@ -586,7 +600,7 @@
             class="form-control"
             name="phone"
             type="tel"
-            value=""
+            value="<%=result[5][0].phone%>"
                         maxlength="12"            required          >
                   
 

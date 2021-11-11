@@ -115,7 +115,13 @@ router.post('/update', (req, res) => {
 
 let body = req.body
 
-    let price = (req.body.price)/(req.body.discount)
+if(req.body.discount == 0) {
+    price = 0
+  }
+  else {
+    price = (req.body.price)/(req.body.discount)
+  }
+  
     let net_price = (req.body.price)-price
     body['net_amount'] = Math.round(net_price);
 
@@ -144,6 +150,10 @@ let body = req.body
 
 router.post('/update_image',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 },{ name: 'image2', maxCount: 1 },{ name: 'image3', maxCount: 1 }]), (req, res) => {
     let body = req.body
+
+
+
+    
  console.log('files data',req.files)
 
 if(req.files.image){

@@ -27,7 +27,7 @@
           
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="https://leffet.in/order">
+              <a itemprop="item" href="#">
                 <span itemprop="name">Checkout</span>
               </a>
               <meta itemprop="position" content="2">
@@ -52,7 +52,8 @@
     <h1 class="step-title h3">
       <i class="material-icons rtl-no-flip done">&#xE876;</i>
       <span class="step-number">1</span>
-      Personal Information
+   
+      Personal Information    <span style="color: red;"><%=msg%></span>
       <span class="step-edit text-muted"><i class="material-icons">&#xE254;</i> edit</span>
     </h1>
 
@@ -96,7 +97,7 @@
   
       
 
-<form action="https://leffet.in/order" id="customer-form" class="js-customer-form" method="post">
+<form action="/order-as-a-guest" id="customer-form" class="js-customer-form" method="post">
   <section>
     
               
@@ -113,9 +114,9 @@
                       <label class="radio-inline">
               <span class="custom-radio">
                 <input
-                  name="id_gender"
+                  name="gender"
                   type="radio"
-                  value="1"
+                  value="Mr."
                                                     >
                 <span></span>
               </span>
@@ -124,9 +125,9 @@
                       <label class="radio-inline">
               <span class="custom-radio">
                 <input
-                  name="id_gender"
+                  name="gender"
                   type="radio"
-                  value="2"
+                  value="Mrs."
                                                     >
                 <span></span>
               </span>
@@ -225,7 +226,7 @@
           
   <div class="form-group row ">
     <label class="col-md-3 form-control-label required">
-              Email
+              Email 
           </label>
     <div class="col-md-6">
 
@@ -239,7 +240,6 @@
                                     required          >
                   
 
-      
       
               
 
@@ -380,7 +380,7 @@
   
       
 
-  <form id="login-form" action="/address" method="post">
+  <form id="login-form" action="/login" method="post">
 
     <section>
       
@@ -552,7 +552,7 @@
     
       <div class="cart-summary-products">
 
-        <p>3 items</p>
+        <p><%=result[3][0].counter%> items</p>
 
         <p>
           <a href="#" data-toggle="collapse" data-target="#cart-summary-product-list" class="btn btn-outline">
@@ -563,51 +563,36 @@
         
           <div class="collapse" id="cart-summary-product-list">
             <ul class="media-list">
+
+              <% for(i=0;i<result[1].length;i++){%>
+
+
+
                               <li class="media">
   <div class="media-left">
-    <a href="https://leffet.in/all-collections/92-362-lp007.html#/1-size-s" title="LP007">
-      <img class="media-object" src="https://leffet.in/518-small_default/lp007.jpg" alt="LP007">
+    <a href="/product?id=<%=result[1][i].booking_id%>" title="<%=result[1][i].name%>">
+      <img class="media-object" src="/images/<%=result[1][i].bookingimage%>" alt="<%=result[1][i].name%>">
     </a>
   </div>
   <div class="media-body">
-    <span class="product-name">LP007</span>
-    <span class="product-quantity">x2</span>
-    <span class="product-price float-xs-right">₹5,500</span>
+    <span class="product-name"><%=result[1][i].name%></span>
+    <span class="product-quantity">x<%=result[1][i].quantity%></span>
+    <span class="product-price float-xs-right">₹<%=result[1][i].price%></span>
     
      <span class="label"></span>
             <div class="product-line-info product-line-info-secondary text-muted">
 
             <span class="label">Size:</span>
-            <span class="value">S</span>
+            <span class="value"><%=result[1][i].size%></span>
 
         </div>
         <br/>
   </div>
 
 </li>
-                              <li class="media">
-  <div class="media-left">
-    <a href="https://leffet.in/all-collections/66-222-lp0012.html#/1-size-s" title="LP0012">
-      <img class="media-object" src="https://leffet.in/558-small_default/lp0012.jpg" alt="LP0012">
-    </a>
-  </div>
-  <div class="media-body">
-    <span class="product-name">LP0012</span>
-    <span class="product-quantity">x1</span>
-    <span class="product-price float-xs-right">₹10,500</span>
-    
-     <span class="label"></span>
-            <div class="product-line-info product-line-info-secondary text-muted">
 
-            <span class="label">Size:</span>
-            <span class="value">S</span>
-
-        </div>
-        <br/>
-  </div>
-
-</li>
-                          </ul>
+<% } %>
+                       </ul>
           </div>
         
       </div>
@@ -616,7 +601,7 @@
     
                         <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-products">
             <span class="label">Subtotal</span>
-            <span class="value">₹21,500</span>
+            <span class="value">₹<%=result[2][0].totalprice%></span>
           </div>
                                               <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
             <span class="label">Shipping</span>
@@ -637,7 +622,7 @@
   
     <div class="cart-summary-line cart-total">
       <span class="label">Total (tax incl.)</span>
-      <span class="value">₹21,500</span>
+      <span class="value">₹<%=result[2][0].totalprice%></span>
     </div>
   
 

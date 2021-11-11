@@ -194,6 +194,8 @@ $('#result').on('click', '.edits', function () {
     $('#ppintrest_link').val(result.pintrest_link);
     $('#pkeywords').val(result.keywords);
     $('#ptype').val(result.type);
+    $('#pshort_description').val(result.short_description);
+
 
 
 
@@ -241,6 +243,8 @@ $('#update').click(function () {  //data insert in database
          quantity : $('#pquantity').val(),
          discount : $('#pdiscount').val(),
          type : $('#ptype').val(),
+         short_description : $('#pshort_description').val(),
+
 
       
     }

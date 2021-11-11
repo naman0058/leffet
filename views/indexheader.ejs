@@ -476,7 +476,7 @@
                     <!-- @file modules\appagebuilder\views\templates\hook\ApImage -->
     <div id="image-form_304598259970642" class="block header_logo ApImageHotspot header_logo ApImageHotspot">
         
-                                                <a href="index.html" >
+                                                <a href="/" >
             
             <div class="imagehotspot-container">
                 <div style="position: relative; /* height: 0px; padding-bottom: 34%; padding-bottom: image's height divided by width multiply by 100 */">
@@ -597,8 +597,9 @@
                                     </button>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
-                                                        <div class="leo-top-menu collapse navbar-toggleable-md megamenu-off-canvas megamenu-off-canvas-5852801847688911"><ul class="nav navbar-nav megamenu horizontal">    <li data-menu-type="controller" class="nav-item  " >
-        <a class="nav-link has-category" href="index.html" target="_self">
+                                                        <div class="leo-top-menu collapse navbar-toggleable-md megamenu-off-canvas megamenu-off-canvas-5852801847688911">
+                                                          <ul class="nav navbar-nav megamenu horizontal">    <li data-menu-type="controller" class="nav-item  " >
+        <a class="nav-link has-category" href="/" target="_self">
                             
                             <span class="menu-title">Home</span>
                                                         </a>
@@ -624,44 +625,20 @@
                 <div class="col-sm-12 mega-col" data-colwidth="12" data-type="menu" >
                     <div class="inner">
                         <ul>
+                          <% for(i=0;i<result[0].length;i++){ %>
                                                             <li data-menu-type="category" class="nav-item   " >
-            <a class="nav-link" href="/shop">
+            <a class="nav-link" href="/shop?id=<%=result[0][i].id%>">
             
-                            <span class="menu-title">Üzvi</span>
+                            <span class="menu-title"><%=result[0][i].name%></span>
                                     
                     </a>
 
     </li>
+          <% } %>  
+  
             
                                                             <li data-menu-type="category" class="nav-item   " >
-            <a class="nav-link" href="/shop">
-            
-                            <span class="menu-title">Pariza </span>
-                                    
-                    </a>
-
-    </li>
-            
-                                                            <li data-menu-type="category" class="nav-item   " >
-            <a class="nav-link" href="/shop">
-            
-                            <span class="menu-title">Ikattra </span>
-                                    
-                    </a>
-
-    </li>
-            
-                                                            <li data-menu-type="category" class="nav-item   " >
-            <a class="nav-link" href="/shop">
-            
-                            <span class="menu-title">Utsav</span>
-                                    
-                    </a>
-
-    </li>
-            
-                                                            <li data-menu-type="category" class="nav-item   " >
-            <a class="nav-link" href="/shop">
+            <a class="nav-link" href="/shop/all-collections">
             
                             <span class="menu-title">All</span>
                                     
@@ -690,7 +667,7 @@
 
     });
 </script>    <li data-menu-type="category" class="nav-item  " >
-        <a class="nav-link has-category" href="18-most-loved.html" target="_top">
+        <a class="nav-link has-category" href="/shop/most-loved" target="_top">
                             
                             <span class="menu-title">Most Loved</span>
                                                         </a>
@@ -729,15 +706,12 @@
 <!-- Block search module -->
 <div id="leo_search_block_top" class="block exclusive">
 	<h4 class="title_block"><i class="icomoon icon-search"></i></h4>
-	<form method="get" action="https:///leffet.in/index.php?controller=productsearch" id="leosearchtopbox">
-		<input type="hidden" name="fc" value="module" />
-		<input type="hidden" name="module" value="leoproductsearch" />
-		<input type="hidden" name="controller" value="productsearch" />
-                <input type="hidden" name="leoproductsearch_static_token" value="b68a7b36e8930a00073a73a5e6feb04a"/>
+	<form method="get" action="/search" id="leosearchtopbox">
+	
 		    	<label>Search products:</label>
 		<div class="block_content clearfix leoproductsearch-content">		
 			<div class="list-cate-wrapper" style="display: none">
-				<input id="leosearchtop-cate-id" name="cate" value="" type="hidden">
+				<!-- <input id="leosearchtop-cate-id" name="cate" value="" type="hidden"> -->
 				<a href="javascript:void(0)" id="dropdownListCateTop" class="select-title" rel="nofollow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span>All Categories</span>
 					<i class="material-icons pull-xs-right">keyboard_arrow_down</i>
@@ -791,10 +765,12 @@
           <span>Sign in</span>
         </a>
       </li>-->
+      <% if(login==false){ %>
+
       <li>
         <a
           class="signin leo-quicklogin"
-          href="loginfd9a.html"
+          href="/login"
           title="Log in to your customer account"
           rel="nofollow"
         >
@@ -802,6 +778,41 @@
           <span>Sign in</span>
         </a>
       </li>
+      <% } else { %>
+
+        <li>
+          <a
+            class="account dropdown-item" 
+            href="/myaccount"
+            title="View my customer account"
+            rel="nofollow"
+          >
+          <i class="fa fa-user"></i>
+            <span>Hello <%=result[2][0].firstname%>  <%=result[2][0].lastname%></span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="logout dropdown-item"
+            href="/logout"
+            rel="nofollow"
+          >
+          <i class="fa fa-unlock-alt"></i>
+            Sign out
+          </a>
+        </li>
+
+        <li>
+          <a
+            class="logout dropdown-item"
+            href="/wishlist"
+            rel="nofollow"
+          >
+          <i class="fa fa-unlock-alt"></i>
+            Wishlist (<%=result[7][0].counter%>)
+          </a>
+        </li>
+        <% } %>
         <li class="hidden-lg-up">
       <a
         class="myacount dropdown-item"
@@ -827,18 +838,25 @@
             </ul>
 </div><!-- @file modules\appagebuilder\views\templates\hook\ApGenCode -->
 
-	    <a class="ap-btn-wishlist ap-wishlist" href="loginfdcb.html" title="Wishlist" rel="nofollow">      <i class="icomoon icon-wishlist"></i>      <span class="ap-total-wishlist ap-total"></span>    </a>    
+	    <a class="ap-btn-wishlist ap-wishlist" href="/wishlist" title="Wishlist" rel="nofollow">      <i class="icomoon icon-wishlist"></i>      <span class="ap-total-wishlist ap-total"><%=result[7][0].counter%></span>    </a>    
 <!-- @file modules\appagebuilder\views\templates\hook\ApModule -->
+
+<a class="ap-btn-wishlist ap-wishlist" href="/mycart" title="cart" rel="nofollow">      <i class="icomoon icon-cart"></i>      <span class="ap-total-wishlist ap-total"><%=result[6][0].counter%></span>    </a>    
+
+<!-- <a href="/mycart">
+
 <div id="cart-block">
-  <div class="blockcart cart-preview inactive" data-refresh-url="///leffet.in/module/ps_shoppingcart/ajax">
+  <div class="blockcart cart-preview active" data-refresh-url="/mycart">
     <div class="header">
               <i class="icomoon icon-cart"></i>
         <div class="cart-quantity">
-          <span class="cart-products-count">0</span>
+          <span class="cart-products-count">1</span>
         </div>
           </div>
+      
   </div>
 </div>
+</a> -->
     </div>            </div>
 </div>
 </div>

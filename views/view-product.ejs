@@ -26,8 +26,8 @@
           
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="85-210-lp001.html#/size-s">
-                <span itemprop="name">LP001</span>
+              <a itemprop="item" href="#">
+                <span itemprop="name"><%=result[1][0].name%></span>
               </a>
               <meta itemprop="position" content="2">
             </li>
@@ -69,7 +69,7 @@
                 <ul class="product-flags">
                                   </ul>
               
-                              <img id="zoom_product" data-type-zoom="" class="js-qv-product-cover img-fluid" src="/leffet.in/494-large_default/lp001.jpg" alt="" title="" itemprop="image">
+                              <img id="zoom_product" data-type-zoom="" class="js-qv-product-cover img-fluid" src="/images/<%=result[1][0].image%>" alt="" title="" itemprop="image">
                 <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
                   <i class="material-icons zoom-in">&#xE8FF;</i>
                 </div>
@@ -79,12 +79,12 @@
           
             <div id="thumb-gallery" class="product-thumb-images">
                                                 <div class="thumb-container  active ">
-                    <a href="javascript:void(0)" data-image="https://leffet.in/494-large_default/lp001.jpg" data-zoom-image="/leffet.in/494-large_default/lp001.jpg"> 
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image%>" data-zoom-image="/images/<%=result[1][0].image%>"> 
                       <img
                         class="thumb js-thumb  selected "
-                        data-image-medium-src="/leffet.in/494-medium_default/lp001.jpg"
-                        data-image-large-src="/leffet.in/494-large_default/lp001.jpg"
-                        src="/leffet.in/494-home_default/lp001.jpg"
+                        data-image-medium-src="/images/<%=result[1][0].image%>"
+                        data-image-large-src="/images/<%=result[1][0].image%>"
+                        src="/images/<%=result[1][0].image%>"
                         alt=""
                         title=""
                         itemprop="image"
@@ -92,12 +92,12 @@
                     </a>
                   </div>
                                   <div class="thumb-container ">
-                    <a href="javascript:void(0)" data-image="https://leffet.in/495-large_default/lp001.jpg" data-zoom-image="/leffet.in/495-large_default/lp001.jpg"> 
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image1%>" data-zoom-image="/images/<%=result[1][0].image1%>"> 
                       <img
                         class="thumb js-thumb "
-                        data-image-medium-src="/leffet.in/495-medium_default/lp001.jpg"
-                        data-image-large-src="/leffet.in/495-large_default/lp001.jpg"
-                        src="/leffet.in/495-home_default/lp001.jpg"
+                        data-image-medium-src="/images/<%=result[1][0].image1%>"
+                        data-image-large-src="/images/<%=result[1][0].image1%>"
+                        src="/images/<%=result[1][0].image1%>"
                         alt=""
                         title=""
                         itemprop="image"
@@ -105,12 +105,12 @@
                     </a>
                   </div>
                                   <div class="thumb-container ">
-                    <a href="javascript:void(0)" data-image="https://leffet.in/496-large_default/lp001.jpg" data-zoom-image="/leffet.in/496-large_default/lp001.jpg"> 
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image2%>" data-zoom-image="/images/<%=result[1][0].image2%>"> 
                       <img
                         class="thumb js-thumb "
-                        data-image-medium-src="/leffet.in/496-medium_default/lp001.jpg"
-                        data-image-large-src="/leffet.in/496-large_default/lp001.jpg"
-                        src="/leffet.in/496-home_default/lp001.jpg"
+                        data-image-medium-src="/images/<%=result[1][0].image2%>"
+                        data-image-large-src="/images/<%=result[1][0].image2%>"
+                        src="/images/<%=result[1][0].image2%>"
                         alt=""
                         title=""
                         itemprop="image"
@@ -118,12 +118,12 @@
                     </a>
                   </div>
                                   <div class="thumb-container ">
-                    <a href="javascript:void(0)" data-image="https://leffet.in/497-large_default/lp001.jpg" data-zoom-image="/leffet.in/497-large_default/lp001.jpg"> 
+                    <a href="javascript:void(0)" data-image="/images/<%=result[1][0].image3%>" data-zoom-image="/images/<%=result[1][0].image3%>"> 
                       <img
                         class="thumb js-thumb "
-                        data-image-medium-src="/leffet.in/497-medium_default/lp001.jpg"
-                        data-image-large-src="/leffet.in/497-large_default/lp001.jpg"
-                        src="/leffet.in/497-home_default/lp001.jpg"
+                        data-image-medium-src="/images/<%=result[1][0].image3%>"
+                        data-image-large-src="/images/<%=result[1][0].image3%>"
+                        src="/images/<%=result[1][0].image3%>"
                         alt=""
                         title=""
                         itemprop="image"
@@ -143,17 +143,19 @@
     
   </section>
 
-
+<input type="hidden" class="msg" value="<%=result[2][0].id%>">
 
   <div class="modal fade js-product-images-modal leo-product-modal" id="product-modal" data-thumbnails=".product-images-85">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
                 <figure>
-          <img class="js-modal-product-cover product-cover-modal" width="2400" src="/leffet.in/494-large_default/lp001.jpg" alt="" title="" itemprop="image">
+          <img class="js-modal-product-cover product-cover-modal" width="2400" src="/images/<%=result[1][0].image%>" alt="" title="" itemprop="image">
           <figcaption class="image-caption">
             
-              <div id="product-description-short" itemprop="description"><p>Each fabric is designed to embrace the finesse of traditional block printing. <br />Our signature logo, which is a contemporary version of Indian paisley. Hand block printed on textured organic cotton fabric in an extremely smart shirt dress silhouette.</p></div>
+              <div id="product-description-short" itemprop="description">
+                <div id="result"></div>
+            </div>
             
           </figcaption>
         </figure>
@@ -161,16 +163,16 @@
           
             <div class="product-images product-images-85">
                               <div class="thumb-container">
-                  <img data-image-large-src="https://leffet.in/494-large_default/lp001.jpg" class="thumb img-fluid js-modal-thumb selected " src="/leffet.in/494-medium_default/lp001.jpg" alt="" title="" width="239" itemprop="image">
+                  <img data-image-large-src="/images/<%=result[1][0].image%>" class="thumb img-fluid js-modal-thumb selected " src="/images/<%=result[1][0].image%>" alt="" title="" width="239" itemprop="image">
                 </div>
                               <div class="thumb-container">
-                  <img data-image-large-src="https://leffet.in/495-large_default/lp001.jpg" class="thumb img-fluid js-modal-thumb" src="/leffet.in/495-medium_default/lp001.jpg" alt="" title="" width="239" itemprop="image">
+                  <img data-image-large-src="/images/<%=result[1][0].image1%>" class="thumb img-fluid js-modal-thumb" src="/images/<%=result[1][0].image1%>" alt="" title="" width="239" itemprop="image">
                 </div>
                               <div class="thumb-container">
-                  <img data-image-large-src="https://leffet.in/496-large_default/lp001.jpg" class="thumb img-fluid js-modal-thumb" src="/leffet.in/496-medium_default/lp001.jpg" alt="" title="" width="239" itemprop="image">
+                  <img data-image-large-src="/images/<%=result[1][0].image2%>" class="thumb img-fluid js-modal-thumb" src="/images/<%=result[1][0].image2%>" alt="" title="" width="239" itemprop="image">
                 </div>
                               <div class="thumb-container">
-                  <img data-image-large-src="https://leffet.in/497-large_default/lp001.jpg" class="thumb img-fluid js-modal-thumb" src="/leffet.in/497-medium_default/lp001.jpg" alt="" title="" width="239" itemprop="image">
+                  <img data-image-large-src="/images/<%=result[1][0].image3%>" class="thumb img-fluid js-modal-thumb" src="/images/<%=result[1][0].image3%>" alt="" title="" width="239" itemprop="image">
                 </div>
                           </div>
             
@@ -205,7 +207,7 @@
                             </div><div class="col-form_id-form_15874367062488778 col-md-6 col-lg-6 col-xl-6 col-sm-12 col-xs-12 col-sp-12">
 
 	
-		<h1 class="h1 product-detail-name" itemprop="name">LP001</h1>
+		<h1 class="h1 product-detail-name" itemprop="name"><%=result[1][0].name%></h1>
 	
 
 
@@ -215,19 +217,19 @@
       <span class="share-this hidden-xs-up"><i class="fa fa-share-alt"></i>Share this:</span>
       <ul>
                   <li class="facebook icon-gray">
-            <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fleffet.in%2Fall-collections%2F85-lp001.html" class="text-hide" title="Share" target="_blank">
+            <a href="<%=result[1][0].fb_link%>" class="text-hide" title="Share" target="_blank">
             <span>Share</span>
             <i class="facebook icon-gray"></i>
             </a>
           </li>
                   <li class="twitter icon-gray">
-            <a href="https://twitter.com/intent/tweet?text=LP001%20https%3A%2F%2Fleffet.in%2Fall-collections%2F85-lp001.html" class="text-hide" title="Tweet" target="_blank">
+            <a href="<%=result[1][0].twitter_link%>" class="text-hide" title="Tweet" target="_blank">
             <span>Tweet</span>
             <i class="twitter icon-gray"></i>
             </a>
           </li>
                   <li class="pinterest icon-gray">
-            <a href="https://www.pinterest.com/pin/create/button/?media=https%3A%2F%2Fleffet.in%2F494%2Flp001.jpg&amp;url=https%3A%2F%2Fleffet.in%2Fall-collections%2F85-lp001.html" class="text-hide" title="Pinterest" target="_blank">
+            <a href="<%=result[1][0].pintrest_link%>" class="text-hide" title="Pinterest" target="_blank">
             <span>Pinterest</span>
             <i class="pinterest icon-gray"></i>
             </a>
@@ -355,7 +357,9 @@
 
 
   
-  <div id="product-description-short-85" class="description-short" itemprop="description"><p>Each fabric is designed to embrace the finesse of traditional block printing. <br />Our signature logo, which is a contemporary version of Indian paisley. Hand block printed on textured organic cotton fabric in an extremely smart shirt dress silhouette.</p></div>
+  <div id="product-description-short-85" class="description-short" itemprop="description">
+    <div id="result1"></div>
+  </div>
   
   
 
@@ -374,7 +378,7 @@
 
         <div class="current-price">
           
-          <span itemprop="price" id="custom_product_price" content="4000">₹4,000</span>
+          <span itemprop="price" id="custom_product_price" content="4000">₹ <%=result[1][0].price%></span>
 
                   </div>
 
@@ -406,10 +410,12 @@
 
 <div class="product-actions">
   
-    <form action="https://leffet.in/cart" method="post" id="add-to-cart-or-refresh">
-      <input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-      <input type="hidden" name="id_product" value="85" id="product_page_product_id">
-      <input type="hidden" name="id_customization" value="0" id="product_customization_id">
+    <form action="/cart-handler1" method="post" id="add-to-cart-or-refresh">
+      <input type="hidden" name="booking_id" value="<%=result[1][0].id%>">
+      <input type="hidden" name="price" value="<%=result[1][0].price%>">
+      <input type="hidden" name="oneprice" value="<%=result[1][0].price%>">
+
+      <input type="hidden" name="categoryid" value="<%=result[1][0].price%>" id="product_customization_id">
 
       
         <div class="product-variants">
@@ -424,7 +430,7 @@
              
                
               <label>
-                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="group[1]" value="1" checked="checked"  data-measurement-name="S">
+                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="size" value="S" checked="checked"  data-measurement-name="S">
                 <span class="radio-label">S</span>
               </label>
               
@@ -435,7 +441,7 @@
              
                
               <label>
-                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="group[1]" value="2">
+                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="size" value="M">
                 <span class="radio-label">M</span>
               </label>
               
@@ -446,7 +452,7 @@
              
                
               <label>
-                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="group[1]" value="3">
+                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="size" value="L">
                 <span class="radio-label">L</span>
               </label>
               
@@ -457,7 +463,7 @@
              
                
               <label>
-                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="group[1]" value="4">
+                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="size" value="XL">
                 <span class="radio-label">XL</span>
               </label>
               
@@ -499,18 +505,7 @@
 
       
         <div class="product-add-to-cart">
-  <input
-  type="hidden"
-  name="customer_measurement"
-  id="custom_measurement"
-  value=""
-  >
-  <input
-  type="hidden"
-  name="custom_attribute"
-  id="custom_attribute"
-  value=""
-  >
+ 
       <span class="control-label">Quantity</span>
 
     
@@ -518,7 +513,7 @@
         <div class="qty clearfix">
           <input
             type="text"
-            name="qty"
+            name="quantity"
             id="quantity_wanted"
             value="1"
             class="input-group"
@@ -684,41 +679,43 @@
           <div class="products"> 
             <div class="owl-row  product-default">
               <div id="category-products2">
-                                  <div class="item first">
+
+<% for(i=0;i<result[2].length;i++){ %>
+  <div class="item first">
                     
                                               
-                        <article class="product-miniature js-product-miniature" data-id-product="87" data-id-product-attribute="250" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
+    <article class="product-miniature js-product-miniature" data-id-product="87" data-id-product-attribute="250" itemscope itemtype="http://schema.org/Product">
+<div class="thumbnail-container">
+<div class="product-image">
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 
-				<a href="87-250-lp002.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/499-large_default/lp002.jpg"
-				alt = "LP002"
-				data-full-size-image-url = "/leffet.in/499-large_default/lp002.jpg"
-			> 
-							<span class="product-additional" data-idproduct="87"></span>
-					</a>
-	
+<a href="/product?id=<%=result[2][i].id%>" class="thumbnail product-thumbnail">
+<img
+class="img-fluid"
+src = "/images/<%=result[2][i].image%>"
+alt = "<%=result[2][0].name%>"
+data-full-size-image-url = "/images/<%=result[2][i].image%>"
+> 
+<span class="product-additional" data-idproduct="87"></span>
+</a>
+
 
 
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 
 <ul class="product-flags">
-  </ul>
+</ul>
 
 
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 <div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="87" data-id-product-attribute="250" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
+<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="87" data-id-product-attribute="250" title="Add to Wishlist">
+<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
+<span class="leo-wishlist-bt-content">
+<i class="icomoon icon-wishlist"></i>
+<span class="btn-title">Add to wishlist</span>
+</span>
+</a>
 </div>
 
 
@@ -726,15 +723,15 @@
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 <div class="quickview no-variants hidden-lg-down">
 <a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
+href="#"
+class="quick-view btn-product btn"
+data-link-action="quickview"
 >
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
+<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
+<span class="leo-quickview-bt-content">
+<i class="icomoon icon-preview"></i>
+<span class="btn-title">Quick view</span>
+</span>
 </a>
 </div>
 
@@ -743,1279 +740,60 @@
 
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 <div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_87" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_87" name="minimal_quantity">
-		<input type="hidden" value="250" class="id_product_attribute id_product_attribute_87" name="id_product_attribute">
-		<input type="hidden" value="87" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_87" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_87" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
+<form action="/cart-handler1" method="post">
+  <input type="hidden" name="booking_id" value="<%=result[2][i].id%>">
+  <input type="hidden" name="price" value="<%=result[2][i].price%>">
+  <input type="hidden" name="oneprice" value="<%=result[2][i].price%>">
+
+  <input type="hidden" name="categoryid" value="<%=result[2][i].price%>" id="product_customization_id">
+  <input type="hidden" name="quanity" value="1">
+<button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_87" data-button-action="add-to-cart" type="submit">
+<span class="leo-loading cssload-speeding-wheel"></span>
+<span class="leo-bt-cart-content">
+<i class="icomoon icon-cart"></i>
+<span class="btn-title">Add to cart</span>
+</span>
+</button>
+
+</form>
 </div>
 
 
 </div></div>
-    <div class="product-meta">
+<div class="product-meta">
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
 
-  <h3 class="h3 product-title" itemprop="name"><a href="87-250-lp002.html#/1-size-s">LP002</a></h3>
+<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[2][i].id%>"><%=result[2][0].name%></a></h3>
 
 
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
+
+<div class="product-price-and-shipping ">
+
+
+
+
+<span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+<span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="4000">₹<%=result[2][i].net_amount%></span>
+</span>
         
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="4000">₹4,000</span>
-              </span>
-                            
-
-              
-            </div>
-                  
 
 
-  <div class="product-description-short" itemprop="description"> An outfit that's designed by the craftsmen who keep the dying art of block printing, alive.  Botanical leaf motif hand block printed on textured...</div>
 </div>
-  </div>
+
+
+
+<div class="product-description-short" itemprop="description"> <%=result[2][i].short_description%></div>
+</div>
+</div>
 </article>
 
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="88" data-id-product-attribute="294" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="88-294-lp003.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/502-large_default/lp003.jpg"
-				alt = "LP003"
-				data-full-size-image-url = "/leffet.in/502-large_default/lp003.jpg"
-			> 
-							<span class="product-additional" data-idproduct="88"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="88" data-id-product-attribute="294" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
+                      
 </div>
+<% } %>
 
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="2" class="quantity_product quantity_product_88" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_88" name="minimal_quantity">
-		<input type="hidden" value="294" class="id_product_attribute id_product_attribute_88" name="id_product_attribute">
-		<input type="hidden" value="88" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_88" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_88" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="88-294-lp003.html#/1-size-s">LP003</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="3500">₹3,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Embracing the beauty of chic silhouettes. A Contemporary print in an off-beat colour pallet, printed on a textured cotton slub, converted into a...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="89" data-id-product-attribute="338" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="89-338-lp004.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/506-large_default/lp004.jpg"
-				alt = "LP004"
-				data-full-size-image-url = "/leffet.in/506-large_default/lp004.jpg"
-			> 
-							<span class="product-additional" data-idproduct="89"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="89" data-id-product-attribute="338" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="6" class="quantity_product quantity_product_89" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_89" name="minimal_quantity">
-		<input type="hidden" value="338" class="id_product_attribute id_product_attribute_89" name="id_product_attribute">
-		<input type="hidden" value="89" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_89" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_89" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="89-338-lp004.html#/1-size-s">LP004</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="3500">₹3,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Grooved silhouettes. Infused embroidery. A Contemporary print in an off-beat colour pallet, printed on a textured cotton slub, made into a trendy...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="91" data-id-product-attribute="358" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="91-358-lp006.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/515-large_default/lp006.jpg"
-				alt = "LP006"
-				data-full-size-image-url = "/leffet.in/515-large_default/lp006.jpg"
-			> 
-							<span class="product-additional" data-idproduct="91"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="91" data-id-product-attribute="358" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="9" class="quantity_product quantity_product_91" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_91" name="minimal_quantity">
-		<input type="hidden" value="358" class="id_product_attribute id_product_attribute_91" name="id_product_attribute">
-		<input type="hidden" value="91" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_91" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_91" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="91-358-lp006.html#/1-size-s">LP006</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="4500">₹4,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Transforming natural fabrics into kalamkari masterpieces.  Pure &amp; Authentic Kalamkari print, using vegetable dyes on fluid modal fabric just...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="92" data-id-product-attribute="362" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="92-362-lp007.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/518-large_default/lp007.jpg"
-				alt = "LP007"
-				data-full-size-image-url = "/leffet.in/518-large_default/lp007.jpg"
-			> 
-							<span class="product-additional" data-idproduct="92"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="92" data-id-product-attribute="362" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="8" class="quantity_product quantity_product_92" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_92" name="minimal_quantity">
-		<input type="hidden" value="362" class="id_product_attribute id_product_attribute_92" name="id_product_attribute">
-		<input type="hidden" value="92" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_92" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_92" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="92-362-lp007.html#/1-size-s">LP007</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="5500">₹5,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Embracing the kalakari of kalamkari. Pure &amp; Authentic Kalamkari print, using vegetable dyes on fluid modal fabric just does justice to this...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="96" data-id-product-attribute="254" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="96-254-lp0020.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/525-large_default/lp0020.jpg"
-				alt = "LP0020"
-				data-full-size-image-url = "/leffet.in/525-large_default/lp0020.jpg"
-			> 
-							<span class="product-additional" data-idproduct="96"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="96" data-id-product-attribute="254" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="8" class="quantity_product quantity_product_96" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_96" name="minimal_quantity">
-		<input type="hidden" value="254" class="id_product_attribute id_product_attribute_96" name="id_product_attribute">
-		<input type="hidden" value="96" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_96" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_96" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="96-254-lp0020.html#/1-size-s">LP0020</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="7500">₹7,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Blend-in elegance.  This multi-tiered dress is made by mixing and matching three different prints on a soft velvet like mul fabric. These...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="97" data-id-product-attribute="258" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="97-258-lp0021.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/530-large_default/lp0021.jpg"
-				alt = "LP0021"
-				data-full-size-image-url = "/leffet.in/530-large_default/lp0021.jpg"
-			> 
-							<span class="product-additional" data-idproduct="97"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="97" data-id-product-attribute="258" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_97" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_97" name="minimal_quantity">
-		<input type="hidden" value="258" class="id_product_attribute id_product_attribute_97" name="id_product_attribute">
-		<input type="hidden" value="97" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_97" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_97" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="97-258-lp0021.html#/1-size-s">LP0021</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="5500">₹5,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Detailed artistry, delivered. This easy breezy below knee length dress is made by amalgamation of three customized prints. It is a modern day wear...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="98" data-id-product-attribute="266" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="98-266-lp0023.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/534-large_default/lp0023.jpg"
-				alt = "LP0023"
-				data-full-size-image-url = "/leffet.in/534-large_default/lp0023.jpg"
-			> 
-							<span class="product-additional" data-idproduct="98"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="98" data-id-product-attribute="266" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_98" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_98" name="minimal_quantity">
-		<input type="hidden" value="266" class="id_product_attribute id_product_attribute_98" name="id_product_attribute">
-		<input type="hidden" value="98" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_98" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_98" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="98-266-lp0023.html#/1-size-s">LP0023</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="5000">₹5,000</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Subtly graceful  This calf length beautiful dress is made with hand woven cotton. It gathers after the short yoke and embroidered placket with a...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="99" data-id-product-attribute="302" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="99-302-lp0031.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/538-large_default/lp0031.jpg"
-				alt = "LP0031"
-				data-full-size-image-url = "/leffet.in/538-large_default/lp0031.jpg"
-			> 
-							<span class="product-additional" data-idproduct="99"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="99" data-id-product-attribute="302" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_99" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_99" name="minimal_quantity">
-		<input type="hidden" value="302" class="id_product_attribute id_product_attribute_99" name="id_product_attribute">
-		<input type="hidden" value="99" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_99" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_99" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="99-302-lp0031.html#/1-size-s">LP0031</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="6500">₹6,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Block Printing X Classy Embroidery. This below the knee length sleeveless dress with tonal block printing on the hem and floral motifs on the yoke...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="101" data-id-product-attribute="306" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="101-306-lp0032.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/859-large_default/lp0032.jpg"
-				alt = "LP0032"
-				data-full-size-image-url = "/leffet.in/859-large_default/lp0032.jpg"
-			> 
-							<span class="product-additional" data-idproduct="101"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="101" data-id-product-attribute="306" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_101" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_101" name="minimal_quantity">
-		<input type="hidden" value="306" class="id_product_attribute id_product_attribute_101" name="id_product_attribute">
-		<input type="hidden" value="101" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_101" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_101" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="101-306-lp0032.html#/1-size-s">LP0032</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="6500">₹6,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Epitomizing the art of versatility. High neck dress with Kalamkari inspired block printing on yoke with concealed belt and pretty tassels is made...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="102" data-id-product-attribute="342" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="102-342-lp0040.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/545-large_default/lp0040.jpg"
-				alt = "LP0040"
-				data-full-size-image-url = "/leffet.in/545-large_default/lp0040.jpg"
-			> 
-							<span class="product-additional" data-idproduct="102"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="102" data-id-product-attribute="342" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_102" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_102" name="minimal_quantity">
-		<input type="hidden" value="342" class="id_product_attribute id_product_attribute_102" name="id_product_attribute">
-		<input type="hidden" value="102" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_102" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_102" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="102-342-lp0040.html#/1-size-s">LP0040</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="8500">₹8,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Slay your class, subtly. A fine high-low patterned midi dress with graceful setting of block printing on the hem, back, lapel and sleeves. It’s...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
-                                  <div class="item first">
-                    
-                                              
-                        <article class="product-miniature js-product-miniature" data-id-product="114" data-id-product-attribute="354" itemscope itemtype="http://schema.org/Product">
-  <div class="thumbnail-container">
-    <div class="product-image">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-				<a href="114-354-lp005.html#/1-size-s" class="thumbnail product-thumbnail">
-			<img
-				class="img-fluid"
-				src = "/leffet.in/513-large_default/lp005.jpg"
-				alt = "LP005"
-				data-full-size-image-url = "/leffet.in/513-large_default/lp005.jpg"
-			> 
-							<span class="product-additional" data-idproduct="114"></span>
-					</a>
-	
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-<ul class="product-flags">
-  </ul>
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="114" data-id-product-attribute="354" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
-</div>
-
-
-<div class="functional-buttons clearfix">
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-  href="#"
-  class="quick-view btn-product btn"
-  data-link-action="quickview"
->
-	<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-	<span class="leo-quickview-bt-content">
-		<i class="icomoon icon-preview"></i>
-		<span class="btn-title">Quick view</span>
-	</span>
-</a>
-</div>
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-
-
-<!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
-		<input type="hidden" name="token" value="b68a7b36e8930a00073a73a5e6feb04a">
-		<input type="hidden" value="10" class="quantity_product quantity_product_114" name="quantity_product">
-		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_114" name="minimal_quantity">
-		<input type="hidden" value="354" class="id_product_attribute id_product_attribute_114" name="id_product_attribute">
-		<input type="hidden" value="114" class="id_product" name="id_product">
-		<input type="hidden" name="id_customization" value="" class="product_customization_id">
-		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_114" name="qty" value="1" data-min="1">
-		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_114" data-button-action="add-to-cart" type="submit">
-			<span class="leo-loading cssload-speeding-wheel"></span>
-			<span class="leo-bt-cart-content">
-				<i class="icomoon icon-cart"></i>
-				<span class="btn-title">Add to cart</span>
-			</span>
-		</button>
-		
-	</form>
-</div>
-
-
-</div></div>
-    <div class="product-meta">
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-
-  <h3 class="h3 product-title" itemprop="name"><a href="114-354-lp005.html#/1-size-s">LP005</a></h3>
-
-
-<!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
-        
-              <div class="product-price-and-shipping ">
-              
-
-              
-
-              <span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="4500">₹4,500</span>
-              </span>
-                            
-
-              
-            </div>
-                  
-
-
-  <div class="product-description-short" itemprop="description"> Poetry in motion.  Pure &amp; Authentic Kalamkari print, using vegetable dyes on fluid modal fabric just does justice to this chic dress with...</div>
-</div>
-  </div>
-</article>
-
-                                          
-                  </div>
+                             
+                 
                               </div>
             </div>
           </div>
@@ -2100,4 +878,32 @@
       </section>
 
 <%- include ('./indexfooter.ejs') %> 
+
+
+<script>
+
+  $( document ).ready(function() {
+     let msg = $('.msg').val()
+     $.getJSON(`/product-description?msg=${msg}`,data=>{
+      console.log(data[0].description)
+       a(data)
+    })
+  });
+  
+   
+  
+  
+    function a(data){
+      let table = `<p>
+   <p>${data[0].description}</p>
+   </p>
+        `
+        $('#result').html(table)
+        $('#result1').html(table)
+
+    }
+  
+  
+  
+  </script>
      
