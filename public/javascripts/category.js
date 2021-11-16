@@ -147,7 +147,9 @@ $('#update').click(function(){  //data insert in database
         }
 
     $.post(`${table}/update`, updateobj , function(data) {
-       update()
+        if(data.status==300 || data.status == '300') alert(data.description);
+        else update()
+    //    
     })
 })
 

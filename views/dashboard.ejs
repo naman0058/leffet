@@ -201,7 +201,7 @@
                 </div>
                 <div class="card-body">
 
-                  <select class="form-control" name="delivery_boy" id="delivery_boy">
+                  <!-- <select class="form-control" name="delivery_boy" id="delivery_boy"> -->
 
 
 
@@ -218,7 +218,6 @@
                         <th>Payment Mode</th>
                         <th>Progress</th>
                         <th>Price</th>
-                        <th>Assign</th>
                         <th>Status</th>
                         
                       </tr>
@@ -241,16 +240,7 @@
                         <td>Rs. <%=result[8][i].price%></td>
 
 
-                        <% if(result[8][i].assigned_number == null || result[8][i].assigned_number == 'null' ) { %>
-
-
-                         <td><button type="button" class="btn btn-primary assign" id="<%=result[8][i].id%>">Assign</button></td>
-
-                          <% } else { %>
-
-                            <td><%=result[8][i].assigned_number%></td>
-
-                            <% } %>
+                     
 
 
 

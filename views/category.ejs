@@ -350,7 +350,13 @@
          data: {description: description},
         contentType: 'application/json',
         success: function (response) {
-          alert('successfully')
+          console.log(response)
+          if(response.status=='300' || response.status==300) alert(response.description)
+          else {
+         alert('successfully')
+          window.location.reload()
+          }
+         
         }
       });
       return false;

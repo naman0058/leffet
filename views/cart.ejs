@@ -5,6 +5,80 @@
 <%- include ('./otherheader.ejs') %>
 
 
+<style>
+  .quantity {
+  position: relative;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number]
+{
+  -moz-appearance: textfield;
+}
+
+.quantity input {
+  width: 70px;
+  height: 42px;
+  line-height: 1.65;
+  float: left;
+  display: block;
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  border: 1px solid #eee;
+}
+
+.quantity input:focus {
+  outline: 0;
+
+
+}
+
+.quantity-nav {
+  float: left;
+  position: relative;
+  height: 42px;
+}
+
+.quantity-button {
+  position: relative;
+  cursor: pointer;
+  border-left: 1px solid #B9B9B9;
+  width: 23px;
+  text-align: center;
+  color: #333;
+  font-size: 15px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+  line-height: 1.7;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.quantity-button.quantity-up {
+  position: absolute;
+  height: 50%;
+  top: 0;
+  border-bottom: 1px solid #B9B9B9;
+}
+
+.quantity-button.quantity-down {
+  position: absolute;
+  bottom: -1px;
+  height: 50%;
+}
+</style>
+
 
 <aside id="notifications">
   <div class="container">
@@ -72,7 +146,7 @@
           <hr class="separator">
           
             
-  <div class="cart-overview js-cart" data-refresh-url="//leffet.in/cart?ajax=1&action=refresh">
+  <div class="cart-overvie js-cart" data-refresh-url="localhost:5000/mycart">
         <ul class="cart-items">
 
           <% for(i=0;i<result[1].length;i++){%>
@@ -119,19 +193,25 @@
       <div class="col-md-10 col-xs-5">
         <div class="row" onClick="myfun()">
           <div class="col-md-6 col-xs-6 col-sp-12 qty">
-                          <input
-                class="js-cart-line-product-quantity"
+
+
+            <div class="quantity" price = "<%=result[1][i].oneprice%>" booking_id="<%=result[1][i].booking_id%>" categoryid="<%=result[1][i].categoryid%>" size="<%=result[1][i].size%>">
+              <input type="number" id="myquantity" min="1" max="90" step="1"  value="<%=result[1][i].quantity%>" style='font-size: 17px;float: left;text-align: left;'>
+            </div>
+
+                          <!-- <input
+                class="js-cart-line-product-quantity cnjk"
                 data-down-url="/cart-handler?quantity=<%=result[1][i].quantity-1%>&price=<%=result[1][i].oneprice%>&booking_id=<%=result[1][i].booking_id%>&categoryid=<%=result[1][i].categoryid%>&size=<%=result[1][i].size%>"
                 data-up-url="/cart-handler?quantity=<%=(+result[1][i].quantity)+1%>&price=<%=result[1][i].oneprice%>&booking_id=<%=result[1][i].booking_id%>&categoryid=<%=result[1][i].categoryid%>&size=<%=result[1][i].size%>"
-                data-update-url="/mycart12"
+                data-update-url="/mycart"
                 
                 data-product-id="<%=result[1][i].booking_id%>"
-                type="text"
+                type="number"
                 value="<%=result[1][i].quantity%>"
                 name="product-quantity-spin"
                 min="1"
                 readonly
-              />
+              /> -->
                       </div>
           <div class="col-md-6 col-xs-2  col-sp-12 price">
             <span class="product-price">
@@ -145,10 +225,8 @@
       <div class="col-md-2 col-xs-3">
         <div class="cart-line-product-actions ">
           <a
-              class                       = "remove-from-cart"
               rel                         = "nofollow"
               href                        = "/delete?id=<%=result[1][i].id%>"
-              data-link-action            = "delete-from-cart"
               data-id-product             = "92"
               data-id-product-attribute   = "362"
               data-id-customization   	  = ""
@@ -309,7 +387,62 @@
 <%- include ('./indexfooter.ejs') %> 
 
 <script>
-  function myfun(){
-    alert('hi')
-  }
+    jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
+    jQuery('.quantity').each(function() {
+      var spinner = jQuery(this),
+        input = spinner.find('input[type="number"]'),
+        btnUp = spinner.find('.quantity-up'),
+        btnDown = spinner.find('.quantity-down'),
+        min = input.attr('min'),
+        max = input.attr('max');
+
+      btnUp.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue >= max) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue + 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+      btnDown.click(function() {
+        var oldValue = parseFloat(input.val());
+        if (oldValue <= min) {
+          var newVal = oldValue;
+        } else {
+          var newVal = oldValue - 1;
+        }
+        spinner.find("input").val(newVal);
+        spinner.find("input").trigger("change");
+      });
+
+    });
+
+
+
+// $('.quantity-up').click(function(){
+//   alert('hi')
+// })
+
+
+// $('.quantity-down').click(function(){
+//   alert('hi12')
+// })
+
+
+$('.quantity').click(function(){
+  let quantity = $('#myquantity').val()
+  let price = $(this).attr('price')
+  let booking_id = $(this).attr('booking_id')
+  let categoryid = $(this).attr('categoryid')
+  let size = $(this).attr('size')
+  // alert(size)
+
+  $.post('/cart-handler1',{quantity,price,booking_id,categoryid,size},data=>{
+    window.location.href = '/mycart'
+  })
+})
+
 </script>

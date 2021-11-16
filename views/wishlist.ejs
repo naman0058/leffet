@@ -70,7 +70,7 @@
 				<div class="form-group has-danger">		 
 				  <div class="form-control-feedback"></div>		 
 				</div>
-				<button type="submit" class="btn btn-primary leo-save-wishlist-bt">
+				<button type="button" class="btn btn-primary leo-save-wishlist-bt">
 					<span class="leo-save-wishlist-loading cssload-speeding-wheel"></span>
 					<span class="leo-save-wishlist-bt-text">
 						Save
@@ -78,7 +78,11 @@
 				</button>
 			</div>
 			
-				<div class="list-wishlist">						<table class="table table-striped">
+
+
+			<% if(result[6][0]) { %>
+				<div class="list-wishlist">						
+					<table class="table table-striped">
 					  <thead class="wishlist-table-head">
 						<tr>
 						  <th>Name</th>
@@ -92,14 +96,18 @@
 					  </thead>
 					  <tbody>
 					
+
+
+						<% for(i=0;i<result[6].length;i++){ %>
+
 															<tr>					 
 									<td>
-								    <a href="javascript:void(0)" class="view-wishlist-product" data-name-wishlist="My wishlist" data-id-wishlist="2"><i class="material-icons">&#xE8EF;</i>My wishlist</a><div class="leo-view-wishlist-product-loading leo-view-wishlist-product-loading-2 cssload-speeding-wheel"></div>
+								    <a href="javascript:void(0)" class="view-wishlist-product" data-name-wishlist="My wishlist" data-id-wishlist="2"><i class="material-icons">&#xE8EF;</i><%=result[6][i].name%></a><div class="leo-view-wishlist-product-loading leo-view-wishlist-product-loading-2 cssload-speeding-wheel"></div>
 									    </td>
-									<td class="wishlist-numberproduct wishlist-numberproduct-2">1</td>
-									<td>1</td>
-									<td class="wishlist-datecreate">2021-11-09 12:05:17</td>							
-									<td><a class="view-wishlist" data-token="C0016951F1BF8E98" target="_self" href="https://leffet.in/module/leofeature/viewwishlist?token=C0016951F1BF8E98" title="View">View</a></td>
+									<td class="wishlist-numberproduct wishlist-numberproduct-2"><%=result[6][i].quantity%></td>
+									<td><%=result[6][i].viewed%></td>
+									<td class="wishlist-datecreate"><%=result[6][i].created%></td>							
+									<td><a class="view-wishlist" data-token="C0016951F1BF8E98" target="_self" href="/view-wishlist?id=<%=result[6][i].id%>" title="View">View</a></td>
 								<!--	<td>
 										
 											<label class="form-check-label">
@@ -109,12 +117,16 @@
 									</td> ---->
 									<td><a class="delete-wishlist" data-id-wishlist="2" href="javascript:void(0)" title="Delete"><i class="material-icons">&#xE872;</i></a></td>
 								</tr>
-												
+									
+								<% } %>
 						
 					
 					  </tbody>
 					</table>
 									</div>
+
+<% } %>
+
 					<section id="products">
 				<div class="leo-wishlist-product products row">
 				

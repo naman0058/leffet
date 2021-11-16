@@ -95,7 +95,7 @@ function leoSelectAttr() {
             headers: {
                 "cache-control": "no-cache"
             },
-            url: '/mycart',
+            url: prestashop.urls.base_url + "modules/leofeature/psajax.php?rand=" + (new Date).getTime(),
             async: !0,
             cache: !1,
             data: {
@@ -244,7 +244,10 @@ function updateQuantityProductDropDown(r) {
         if (void 0 !== r.data("check-outstock")) {
             if (clearInterval(check_data_outstock), l.data("check-outstock") || (showLeoNotification("warning", "max", !1), l.val(c), p = !1, f.find(".leo-dropdown-overlay").hide(), f.find(".leo-dropdown-cssload-speeding-wheel").hide(), f.removeClass("updating")), !p) return !1;
             var t, e, a, o;
-            $(".js-cart-line-product-quantity").length ? ((t = $.Event("keyup")).keyCode = 13, $('.remove-from-cart[data-id-product="' + s + '"][data-id-product-attribute="' + d + '"][data-id-customization="' + n + '"]').parents(".cart-item").find(".js-cart-line-product-quantity").val(i).trigger(t)) : (e = l.data("update-url"), a = $(".leo-blockcart.cart-preview").data("refresh-url"), o = "", o = 0 < h ? "up" : "down", $.ajax({
+            $(".js-cart-line-product-quantity").length ? 
+            ((t = $.Event("keyup")).keyCode = 13, $('.remove-from-cart[data-id-product="' + s + '"][data-id-product-attribute="' + d + '"][data-id-customization="' + n + '"]').parents(".cart-item").find(".js-cart-line-product-quantity").val(i).trigger(t)) :
+             (e = l.data("update-url"), a = $(".leo-blockcart.cart-preview").data("refresh-url"), o = "", o = 0 < h ? "up" : "down",
+             $.ajax({
                 type: "POST",
                 headers: {
                     "cache-control": "no-cache"
@@ -294,8 +297,7 @@ function createModalAndDropdown(t, e) {
         headers: {
             "cache-control": "no-cache"
         },
-        url: '/mycart',
-
+        url:'/mycart',
         async: !0,
         cache: !1,
         data: {
@@ -305,14 +307,23 @@ function createModalAndDropdown(t, e) {
             token: leo_token
         },
         success: function(t) {
+
+           if(t.msg=='success'){
+            //    alert('h')
+           }
+            // console.log('done')
+            // window.location.href = '/mycart'
             "" != t ? ($(".leo-blockcart.cart-preview .cssload-piano").hide(), $(".leo-fly-cart .leo-fly-cart-cssload-loader").length && setTimeout(function() {
                 $(".leo-fly-cart .leo-fly-cart-cssload-loader").hide()
             }, 2e3), "" != t.dropdown ? ($(".leo-fly-cart-slidebar.disable").length && $(".leo-fly-cart-slidebar").removeClass("disable"), $(".leo-dropdown-cart").length ? $(".leo-dropdown-cart").addClass("update") : ("undefined" == typeof type_dropdown_defaultcart || "dropdown" != type_dropdown_defaultcart && "dropup" != type_dropdown_defaultcart || $(".leo-blockcart.cart-preview.show-leo-loading").after('<div class="leo-dropdown-cart defaultcart ' + type_dropdown_defaultcart + '"></div>'), $(".leo-fly-cart.enable-dropdown").length && $(".leo-fly-cart.enable-dropdown").append('<div class="leo-dropdown-cart flycart ' + $(".leo-fly-cart.enable-dropdown").data("type") + '"></div>'), $(".leo-fly-cart-slidebar").length && $(".leo-fly-cart-slidebar").append('<div class="leo-dropdown-cart"></div>')), $(".leo-dropdown-cart-content").length ? 1 == e ? ($(".leo-dropdown-cart-content .leo-dropdown-total").replaceWith(t.dropdown), $(".leo-dropdown-list-item").each(function() {
                 $(this).parents(".leo-fly-cart-slidebar").length || checkFlyCartScrollBarDropDown($(this)), $(this).parents(".leo-fly-cart-slidebar").length && $(this).parents(".leo-fly-cart-slidebar").find(".active-scrollbar") && checkFlyCartScrollBar($(this))
             })) : ($(".leo-dropdown-cart-content").replaceWith(t.dropdown), activeDropdownEvent()) : ($(".leo-dropdown-cart").append(t.dropdown), activeDropdownEvent())) : ($(".leo-dropdown-cart").length && $(".leo-dropdown-cart").remove(), $(".leo-fly-cart-slidebar").addClass("disable"), $(".leo-fly-cart-slidebar.active").length && $(".leo-fly-cart-slidebar.active").find(".leo-fly-cart-icon").trigger("click")), "" != t.modal && ($("body").append(t.modal), activeEventModal()), "" != t.notification && $("body").append(t.notification), $(".leo-fly-cart-total").length && ($(".leo-dropdown-total").length ? $(".leo-fly-cart-total").text($(".leo-dropdown-total").data("cart-total")) : $(".leo-fly-cart-total").text("0"))) : alert(add_cart_error)
+            //  window.location.reload()x
+      
         },
         error: function(t, e, a) {
-            console.log("TECHNICAL ERROR: \n\nDetails:\nError thrown: " + t + "\nText status: " + e)
+            // window.location.href='/'
+             console.log("TECHNICAL ERROR: \n\nDetails:\nError thrown: " + t + "\nText status: " + e)
         }
     })
 }
@@ -339,8 +350,7 @@ function checkProductOutStock(t, e, a, o, r, l) {
         headers: {
             "cache-control": "no-cache"
         },
-        url: '/mycart',
-
+        url: prestashop.urls.base_url + "modules/leofeature/psajax.php?rand=" + (new Date).getTime(),
         async: !0,
         cache: !1,
         data: {

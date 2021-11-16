@@ -1,6 +1,178 @@
 <%- include ('./otherheader.ejs') %>
 
-      
+      <style>
+        @font-face {
+    font-family: 'Bellerose Light:1.0';
+    src: url("./fonts/Bellerose.ttf");
+    /* font-family: "Sofia Pro";
+    src: url("./fonts/sofiapro-light.otf"); */
+}
+@font-face {
+    font-family: "Sofia Pro";
+    src: url("./fonts/sofiapro-light.otf");
+}
+
+
+#exampleModal .modal-dialog {
+    max-width: 1140px;
+    width: 100%;
+    margin: 100px auto;
+}
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: 0;
+}
+#exampleModal .modal-header {
+    /* background: #4cbb6c; */
+    background: #f3f3c7;
+    border-radius: 0px;
+}
+#exampleModal-modal {
+    color: #222222;
+}
+.modal-header {
+    padding: 15px;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+}
+.modal-header .close {
+    margin-top: -2px;
+}
+#exampleModal .modal-title {
+    font-weight: 600;
+    /* color: #fff; */
+    font-size: 18px;
+    font-family: 'Bellerose Light:1.0';
+    margin-left: 35%;
+}
+#exampleModal .modal-body {
+    background: #fff;
+    padding: 50px 30px;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    margin-right: 10px;
+    font-weight: 400;
+    font-style: normal;
+    width:20px;
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga";
+}
+#exampleModal .product-name {
+    color: #222222;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'Bellerose Light:1.0';
+}
+#exampleModal .divide-right {
+    border-right: #acaaa6 1px solid;
+}
+#exampleModal .modal-body .divide-right span {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+}
+#exampleModal .modal-body .divide-right p {
+    color: #000;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+}
+
+#exampleModal .cart-content {
+    padding-left: 20px;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+
+}
+#exampleModal .cart-products-count {
+    font-size: 18px;
+    font-family: "Sofia Pro";
+
+
+}
+#exampleModal .cart-content .btn {
+    margin-bottom: 10px;
+    padding: 15px;
+    font-family: "Sofia Pro";
+    font-size: 14px;
+
+}
+#exampleModal .cart-content button {
+    margin-right: 5px;
+}
+.btn {
+    position: relative;
+    padding: 10px 35px;
+    font-family: "Sofia Pro";
+    border-radius: 0;
+    text-transform: capitalize;
+    border: none;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 28px;
+}
+@media only screen and (max-width: 600px) {
+    #exampleModal .modal-title {
+        font-weight: 600;
+        font-size: 18px;
+        font-family: 'Bellerose Light:1.0';
+        margin-left: 0%;
+        text-align: center;
+    }
+    #exampleModal .divide-right {
+        border-right: none;
+    }
+    #exampleModal .product-name {
+        margin-top: 5%;
+        color: #222222;
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-family: 'Bellerose Light:1.0';
+    }
+    #exampleModal .cart-content {
+        padding-left: 0px;
+        font-family: "Sofia Pro";
+        font-size: 14px;
+    
+    }
+   
+  }
+
+
+
+      </style>
         
 <aside id="notifications">
   <div class="container">
@@ -18,7 +190,7 @@
       
                   
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-              <a itemprop="item" href="/leffet.in/index.html">
+              <a itemprop="item" href="/">
                 <span itemprop="name">Home</span>
               </a>
               <meta itemprop="position" content="1">
@@ -410,7 +582,7 @@
 
 <div class="product-actions">
   
-    <form action="/cart-handler1" method="post" id="add-to-cart-or-refresh">
+    <form action="/cart-handler1" method="post" class="">
       <input type="hidden" name="booking_id" value="<%=result[1][0].id%>">
       <input type="hidden" name="price" value="<%=result[1][0].price%>">
       <input type="hidden" name="oneprice" value="<%=result[1][0].price%>">
@@ -430,7 +602,7 @@
              
                
               <label>
-                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1" name="size" value="S" checked="checked"  data-measurement-name="S">
+                <input class="input-radio" id="attribute-no-custom" type="radio"  data-product-attribute="1"  name="size" value="S" checked="checked"  data-measurement-name="S">
                 <span class="radio-label">S</span>
               </label>
               
@@ -497,7 +669,13 @@
 
       
               
+<!-- bootstrap modal -->
 
+
+
+
+
+<!-- bootstap modal end -->
       
         <section class="product-discounts">
   </section>
@@ -522,18 +700,94 @@
           >
         </div>
         <div class="add">
-          <button class="btn btn-primary add-to-cart" data-button-action="add-to-cart" type="submit" >
+          <button class="btn btn-primary add-to-cart addToCart" data-bs-toggle="modal" data-bs-target="#exampleModal"  type="button" 
+          booking_id="<%=result[1][0].id%>" 
+          price="<%=result[1][0].net_amount%>"
+          categoryid = '<%=result[1][0].categoryid%>'
+            '  
+          >
             <span class="icon-btn-product"><i class="icomoon icon-cart"></i></span><span>Add to cart</span>
           </button>
+
+
+
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title h6 text-sm-center" id="myModalLabel"><img class="material-icons" src="/images/check.png">Product successfully added to your shopping cart</h4>
+                  <button type="button" class="close" data-bs-dismiss="modal"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 divide-right">
+                          <div class="row">
+                            <div class="col-md-5">
+                              <img class="product-image img-fluid" src="/images/<%=result[1][0].image%>" alt="" title="" itemprop="image">
+                            </div>
+                            <div class="col-md-7">
+                              <h6 class="h6 product-name"><%=result[1][0].name%></h6>
+                              <p>₹<%=result[1][0].net_amount%></p>
+                              <span><strong>Size</strong>: <span id="addedsize"></span></span>
+                              <p><strong>Quantity:</strong>&nbsp;<span id="addedquantity"></span></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="cart-content">
+                        <p class="cart-products-count">There are <span id="newquantity"> </span> items in your cart.</p>
+                        <p><strong>Total products:</strong>&nbsp;₹<span class="newprice"></span></p>
+                            <p><strong>Total shipping:</strong>&nbsp;Free </p>
+                            <p><strong>Total:</strong>&nbsp;₹<span class="newprice"></span> (tax incl.)</p>
+                            <div class="cart-content-btn">
+                              <button type="button" class="btn btn-dark" style="background-color: black;color: white;" data-dismiss="modal">Continue shopping</button>
+                              <a href="/mycart" class="btn btn-dark" style="background-color: black;color: white;"><img  class="material-icons" src="/images/tick.png">proceed to checkout</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="leo-compare-wishlist-button">
-            <div class="wishlist">
-	<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="85" data-id-product-attribute="210" title="Add to Wishlist">
-		<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-		<span class="leo-wishlist-bt-content">
-			<i class="icomoon icon-wishlist"></i>
-			<span class="btn-title">Add to wishlist</span>
-		</span>
-	</a>
+           
+            <% if(result[6][0]){ %>
+              <div class="wishlist">
+              <div class="dropdown leo-wishlist-button-dropdown">
+                <button class="leo-wishlist-button btn-product dropdown-toggle show-list btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-id-wishlist="5" data-id-product="119" data-id-product-attribute="376">
+                  <span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
+                  <span class="leo-wishlist-bt-content">
+                    <i class="icomoon icon-wishlist"></i>
+                    <span class="btn-title">Add to wishlist</span>
+                  </span>
+                </button>
+                <div class="dropdown-menu leo-list-wishlist leo-list-wishlist-119">
+                
+
+
+                  <% for(i=0;i<result[6].length;i++){ %>
+                      <a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="<%=result[6][i].id%>" data-id-product="true" data-id-product-attribute="<%=result[6][i].id%>" data-bookingid = "<%=result[1][0].id%>" title="Add to Wishlist"><%=result[6][i].name%></a>			
+                     <% } %>
+                    </div>
+              </div>
+  <% } else { %>
+    <div class="wishlist">
+      <a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="66" data-id-product-attribute="222" title="Add to Wishlist">
+        <span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
+        <span class="leo-wishlist-bt-content">
+          <i class="icomoon icon-wishlist"></i>
+          <span class="btn-title">Add to wishlist</span>
+        </span>
+      </a>
+    </div>
+
+
+
+
+    <% } %>
+        
 </div>
 
 
@@ -747,7 +1001,11 @@ data-link-action="quickview"
 
   <input type="hidden" name="categoryid" value="<%=result[2][i].price%>" id="product_customization_id">
   <input type="hidden" name="quanity" value="1">
-<button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_87" data-button-action="add-to-cart" type="submit">
+<button class="btn btn-primary btn-product add-to-cart addToCart leo-bt-cart leo-bt-cart_87"  
+   booking_id="<%=result[2][i].id%>" 
+  price="<%=result[2][i].net_amount%>"
+  categoryid = '<%=result[2][i].categoryid%>' 
+   data-button-action="add-to-cart" type="button">
 <span class="leo-loading cssload-speeding-wheel"></span>
 <span class="leo-bt-cart-content">
 <i class="icomoon icon-cart"></i>
@@ -906,4 +1164,83 @@ data-link-action="quickview"
   
   
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+
+  $('.uploadImage').submit(function (e) {
+    e.preventDefault();
+    // let description = $("#editor").html().trim();
+    // var title = $('#title').val(); 
+
+    $(this).ajaxSubmit({
+      //  data: {description: description},
+      contentType: 'application/json',
+      success: function (response) {
+        alert('successfully')
+      }
+    });
+    return false;
+  });
+
+
+
+
+
+  $('.addToCart').click(function(){
+                            // alert('hi')
+                            // id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' vendorid = '<%=result[1][0].vendorid%>' 
+                            // let quantity = $('#userquantity').val()
+                            let booking_id = $(this).attr('booking_id');
+                            let price = $(this).attr('price');
+                            let oneprice = $(this).attr('price');
+                            let categoryid = $(this).attr('categoryid');
+                            let size = $("input[name='size']:checked").val();
+                            let quantity = $('#quantity_wanted').val()
+
+
+                            let table = `<span>${size}</span>`
+                            $('#addedsize').html(table)
+
+
+                            let table1 = `<span>${quantity}</span>`
+                            $('#addedquantity').html(table1)
+                            
+                            // let subcategoryid = $(this).attr('subcategoryid');
+                            // let totalquantity = $(this).attr('totalquantity');/
+                            // let categoryname = $(this).attr('categoryname')
+
+                
+                            // let vendorid = $(this).attr('vendorid');
+                
+                
+                                price = price*quantity
+
+                                // console.log()
+                        
+                        $.post('/cart-handler1',{booking_id,price,categoryid,oneprice,quantity,size},data=>{
+                            // swal(categoryname, "Successfully added to cart", "success");
+                            // alert('success')
+                            console.log(data[0][0].counter)
+
+
+                            let table3 = `<span>${data[0][0].counter}</span>`
+                            $('#newquantity').html(table3)
+
+
+                            let table4 = `<span>${data[1][0].counter}</span>`
+                            $('.newprice').html(table4)
+
+                            $('#exampleModal').modal('show');
+
+                        })  
+                      })
+                
+                
+                
+                       
+                          
+
+</script>
+
      

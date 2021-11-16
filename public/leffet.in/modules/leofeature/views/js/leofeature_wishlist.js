@@ -27,13 +27,16 @@ function createLeoWishlistModalPopup() {
 function LeoWishlistButtonAction() {
     $(".leo-wishlist-button").hasClass("show-list")
         ? $(".wishlist-item").click(function () {
+            // alert('id')
               if (!$(".wishlist-item.active-add").length) {
                   var e = $(this).data("id-product"),
                       l = $(this).data("id-wishlist"),
+                      booking_id = $(this).data("bookingid"),
                       t = $(this).data("id-product-attribute"),
                       a = wishlist_remove + '. <a href="' + wishlist_url + '" target="_blank"><strong>' + wishlist_viewwishlist + ".</strong></a>",
                       o = wishlist_add + '. <a href="' + wishlist_url + '" target="_blank"><strong>' + wishlist_viewwishlist + ".</strong></a>";
-                  if (($(this).addClass("active-add"), !isLogged)) return $(".leo-modal-wishlist .modal-title").html(wishlist_loggin_required), $(".leo-modal-wishlist").modal("show"), !1;
+                //   alert(e)
+                      if (e=='false') return $(".leo-modal-wishlist .modal-title").html(wishlist_loggin_required), $(".leo-modal-wishlist").modal("show"), !1;
                   var d = $(this),
                       n = d.parents(".leo-wishlist-button-dropdown");
                   n.find(".leo-wishlist-button").addClass("active"),
@@ -43,10 +46,10 @@ function LeoWishlistButtonAction() {
                           ? $.ajax({
                                 type: "POST",
                                 headers: { "cache-control": "no-cache" },
-                                url: wishlist_url + "?rand=" + new Date().getTime(),
+                                url: '/add-wishlist',
                                 async: !0,
                                 cache: !1,
-                                data: { ajax: 1, action: "remove", id_product: e, id_wishlist: l, id_product_attribute: t, quantity: 1, token: leo_token },
+                                data: { ajax: 1, action: "remove", id_product: e, id_wishlist: l, id_product_attribute: t, quantity: 1, token: leo_token , booking_id :booking_id },
                                 success: function (t) {
                                     var s,
                                         i = $.parseJSON(t);
@@ -76,15 +79,16 @@ function LeoWishlistButtonAction() {
                           : $.ajax({
                                 type: "POST",
                                 headers: { "cache-control": "no-cache" },
-                                url: wishlist_url + "?rand=" + new Date().getTime(),
+                                url: '/add_wishlist',
                                 async: !0,
                                 cache: !1,
-                                data: { ajax: 1, action: "add", id_product: e, id_wishlist: l, id_product_attribute: t, quantity: 1, token: leo_token },
+                                data: { wishlistid: l ,booking_id:booking_id},
                                 success: function (t) {
+                                   console.log(t)
                                     var s,
-                                        i = $.parseJSON(t);
-                                    i.errors.length
-                                        ? ($(".leo-modal-wishlist .modal-title").html(i.errors), $(".leo-modal-wishlist").modal("show"))
+                                        i = t;
+                                    i
+                                        ? ($(".leo-modal-wishlist .modal-title").html(i.msg), $(".leo-modal-wishlist").modal("show"))
                                         : ($(".leo-modal-wishlist .modal-title").html(o),
                                           $(".leo-modal-wishlist").modal("show"),
                                           $(".ap-btn-wishlist .ap-total-wishlist").length &&
@@ -205,23 +209,12 @@ function LeoListWishlistAction() {
                 $.ajax({
                     type: "POST",
                     headers: { "cache-control": "no-cache" },
-                    url: wishlist_url + "?rand=" + new Date().getTime(),
+                    url: '/delete-wishlist',
                     async: !0,
                     cache: !1,
-                    data: { ajax: 1, action: "delete-wishlist", id_wishlist: t, token: leo_token },
+                    data: {  id: t },
                     success: function (t) {
-                        var s,
-                            i = $.parseJSON(t);
-                        i.errors.length
-                            ? ($(".leo-modal-wishlist .modal-title").html(i.errors), $(".leo-modal-wishlist").removeClass("enable-action").modal("show"))
-                            : ((s = $(".list-wishlist tr.active")),
-                              $(".leo-modal-wishlist").modal("hide"),
-                              s.fadeOut(function () {
-                                  $(this).hasClass("show") ? $(".leo-wishlist-product").fadeOut().html("") : $(".list-wishlist tr.show .view-wishlist-product").trigger("click"), $(this).remove();
-                              })),
-                            $(".leo-modal-wishlist-loading").hide(),
-                            $(".leo-modal-wishlist-bt-text").show(),
-                            e.removeClass("active");
+                        window.location.href = '/wishlist'
                     },
                     error: function (t, s, i) {
                         alert("TECHNICAL ERROR: \n\nDetails:\nError thrown: " + t + "\nText status: " + s);
@@ -614,29 +607,12 @@ $(document).ready(function () {
                           $.ajax({
                               type: "POST",
                               headers: { "cache-control": "no-cache" },
-                              url: wishlist_url + "?rand=" + new Date().getTime(),
+                              url: '/s',
                               async: !0,
                               cache: !1,
-                              data: { ajax: 1, action: "add-wishlist", name_wishlist: t, token: leo_token },
+                              data: {  name: t },
                               success: function (t) {
-                                  var s = $.parseJSON(t);
-                                  s.errors.length
-                                      ? ($(".new-wishlist .has-success .form-control-feedback").html(""), $(".new-wishlist .has-danger .form-control-feedback").html(s.errors).fadeIn())
-                                      : ($(".new-wishlist .has-danger .form-control-feedback").html(""),
-                                        $(".new-wishlist .has-success .form-control-feedback").html(s.result.message).fadeIn(),
-                                        setTimeout(function () {
-                                            $(".new-wishlist .has-success .form-control-feedback").fadeOut();
-                                        }, 3e3),
-                                        $("#wishlist_name").val(""),
-                                        $(".list-wishlist table tbody").append(s.result.wishlist),
-                                        $("html, body").animate({ scrollTop: $(".list-wishlist table tr.new").offset().top }, 500, function () {
-                                            $(".list-wishlist table tr.new").removeClass("new");
-                                        }),
-                                        LeoListWishlistAction(),
-                                        $(".list-wishlist tr.show .view-wishlist-product").trigger("click")),
-                                      $(".leo-save-wishlist-bt-text").show(),
-                                      $(".leo-save-wishlist-loading").hide(),
-                                      i.removeClass("active");
+                                  window.location.href = '/wishlist'
                               },
                               error: function (t, s, i) {
                                   alert("TECHNICAL ERROR: \n\nDetails:\nError thrown: " + t + "\nText status: " + s);

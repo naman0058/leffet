@@ -195,7 +195,7 @@
 	var FancyboxI18nClose = "Close";
 	var FancyboxI18nNext = "Next";
 	var FancyboxI18nPrev = "Previous";
-	var current_link = "/leffet.in/index.html";		
+	var current_link = "/";		
 	var currentURL = window.location;
 	currentURL = String(currentURL);
 	currentURL = currentURL.replace("https:///","").replace("http://","").replace("www.","").replace( /#\w*/, "" );
@@ -437,7 +437,8 @@
     
     }
     </style>
-<script src="/leffet.in/../kit.fontawesome.com/a076d05399.js"></script>
+            <script src="/leffet.in/kit.fontawesome.com/a076d05399.js"></script>
+
 <div id="loader-common-dev" class="spinner-bg">
 <div class="spinner-lazy">
 <div class="double-bounce1"></div>
@@ -498,7 +499,7 @@
                     <!-- @file modules\appagebuilder\views\templates\hook\ApImage -->
     <div id="image-form_304598259970642" class="block header_logo ApImageHotspot header_logo ApImageHotspot">
         
-                                                <a href="/leffet.in/index.html" >
+                                                <a href="/" >
             
             <div class="imagehotspot-container">
                 <div style="position: relative; /* height: 0px; padding-bottom: 34%; padding-bottom: image's height divided by width multiply by 100 */">
@@ -636,6 +637,15 @@
 <span class="menu-title">About Us</span>
                             </a>
 </li>
+
+
+<li data-menu-type="cms" class="nav-item icon-new " >
+  <a class="nav-link has-category" href="/celebrity" target="_self">
+                      
+                      <span class="menu-title">Celebrity</span>
+                                                  </a>
+</li>
+
 <li data-menu-type="url" class="parent-sub-menu nav-item parent dropdown   " >
 <!--<a id="drop-open25"  class="nav-link dropdown-toggle has-category" data-toggle="dropdown"  href="https:///leffet.in/#"  target="_self"  aria-haspopup="true" aria-expanded="false">-->
 <a id="drop-open25" data-toggle="dropdown" class="nav-link dropdown-toggle has-category most-sub-menu" href="javascript:void(0)" target="_self" >
@@ -813,7 +823,9 @@
               rel="nofollow"
             >
             <i class="fa fa-user"></i>
+            <% if(result[3]){ %>
               <span>Hello <%=result[3][0].firstname%>  <%=result[3][0].lastname%></span>
+              <% } %>
             </a>
           </li>
           <li>

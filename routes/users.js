@@ -74,7 +74,7 @@ router.post('/insert',upload.single('image'),(req,res)=>{
 
 
 router.get('/all',(req,res)=>{
-	pool.query(`select * from ${table} `,(err,result)=>{
+	pool.query(`select * from ${table} order by id desc `,(err,result)=>{
 		if(err) throw err;
         else res.json(result)
 	})
@@ -172,7 +172,8 @@ router.post('/update_image',upload.single('image'), (req, res) => {
 
 
 router.get('/wishlist',(req,res)=>{
-	pool.query(`select c.* , (select p.name from product p where p.id = c.booking_id) as productname from cart c where c.usernumber = '${req.query.number}' and c.status is null`,(err,result)=>{
+	pool.query(`select c.* , (select p.name from product p where p.id = c.booking_id) as productname
+     from cart c where c.usernumber = '${req.query.number}' and c.status is null`,(err,result)=>{
 		if(err) throw err;
        // else res.json(result)
         else res.render('show-wishlist',{result:result})
@@ -202,7 +203,11 @@ router.get('/transacations',(req,res)=>{
 
 
 router.get('/orders',(req,res)=>{
-	pool.query(`select * from booking where number = '${req.query.number}' `,(err,result)=>{
+	pool.query(`select b*,
+    (select p.name from product p where p.id = c.booking_id) as productname
+    (select p.name from product p where p.id = c.booking_id) as productname
+
+    from booking b where number = '${req.query.number}' `,(err,result)=>{
 		if(err) throw err;
         else res.render('show-orders',{result:result})
 	})

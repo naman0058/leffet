@@ -100,7 +100,7 @@
               <div id="delivery-addresses" class="address-selector js-address-selector">
        
                 
-<% for(i=0;i<result[4].length;i++){ %>
+<% for(i=0;i<result[7].length;i++){ %>
 
       <article
       class="address-item selected col-lg-6 col-md-12 col-sm-6 col-xs-12 clearfix"
@@ -113,12 +113,12 @@
             <input
               type="radio"
               name="id_address_delivery"
-              value="<%=result[4][i].id%>"
+              value="<%=result[7][i].id%>"
               checked            >
             <span></span>
           </span>
-          <span class="address-alias h4"><%=result[4][i].alias%></span>
-          <div class="address"><%=result[4][i].firstname%> <%=result[4][i].lastname%><br><%=result[4][i].company%><br><%=result[4][i].address1%><br><%=result[4][i].address2%><br><%=result[4][i].city%><br><%=result[4][i].postcode%><br><%=result[4][i].id_state%><br><%=result[4][i].id_country%><br><%=result[4][i].phone%></div>
+          <span class="address-alias h4"><%=result[7][i].alias%></span>
+          <div class="address"><%=result[7][i].firstname%> <%=result[7][i].lastname%><br><%=result[7][i].company%><br><%=result[7][i].address1%><br><%=result[7][i].address2%><br><%=result[7][i].city%><br><%=result[7][i].postcode%><br><%=result[7][i].id_state%><br><%=result[7][i].id_country%><br><%=result[7][i].phone%></div>
         </label>
       </header>
       <hr>
@@ -126,14 +126,14 @@
                   <a
             class="edit-address text-muted"
             data-link-action="edit-address"
-            href="/edit-address?id=<%=result[4][i].id%>"
+            href="/edit-address?id=<%=result[7][i].id%>"
           >
             <i class="material-icons edit">&#xE254;</i>Edit
           </a>
           <a
             class="delete-address text-muted"
             data-link-action="delete-address"
-            href="delete-address?id=<%=result[4][i].id%>"
+            href="delete-address?id=<%=result[7][i].id%>"
           >
             <i class="material-icons delete">&#xE872;</i>Delete
           </a>
@@ -158,7 +158,7 @@
         </p>
 
                   <p>
-            <a data-link-action="different-invoice-address" href="https://leffet.in/order?use_same_address=0">
+            <a data-link-action="different-invoice-address" href="#">
               Billing address differs from shipping address
             </a>
           </p>

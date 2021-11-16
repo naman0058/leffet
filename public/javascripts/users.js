@@ -6,12 +6,13 @@ let name = $('#name123').val()
 
 // alert(name)
 
+// alert(name)
+
   
 $.getJSON(`/${table}/${name}`, data => {
     categories = data
     makeTable(data)
-    
-  
+ 
 })
 
 document.write('<script type="text/javascript" src="/javascripts/common.js" ></script>');
@@ -26,8 +27,8 @@ function makeTable(categories){
 <tr>
 
 <th>Name</th>
-<th>Number</th>
-<th>Address</th>
+<th>Email</th>
+<th>Password</th>
 <th>Actions</th>
 </tr>
 </thead>
@@ -36,27 +37,20 @@ function makeTable(categories){
 $.each(categories,(i,item)=>{
 table+=`<tr>
 
-<td>${item.name}</td>
-<td>${item.number}</td>
-<td>${item.address}</td>
+<td>${item.firstname}  ${item.lastname}</td>
+<td>${item.email}</td>
+<td>${item.password}</td>
 
-<td><a href='/customers/wishlist/?number=${item.number}'>Wishlist</a></td>
-<td><a href='/customers/cart/?number=${item.number}'>cart</a></td>
-
-
+<td><a href='/customers/wishlist/?number=${item.id}'>Wishlist</a></td>
+<td><a href='/customers/cart/?number=${item.id}'>cart</a></td>
 
 
-<td><a href='/customers/orders/?number=${item.number}'>Orders</a></td>
-<td><a href='/customers/transacations/?number=${item.number}'>Tansacations</a></td>`
 
-if(item.status == ''  || item.status == undefined){
-    table+=`<td><button type='button' id= '${item.id}' class="btn btn-primary block">Block</button></td>`
 
-}
-else{
-  table+= ` <td><button type='button' id= '${item.id}' class="btn btn-danger unblock">Unblock</button></td>`
+<td><a href='/customers/orders/?number=${item.id}'>Orders</a></td>
+<td><a href='/customers/transacations/?number=${item.id}'>Tansacations</a></td>`
 
-}
+
 
 
 table+=`<td>

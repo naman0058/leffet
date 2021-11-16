@@ -707,88 +707,32 @@ function OwlLoaded(el){
                     <h4 class="testimonial_title"><span>Testimonials</span></h4>
                                             <div id="testimonial_item_wpslider_4" class="owl-carousel testimonial_item_wp testimonial_item_wpslider" rel="4" data-iteminline="1"  >
                             
-                <div class="testimonial_item">  
-                    <div class="testimonial_detail"   >
-                                                    <div class="testimonial_wp">
-                                <img class="quoteicon" src="leffet.in/modules/g_testimonial/views/img/quoteicon.png" alt="" />
-                                I just received my dresses, they are amazing. Thank you so much!!!
-                            </div>
-                                                                                                                                                                                                <div class="testimonial_footer">
-                                                                                                            </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="customer_detail">
-                                                <div class="customer_detail_right">
-                                                            <div class="testimonial_name">
-                                    Vani - New Delhi
-                                </div>
-                                                                                     
-                                                    </div>
-                    </div>
-                </div>
+ <% for(i=0;i<result[8].length;i++){ %>
+	<div class="testimonial_item">  
+		<div class="testimonial_detail">
+										<div class="testimonial_wp">
+					<img class="quoteicon" src="#" alt="" />
+				                            	<%=result[8][i].content%>
+				</div>
+																																													<div class="testimonial_footer">
+																								</div>
+			<div class="clear"></div>
+		</div>
+		<div class="customer_detail">
+									<div class="customer_detail_right">
+												<div class="testimonial_name">
+													<%=result[8][i].name%>
+
+					</div>
+																		 
+										</div>
+		</div>
+	</div>
+ <% } %>
+
+               
                             
-                <div class="testimonial_item">  
-                    <div class="testimonial_detail"   >
-                                                    <div class="testimonial_wp">
-                                <img class="quoteicon" src="leffet.in/modules/g_testimonial/views/img/quoteicon.png" alt="" />
-                                Hey, I received the order today, the dresses are awesome, I loved it. 
-Also the fabrics are amazingly comfy, loved it. Thank you so much.
-                            </div>
-                                                                                                                                                                                                <div class="testimonial_footer">
-                                                                                                            </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="customer_detail">
-                                                <div class="customer_detail_right">
-                                                            <div class="testimonial_name">
-                                    Amrita - Banglore
-                                </div>
-                                                                                     
-                                                    </div>
-                    </div>
-                </div>
-                            
-                <div class="testimonial_item">  
-                    <div class="testimonial_detail"   >
-                                                    <div class="testimonial_wp">
-                                <img class="quoteicon" src="leffet.in/modules/g_testimonial/views/img/quoteicon.png" alt="" />
-                                I never expected my customized dress to be so perfect.
-Thank you leffet for the amazing outfit
-                            </div>
-                                                                                                                                                                                                <div class="testimonial_footer">
-                                                                                                            </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="customer_detail">
-                                                <div class="customer_detail_right">
-                                                            <div class="testimonial_name">
-                                    Mamta - Mumbai
-                                </div>
-                                                                                     
-                                                    </div>
-                    </div>
-                </div>
-                            
-                <div class="testimonial_item">  
-                    <div class="testimonial_detail"   >
-                                                    <div class="testimonial_wp">
-                                <img class="quoteicon" src="leffet.in/modules/g_testimonial/views/img/quoteicon.png" alt="" />
-                                Received my parcel yesterday!!! Beautiful linen dress.
-It&#039;s a perfect fit. In love with it.
-                            </div>
-                                                                                                                                                                                                <div class="testimonial_footer">
-                                                                                                            </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="customer_detail">
-                                                <div class="customer_detail_right">
-                                                            <div class="testimonial_name">
-                                    Neha - Lucknow
-                                </div>
-                                                                                     
-                                                    </div>
-                    </div>
-                </div>
+               
                         </div>
                     </div>
 </div>

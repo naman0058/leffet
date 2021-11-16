@@ -56,24 +56,42 @@ router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'im
       
 
 console.log('body hai',req.body)
+
+
+
+pool.query(`select * from ${table} where name = '${req.body.name}'`,(err,result)=>{
+    if(err) throw err;
+    else if(result[0]){
+   res.json({
+       status : 300,
+       type:'exists',
+       description:'Category Already Exists'
+   })
+    }
+    else{
+        pool.query(`insert into ${table} set ?`,body,(err,result)=>{
+            if(err) {
+                console.log('eroor',err)
+                res.json({
+                    status:500,
+                    type : 'error',
+                    description:err
+                })
+            }
+            else {
+                res.json({
+                    status:200,
+                    type : 'success',
+                    description:'successfully added'
+                })
+            }
+        })
+
+    }
+
+})
    
-	pool.query(`insert into ${table} set ?`,body,(err,result)=>{
-		if(err) {
-            console.log('eroor',err)
-            res.json({
-                status:500,
-                type : 'error',
-                description:err
-            })
-        }
-		else {
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully added'
-            })
-        }
-	})
+
 })
 
 
@@ -128,22 +146,46 @@ if(req.body.discount == 0) {
     console.log('data',req.body)
 
 
-    pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
-        if(err) {
-            res.json({
-                status:500,
-                type : 'error',
-                description:err
-            })
+    
+    pool.query(`select * from ${table} where name='${req.body.name}'`,(err,result)=>{
+        if(err) throw err;
+        else if(result[0]){
+            if(result[0].id != req.body.id){
+                res.json({
+                    status : 300,
+                    type:'exists',
+                    description:'Product Already Exists'
+                })
+            }
+            else {
+                pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+                    if(err) throw err;
+                    else {
+                        res.json({
+                            status:200,
+                            type : 'success',
+                            description:'successfully update'
+                        })
+                    }
+                })
+            }
+           
         }
         else {
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully update'
+            pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+                if(err) throw err;
+                else {
+                    res.json({
+                        status:200,
+                        type : 'success',
+                        description:'successfully update'
+                    })
+                }
             })
         }
     })
+
+  
 })
 
 
