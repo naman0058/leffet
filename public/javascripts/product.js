@@ -88,10 +88,14 @@ function makeTable(categories){
 <th>Type</th>
 <th>Product</th>
 <th>Category</th>
+<th>Weight</th>
 <th>Price</th>
 <th>Discount</th>
 <th>Net Amount</th>
 <th>Quantity</th>
+<th>Product Detail</th>
+<th>Product Description</th>
+
 <th>Image</th>
 <th>Option</th>
 
@@ -105,10 +109,16 @@ table+=`<tr>
 <td>${item.type}</td>
 <td>${item.name}</td>
 <td>${item.categoryname}</td>
+<td>${item.weight}</td>
+
 <td>${item.price}</td>
 <td>${item.discount}</td>
 <td>${item.net_amount}</td>
 <th>${item.quantity}</td>
+<th>${item.description}</td>
+<th>${item.short_description}</td>
+
+
 <td>
 <img src="/images/${item.image}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">
 </td>
@@ -180,7 +190,9 @@ $('#result').on('click', '.edits', function () {
     $('#pid').val(result.id)
     $('#pname').val(result.name)
     $('#psubcategoryid').val(result.subcategoryid)
-    $('#Pcategoryid').val(result.categoryid);
+    $('#pcategoryid').val(result.categoryid);
+    $('#pweight').val(result.weight);
+
     $('#pdiscount').val(result.discount);
     $('#pprice').val(result.price);
     $('#pbrandid').val(result.branid);
@@ -233,6 +245,7 @@ $('#update').click(function () {  //data insert in database
     let updateobj = {
          id: $('#pid').val(),
          categoryid: $('#pcategoryid').val(),
+         weight:$('#pweight').val(),
          name: $('#pname').val(),
          description : content,
          keywords : $('#pkeywords').val(),
