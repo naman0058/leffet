@@ -14,7 +14,7 @@ router.get('/',(req,res)=>{
   var query1 = `select * from website_customize where name = 'pp';`
   var query2 = `select * from website_customize where name = 'about';`
 
-  var query6 = `select * from users where id = '85';`
+  var query6 = `select * from users where id = '84';`
   var query7 = `select count(id) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
     pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
