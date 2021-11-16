@@ -235,12 +235,14 @@
     
 	<section id="main">
 		<div id="view_wishlist">
-							<h2>Wishlist "My"</h2>
+							<h2>Wishlist "<%=result[8][0].name%>"</h2>
 								<p>
-					Other wishlists of naman Jain :
-									
-						<a href="https://leffet.in/module/leofeature/viewwishlist?token=C0E81ADC62596811" title="new" rel="nofollow">new</a>
-										
+					Other wishlists of <%=result[3][0].firstname%> <%=result[3][0].lastname%> :
+						
+          <% for(i=0;i<result[7].length;i++) { %>
+						<a href="/view-wishlist?id=<%=result[7][i].id%>" title="new" rel="nofollow"><%=result[7][i].name%></a>
+
+						<% } %>				
 									</p>
 								<section id="products">
 

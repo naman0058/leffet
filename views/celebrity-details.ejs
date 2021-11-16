@@ -572,7 +572,7 @@ button.close {
     
 
     <div class="tax-shipping-delivery-label">
-        Speak to our Stylist via Whatsapp at +91 98331 10168
+        Speak to our Stylist via Whatsapp at +91 9167860709
             
       
                         </div>
@@ -624,59 +624,18 @@ data-full-size-image-url = "/images/<%=result[2][i].image%>"
 
 
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="wishlist">
-<a class="leo-wishlist-button btn-product btn" href="#" data-id-wishlist="" data-id-product="87" data-id-product-attribute="250" title="Add to Wishlist">
-<span class="leo-wishlist-bt-loading cssload-speeding-wheel"></span>
-<span class="leo-wishlist-bt-content">
-<i class="icomoon icon-wishlist"></i>
-<span class="btn-title">Add to wishlist</span>
-</span>
-</a>
-</div>
+
 
 
 <div class="functional-buttons clearfix">
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="quickview no-variants hidden-lg-down">
-<a
-href="#"
-class="quick-view btn-product btn"
-data-link-action="quickview"
->
-<span class="leo-quickview-bt-loading cssload-speeding-wheel"></span>
-<span class="leo-quickview-bt-content">
-<i class="icomoon icon-preview"></i>
-<span class="btn-title">Quick view</span>
-</span>
-</a>
-</div>
+
 
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 
 
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
-<div class="button-container cart">
-<form action="/cart-handler1" method="post">
-  <input type="hidden" name="booking_id" value="<%=result[2][i].id%>">
-  <input type="hidden" name="price" value="<%=result[2][i].price%>">
-  <input type="hidden" name="oneprice" value="<%=result[2][i].price%>">
 
-  <input type="hidden" name="categoryid" value="<%=result[2][i].price%>" id="product_customization_id">
-  <input type="hidden" name="quanity" value="1">
-<button class="btn btn-primary btn-product add-to-cart addToCart leo-bt-cart leo-bt-cart_87"  
-   booking_id="<%=result[2][i].id%>" 
-  price="<%=result[2][i].net_amount%>"
-  categoryid = '<%=result[2][i].categoryid%>' 
-   data-button-action="add-to-cart" type="button">
-<span class="leo-loading cssload-speeding-wheel"></span>
-<span class="leo-bt-cart-content">
-<i class="icomoon icon-cart"></i>
-<span class="btn-title">Add to cart</span>
-</span>
-</button>
-
-</form>
-</div>
 
 
 </div></div>
@@ -693,9 +652,7 @@ data-link-action="quickview"
 
 
 
-<span class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-<span itemprop="priceCurrency" content="INR"></span><span itemprop="price" content="4000">₹<%=result[2][i].net_amount%></span>
-</span>
+
         
 
 
@@ -703,7 +660,6 @@ data-link-action="quickview"
 
 
 
-<div class="product-description-short" itemprop="description"> <%=result[2][i].short_description%></div>
 </div>
 </div>
 </article>

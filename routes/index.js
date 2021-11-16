@@ -1118,6 +1118,7 @@ router.get('/size-chart',(req,res)=>{
 
 
 router.get('/wishlist',(req,res)=>{
+  console.log(req.session.usernumber)
   var query = `select * from category order by id desc;`
   var query1 = `select * from users where id = '${req.session.usernumber}';`
   var query2 = `select * from website_customize where name = 'about';`
@@ -1141,10 +1142,11 @@ pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
 
 
 router.post('/delete-wishlist',(req,res)=>{
+  console.log(req.body)
   pool.query(`delete from wishlist_name where id = '${req.body.id}'`,(err,result)=>{
     if(err) throw err;
     else {
-      pool.query(`delete from wishlist where wishlist_id = '${req.body.id}'`,(err,result)=>{
+      pool.query(`delete from wishlist where wishlistid = '${req.body.id}'`,(err,result)=>{
         if(err) throw err;
         else {
           res.json({msg:'success'})
@@ -1513,37 +1515,91 @@ router.get('/myorder/cancel',(req,res)=>{
 
 
 
-router.get('/search',(req,res)=>{
+// router.get('/search',(req,res)=>{
 
-if(req.session.usernumber){
-  var query = `select * from category order by id desc;`
-  var query1 = `select * from product where keywords Like '%${req.query.search}%' order by quantity desc;`
-  pool.query(query+query1,(err,result)=>{
-    if(err) throw err;
-    else if(result[1][0]){
-      res.render('shop1',{result:result,login:true})
-    }
-    else res.render('not_found',{result:result,login:true})
-  })
-}
-else{
-  var query = `select * from category order by id desc;`
-  var query1 = `select * from product where keywords Like '%${req.query.search}%' order by quantity desc;`
-  pool.query(query+query1,(err,result)=>{
-    if(err) throw err;
-    else if(result[1][0]){
-      res.render('shop1',{result:result,login:false})
-    }
-    else res.render('not_found',{result:result,login:false})
+// if(req.session.usernumber){
+//   var query = `select * from category order by id desc;`
+//   var query1 = `select * from product where keywords Like '%${req.query.search}%' order by quantity desc;`
+//    var query2 = `select * from category order by id desc;`
 
-  })
-}
+//   var query6 = `select * from users where id = '${req.session.usernumber}';`
+//     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+//     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+//     var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+//   pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+//     if(err) throw err;
+//     else if(result[1][0]){
+//       res.render('shop',{result:result,login:true})
+//     }
+//     else res.render('not_found',{result:result,login:true})
+//   })
+// }
+// else{
+//   var query = `select * from category order by id desc;`
+//   var query1 = `select * from product where keywords Like '%${req.query.search}%' order by quantity desc;`
+//   var query2 = `select * from category where id = '${req.query.id}';`
+//   var query6 = `select * from users where id = '84';`
+//     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+//     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+//     var query9 = `select * from wishlist_name where usernumber = '${req.session.ipaddress}';`
+//   pool.query(query+query1+query6+query7+query8+query9,(err,result)=>{
+//     if(err) throw err;
+//     else if(result[1][0]){
+//       res.render('shop',{result:result,login:false})
+//     }
+//     else res.render('not_found',{result:result,login:false})
+
+//   })
+// }
 
   
  
-})
+// })
 
 
+
+
+router.get('/search',(req,res)=>{
+  // console.log(req.query.search)
+  
+  if(req.session.usernumber){
+    var query = `select * from category order by id desc;`
+    var query1 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
+    var query2 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
+    var query6 = `select * from users where id = '${req.session.usernumber}';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+      var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+  
+  
+    pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+      if(err) throw err;
+      else if(result[1][0]) res.render('shop',{result:result,login:true})
+       else  res.render('not_found',{result,login:true,searchname:req.query.search_query})
+      // else res.json(result)
+    })
+  }
+  else{
+    var query = `select * from category order by id desc;`
+    var query1 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
+    var query2 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
+    var query6 = `select * from users where id = '84';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+      var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+  
+  
+    pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+       if(err) throw err;
+      else if(result[1][0]) res.render('shop',{result:result,login:false})
+      else  res.render('not_found',{result,login:true,searchname:req.query.search_query})
+
+    })
+  }
+  
+    
+   
+  })
 
 
 
@@ -2542,12 +2598,12 @@ router.get('/signup',(req,res)=>{
 
 
 router.get('/view-wishlist',(req,res)=>{
-
+console.log('ss',req.session.usernumber)
 var query = `select * from category order by id desc;`
   var query1 = `select * from website_customize where name = 'pp';`
   var query2 = `select * from website_customize where name = 'about';`
 
-  var query6 = `select * from users where id = '84';`
+  var query6 = `select * from users where id = '${req.session.usernumber}';`
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
   var query9=`select w.*,
@@ -2558,8 +2614,9 @@ var query = `select * from category order by id desc;`
 
   from wishlist w where w.wishlistid = '${req.query.id}';`
   var query10 = `select * from wishlist_name where usernumber = '${req.session.usernumber}' and id!= '${req.query.id}';`
+  var query11 = `select * from wishlist_name where id = '${req.query.id}';`
 
-    pool.query(query+query1+query2+query6+query7+query8+query9+query10,(err,result)=>{
+    pool.query(query+query1+query2+query6+query7+query8+query9+query10+query11,(err,result)=>{
     if(err) throw err;
     // else res.json(result)
     else res.render('view-wishlist',{result:result,login:true})

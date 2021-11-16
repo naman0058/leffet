@@ -607,70 +607,80 @@
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="leo-top-menu collapse navbar-toggleable-md megamenu-off-canvas megamenu-off-canvas-5852801847688911">
-                              <ul class="nav navbar-nav megamenu horizontal">    <li data-menu-type="controller" class="nav-item  " >
-<a class="nav-link has-category" href="/" target="_self">
+                              <ul class="nav navbar-nav megamenu horizontal"> 
+                                
+            
+                                <li data-menu-type="controller" class="nav-item  " >
+                                  <a class="nav-link has-category" href="/" target="_self">
+                                                      
+                                                      <span class="menu-title">Home</span>
+                                                                                  </a>
+                              </li>
+                          
+                          
+                          
+                              <li data-menu-type="url" class="parent-sub-menu nav-item parent dropdown   " >
+                                <!--<a id="drop-open25"  class="nav-link dropdown-toggle has-category" data-toggle="dropdown"  href="https:///leffet.in/#"  target="_self"  aria-haspopup="true" aria-expanded="false">-->
+                                    <a id="drop-open25" data-toggle="dropdown" class="nav-link dropdown-toggle has-category most-sub-menu" href="javascript:void(0)" target="_self" >
+                            
+                                                
+                                                <span class="menu-title">Collections</span>
+                                                                <b class="caret"></b>
+                                </a>	
+                                
+                                    <div aria-labelledby="drop-open25" class="dropdown-menu level1"  >
+                                    <div class="dropdown-menu-inner">
+                                        <div class="row">
+                                            <div class="col-sm-12 mega-col" data-colwidth="12" data-type="menu" >
+                                                <div class="inner">
+                                                    <ul>
+                                                      <% for(i=0;i<result[0].length;i++){ %>
+                                                                                        <li data-menu-type="category" class="nav-item   " >
+                                        <a class="nav-link" href="/shop?id=<%=result[0][i].id%>">
+                                        
+                                                        <span class="menu-title"><%=result[0][i].name%></span>
+                                                                
+                                                </a>
+                            
+                                </li>
+                                      <% } %>  
+                              
+                                        
+                                                                                        <li data-menu-type="category" class="nav-item   " >
+                                        <a class="nav-link" href="/shop/all-collections">
+                                        
+                                                        <span class="menu-title">All</span>
+                                                                
+                                                </a>
+                            
+                                </li>
+                                        
+                                                                                </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </li>
+                          
+                          
+                              <li data-menu-type="cms" class="nav-item icon-new " >
+                                <a class="nav-link has-category" href="/celebrity" target="_self">
+                                                    
+                                                    <span class="menu-title">Celebrity Closet</span>
+                                                                                </a>
+                            </li>
+                          
+                          
+                              <li data-menu-type="cms" class="nav-item icon-new " >
+                                  <a class="nav-link has-category" href="/about" target="_self">
+                                                      
+                                                      <span class="menu-title">About Us</span>
+                                                                                  </a>
+                              </li>
 
-<span class="menu-title">Home</span>
-                            </a>
-</li>
-<li data-menu-type="cms" class="nav-item icon-new " >
-<a class="nav-link has-category" href="/about" target="_self">
 
-<span class="menu-title">About Us</span>
-                            </a>
-</li>
-
-
-<li data-menu-type="cms" class="nav-item icon-new " >
-  <a class="nav-link has-category" href="/celebrity" target="_self">
-                      
-                      <span class="menu-title">Celebrity</span>
-                                                  </a>
-</li>
-<li data-menu-type="url" class="parent-sub-menu nav-item parent dropdown   " >
-<!--<a id="drop-open25"  class="nav-link dropdown-toggle has-category" data-toggle="dropdown"  href="https:///leffet.in/#"  target="_self"  aria-haspopup="true" aria-expanded="false">-->
-<a id="drop-open25" data-toggle="dropdown" class="nav-link dropdown-toggle has-category most-sub-menu" href="javascript:void(0)" target="_self" >
-
-
-<span class="menu-title">Collections</span>
-        <b class="caret"></b>
-</a>	
-
-<div aria-labelledby="drop-open25" class="dropdown-menu level1"  >
-<div class="dropdown-menu-inner">
-<div class="row">
-<div class="col-sm-12 mega-col" data-colwidth="12" data-type="menu" >
-<div class="inner">
-<ul>
-<% for(i=0;i<result[0].length;i++){ %>
-                                <li data-menu-type="category" class="nav-item   " >
-<a class="nav-link" href="/shop?id=<%=result[0][i].id%>">
-
-<span class="menu-title"><%=result[0][i].name%></span>
-        
-</a>
-
-</li>
-<% } %>  
-
-
-                                <li data-menu-type="category" class="nav-item   " >
-<a class="nav-link" href="/shop/all-collections">
-
-<span class="menu-title">All</span>
-        
-</a>
-
-</li>
-
-                        </ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</li>
 <script>
     $(document).ready(function () {
     $('.most-sub-menu').attr('data-toggle',"dropdown");
