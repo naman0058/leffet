@@ -109,23 +109,60 @@ router.post('/storeEditId',(req,res)=>{
 router.post('/insert',upload.single('image'),(req,res)=>{
 	let body = req.body
     body['image'] = req.file.filename;
-	pool.query(`insert into ${table} set ?`,body,(err,result)=>{
-		if(err) {
-            res.json({
-                status:500,
-                type : 'error',
-                description:err
-            })
-        }
-		else {
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully added'
-            })
-            
-        }
-	})
+
+    if(req.body.type == 'About Video'){
+        pool.query(`select * from ${table} where type = 'About Video'`,(err,result)=>{
+            if(err) throw err;
+            else if(result[0]){
+                res.json({
+                    status:300,
+                    type : 'success',
+                    description:'Video Already Uploaded..You can edit the video'
+                })
+            }
+            else{
+                pool.query(`insert into ${table} set ?`,body,(err,result)=>{
+                    if(err) {
+                        res.json({
+                            status:500,
+                            type : 'error',
+                            description:err
+                        })
+                    }
+                    else {
+                        res.json({
+                            status:200,
+                            type : 'success',
+                            description:'Successfully Inserted'
+                        })
+                        
+                    }
+                })
+            }
+        })
+    }
+    else {
+        pool.query(`insert into ${table} set ?`,body,(err,result)=>{
+            if(err) {
+                res.json({
+                    status:500,
+                    type : 'error',
+                    description:err
+                })
+            }
+            else {
+                res.json({
+                    status:200,
+                    type : 'success',
+                    description:'Successfully Inserted'
+                })
+                
+            }
+        })
+    }
+
+
+
 })
 
 
