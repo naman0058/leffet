@@ -2752,7 +2752,7 @@ router.get('/celebrity',(req,res)=>{
       // console.log(req.session.usernumber)
       if(req.session.usernumber){
         var query = `select * from category order by id desc;`
-        var query1 = `select * from product where categoryid = '${req.query.id}';`
+        var query1 = `select * from blog order by id desc;`
         var query2 = `select * from category where id = '${req.query.id}';`
         var query6 = `select * from users where id = '${req.session.usernumber}';`
           var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
@@ -2768,7 +2768,8 @@ router.get('/celebrity',(req,res)=>{
       }
       else{
         var query = `select * from category order by id desc;`
-        var query1 = `select * from product where categoryid = '${req.query.id}';`
+        var query1 = `select * from blog order by id desc;`
+
         var query2 = `select * from category where id = '${req.query.id}';`
         var query6 = `select * from users where id = '84';`
           var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`

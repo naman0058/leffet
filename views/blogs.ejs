@@ -1,4 +1,4 @@
-<title><%=result[2][0].name%></title>
+<title>Blogs</title>
 
 
 <%- include ('./otherheader.ejs') %>
@@ -320,14 +320,14 @@ line-height: 28px;
   <div class="product-image">
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 
-      <a href="/product?id=<%=result[1][i].id%>" class="thumbnail product-thumbnail">
+      <a href="<%=result[1][i].fb_link%>" class="thumbnail product-thumbnail">
     <img
       class="img-fluid"
       src = "/images/<%=result[1][i].image%>"
       alt = "<%=result[1][i].name%>"
       data-full-size-image-url = "/images/<%=result[1][i].image%>"
     > 
-            <span class="product-additional" data-idproduct="85"></span>
+            <span class="product-additional" data-idproduct="85">ss</span>
         </a>
 
 
@@ -355,49 +355,13 @@ line-height: 28px;
 </div></div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-          <h4 class="modal-title h6 text-sm-center" id="myModalLabel"><img class="material-icons" src="/images/check.png">Product successfully added to your shopping cart</h4>
-        <button type="button" class="close" data-bs-dismiss="modal"  data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      </div>
-      <div class="modal-body">
-          <div class="row">
-              <div class="col-md-6 divide-right">
-                <div class="row">
-                  <div class="col-md-5" id="addedimage">
-                  </div>
-                  <div class="col-md-7">
-                    <h6 class="h6 product-name"><span id="addedname"></span></h6>
-                    <p>₹<span id="addedamount"></span></p>
-                    <span><strong>Size</strong>: <span id="addedsize"></span></span>
-                    <p><strong>Quantity:</strong>&nbsp;<span id="addedquantity"></span></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="cart-content">
-              <p class="cart-products-count">There are <span id="newquantity"> </span> items in your cart.</p>
-              <p><strong>Total products:</strong>&nbsp;₹<span class="newprice"></span></p>
-                  <p><strong>Total shipping:</strong>&nbsp;Free </p>
-                  <p><strong>Total:</strong>&nbsp;₹<span class="newprice"></span> (tax incl.)</p>
-                  <div class="cart-content-btn">
-                    <button type="button" class="btn btn-dark" style="background-color: black;color: white;" data-dismiss="modal">Continue shopping</button>
-                    <a href="/mycart" class="btn btn-dark" style="background-color: black;color: white;"><img  class="material-icons" src="/images/tick.png">proceed to checkout</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-      </div>
-    </div>
-  </div>
-</div>
 
   <div class="product-meta">
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
 
-<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[1][i].id%>"><%=result[1][i].name%></a></h3>
+<h3 class="h3 product-title" itemprop="name"><%=result[1][i].description%></h3>
+<h3 class="h3 product-title" itemprop="name"><a href="<%=result[1][i].fb_link%>">Read More...</a></h3>
+
 
 
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
@@ -405,12 +369,6 @@ line-height: 28px;
             <div class="product-price-and-shipping ">
             
 
-            
-
-         
-                          
-
-            
           </div>
                 
 
@@ -569,8 +527,8 @@ var scrollCountLinks ={"1":{"type":"page","page":1,"clickable":false,"current":t
   $( document ).ready(function() {
      let msg = $('.msg').val()
      $.getJSON(`/content?msg=${msg}`,data=>{
-      console.log(data[0].description)
-       a(data)
+        console.log(data[0].description)
+         a(data)
     })
   });
   

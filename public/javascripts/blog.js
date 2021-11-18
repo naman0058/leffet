@@ -187,24 +187,13 @@ $('#result').on('click', '.edits', function () {
     $('#ppintrest_link').val(result.pintrest_link);
     $('#pkeywords').val(result.keywords);
     $('#ptype').val(result.type);
+    $('.peditor').val(result.description)
     $('#pshort_description').val(result.short_description);
 
 
 
 
-    // $('.peditor').val(result.description);
-    console.log('dhdg',result.description)
-    // $container.html($container.text());
-  //  $('#pextra').val(result.extra);
-     //$('#peid').val(result.id)
-
-     let table = `<p>${result.description}</p>
-           `
-           $('.peditor').html(table)
-
-
-    let pi1 = `<img src='/images/${result.image}' style='width:140px;height:140px'>`
-    $('#pi1').html(pi1)       
+    
 
     
 })
@@ -220,12 +209,12 @@ $('#result').on('click', '.updateimage', function() {
 
 $('#update').click(function () {  //data insert in database
 
-    let content = $(".peditor").html().trim();
+    
     // alert(content)
 
     let updateobj = {
          id: $('#pid').val(),
-         description : content,
+         description : $('.peditor').val(),
         fb_link : $('#pfb_link').val(),
      
 
