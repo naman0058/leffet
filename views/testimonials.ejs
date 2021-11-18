@@ -280,7 +280,7 @@
   <script>
 
       $('#save').click(function(){
-        let description = $("#editor").html().trim();
+        // let description = $("#editor").html().trim();
 
           if($('#name').val()==[] || $('#name').val()=='') alert('Please Enter Name');
           else if($("#content").val()==[] || $("#content").val()=='') alert('Enter Testimonials');
@@ -492,11 +492,7 @@ function runCommand(el, commandName, arg) {
 // });
 
 // Show submitted data
-$('#submit').click(function(e) {
-  e.preventDefault();
-  let content = $("#editor").html().trim();
-  alert("VALUE SUBMITTED: \n" + content);  
-});
+
 </script>
 
 
