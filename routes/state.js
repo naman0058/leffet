@@ -2,14 +2,14 @@ var express = require('express');
 var router = express.Router();
 var upload = require('./multer');
 var pool = require('./pool')
-var table = 'country';
+var table = 'state';
 const fs = require("fs");
 
 
 
 router.get('/',(req,res)=>{
     if(req.session.adminid){
-        res.render('country')
+        res.render('state')
     }
     else {
         res.render('admin_login',{msg:'Please Login First'})
@@ -34,12 +34,14 @@ router.post('/insert',(req,res)=>{
        res.json({
            status : 300,
            type:'exists',
-           description:'Country Already Exists'
+           description:'State Already Exists'
        })
         }
         else{
             pool.query(`insert into ${table} set ?`,body,(err,result)=>{
                 if(err) {
+                    console.log(err)
+
                     res.json({
                         status:500,
                         type : 'error',
@@ -47,6 +49,7 @@ router.post('/insert',(req,res)=>{
                     })
                 }
                 else {
+
                     res.json({
                         status:200,
                         type : 'success',
@@ -100,7 +103,7 @@ router.post('/update', (req, res) => {
        res.json({
            status : 300,
            type:'exists',
-           description:'Country Already Exists'
+           description:'State Already Exists'
        })
         }
         else{
