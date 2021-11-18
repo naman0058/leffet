@@ -1,3 +1,6 @@
+<title><%=result[2][0].name%></title>
+
+
 <%- include ('./otherheader.ejs') %>
 
       <style>
@@ -315,7 +318,7 @@ button.close {
     
   </section>
 
-<input type="hidden" class="msg" value="<%=result[2][0].id%>">
+<input type="hidden" class="msg" value="<%=result[1][0].id%>">
 
   <div class="modal fade js-product-images-modal leo-product-modal" id="product-modal" data-thumbnails=".product-images-85">
   <div class="modal-dialog" role="document">
@@ -609,7 +612,7 @@ button.close {
 <img
 class="img-fluid"
 src = "/images/<%=result[2][i].image%>"
-alt = "<%=result[2][0].name%>"
+alt = "<%=result[2][i].name%>"
 data-full-size-image-url = "/images/<%=result[2][i].image%>"
 > 
 <span class="product-additional" data-idproduct="87"></span>
@@ -642,7 +645,7 @@ data-full-size-image-url = "/images/<%=result[2][i].image%>"
 <div class="product-meta">
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
 
-<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[2][i].id%>"><%=result[2][0].name%></a></h3>
+<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[2][i].id%>"><%=result[2][i].name%></a></h3>
 
 
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
@@ -760,6 +763,7 @@ data-full-size-image-url = "/images/<%=result[2][i].image%>"
 
   $( document ).ready(function() {
      let msg = $('.msg').val()
+    //  alert(msg)
      $.getJSON(`/celebrity-description?msg=${msg}`,data=>{
       console.log('ddg',data[0].description)
        a(data)
@@ -772,6 +776,7 @@ data-full-size-image-url = "/images/<%=result[2][i].image%>"
     function a(data){
       let table = `<p>
    <p>${data[0].description}</p>
+
    </p>
         `
         $('#result').html(table)

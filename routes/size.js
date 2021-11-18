@@ -28,24 +28,35 @@ router.post('/storeEditId',(req,res)=>{
 router.post('/insert',(req,res)=>{
 	let body = req.body
     
-	pool.query(`insert into ${table} set ?`,body,(err,result)=>{
-		if(err) {
-            console.log(err)
-            res.json({
-                status:500,
-                type : 'error',
-                description:err
+    pool.query(`select * from ${table} where name = '${req.body.name}'`,(err,result)=>{
+        if(err) throw err;
+        else if(result[0]){
+       res.json({
+           status : 300,
+           type:'exists',
+           description:'Size Already Exists'
+       })
+        }
+        else{
+            pool.query(`insert into ${table} set ?`,body,(err,result)=>{
+                if(err) {
+                    res.json({
+                        status:500,
+                        type : 'error',
+                        description:err
+                    })
+                }
+                else {
+                    res.json({
+                        status:200,
+                        type : 'success',
+                        description:'successfully added'
+                    })
+                    
+                }
             })
         }
-		else {
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully added'
-            })
-            
-        }
-	})
+    })
 })
 
 

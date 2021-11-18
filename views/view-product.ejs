@@ -1,4 +1,7 @@
+<title><%=result[1][0].name%></title>
+
 <%- include ('./otherheader.ejs') %>
+
 
       <style>
         @font-face {
@@ -315,7 +318,7 @@ button.close {
     
   </section>
 
-<input type="hidden" class="msg" value="<%=result[2][0].id%>">
+<input type="hidden" class="msg" value="<%=result[1][0].id%>">
 
   <div class="modal fade js-product-images-modal leo-product-modal" id="product-modal" data-thumbnails=".product-images-85">
   <div class="modal-dialog" role="document">
@@ -530,7 +533,7 @@ button.close {
 
   
   <div id="product-description-short-85" class="description-short" itemprop="description">
-    <div id="result1"></div>
+    <p><%=result[1][0].short_description%></p>
   </div>
   
   
@@ -827,16 +830,7 @@ button.close {
       
     </div>
   
-            <div class="product-description"><ul><li>Product Code: LP001</li>
-<li>Dress Length: Front 43”, Back 48”</li>
-<li>Sleeve Length: 17”</li>
-<li>Fabric: Textured 100% Cotton</li>
-<li>Straight collar with front open placket shirt dress</li>
-<li>Yoke piping and box pleat at back</li>
-<li>Hand block printed bodice</li>
-<li>Wash care: Dry clean only</li>
-<li>Model is 5.7”, She is wearing size ‘M’</li>
-</ul></div>
+            <div class="product-description" id="result1"></div>
   
       
             
@@ -941,7 +935,7 @@ button.close {
 <img
 class="img-fluid"
 src = "/images/<%=result[2][i].image%>"
-alt = "<%=result[2][0].name%>"
+alt = "<%=result[2][i].name%>"
 data-full-size-image-url = "/images/<%=result[2][i].image%>"
 > 
 <span class="product-additional" data-idproduct="87"></span>
@@ -1015,7 +1009,7 @@ data-link-action="quickview"
 <div class="product-meta">
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
 
-<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[2][i].id%>"><%=result[2][0].name%></a></h3>
+<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[2][i].id%>"><%=result[2][i].name%></a></h3>
 
 
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->

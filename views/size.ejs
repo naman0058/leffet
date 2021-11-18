@@ -25,11 +25,8 @@
                             <div class="form-group">
                                 <label>Quantity In</label>
                                <select class="form-control" id="quantity_type">
-                                   <option value="G">Gram</option>
-                                   <option value="Kg">KiloGram</option>
-                                   <option value="L">Litre</option>
-                                   <option value="ML">Mililiter</option>
-                                   <option value="Pcs">Pieces</option>
+                                   <option value="P">Peice</option>
+                                 
                                </select>
                               </div>
                               
@@ -78,11 +75,8 @@
             <div class="form-group col-md-4">
                 <label class="form-label">Quantity Type</label>
                 <select class="form-control" id="pquantity_type">
-                    <option value="G">Gram</option>
-                    <option value="Kg">KiloGram</option>
-                    <option value="L">Litre</option>
-                    <option value="ML">Mililiter</option>
-                    <option value="Pcs">Pieces</option>
+                    <option value="Peice">Peice</option>
+                   
                 </select>
                 <div class="clearfix"></div>
                 </div>
@@ -162,7 +156,14 @@
           let quantity_type = $('#quantity_type').val()
       
           $.post('/size/insert',{name,quantity_type},data=>{
-              alert('Successfully')
+           
+          if(data.status=='300' || data.status==300) alert(data.description)
+          else {
+         alert('successfully')
+          window.location.reload()
+          }
+         
+        
           })
       }
   })

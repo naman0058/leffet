@@ -22,10 +22,12 @@ console.log(req.session.usernumber)
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
   var query9 = `select * from testimonials order by id desc;`
+  var query10 = `select * from banner where type='About Video' limit 1;`
 
 
 
-  pool.query(query1+query2+query3+query4+query5+query6+query7+query8+query9,(err,result)=>{
+
+  pool.query(query1+query2+query3+query4+query5+query6+query7+query8+query9+query10,(err,result)=>{
     if(err) throw err;
     else  res.render('index', { title: 'Express',result,login:true });
   })
@@ -40,11 +42,13 @@ console.log(req.session.usernumber)
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
   var query9 = `select * from testimonials order by id desc;`
+  var query10 = `select * from banner where type='About Video' limit 1;`
 
 
 
 
-  pool.query(query1+query2+query3+query4+query5+query6+query7+query8+query9,(err,result)=>{
+
+  pool.query(query1+query2+query3+query4+query5+query6+query7+query8+query9+query10,(err,result)=>{
     // err ? console.log(err) : res.render('index', { title: 'Express',result,login:false });
     if(err) throw err;
     else  res.render('index', { title: 'Express',result,login:false });
@@ -1806,7 +1810,9 @@ router.get('/about',(req,res)=>{
     var query6 = `select * from users where id = '${req.session.usernumber}';`
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
-    pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
+    var query10 = `select * from banner where type='About Video' limit 1;`
+
+    pool.query(query+query1+query2+query6+query7+query8+query10,(err,result)=>{
       if(err) throw err;
      
       else res.render('website_customize',{result,login:true,msg:'about',title:'About Us'})
@@ -1820,8 +1826,9 @@ router.get('/about',(req,res)=>{
     var query6 = `select * from users where id = '84';`
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+    var query10 = `select * from banner where type='About Video' limit 1;`
 
-    pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
+    pool.query(query+query1+query2+query6+query7+query8+query10,(err,result)=>{
       if(err) throw err;
        else res.render('website_customize',{result,login:false,msg:'about',title:'About Us'})
       // else res.json(result)
@@ -2723,6 +2730,7 @@ router.get('/celebrity',(req,res)=>{
          var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
          var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
          var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
     
           pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
             if(err) throw err;

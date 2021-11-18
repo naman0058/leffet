@@ -24,6 +24,7 @@ var login = require('./routes/login');
 var partner_api = require('./routes/partner-api');
 var testimonials = require('./routes/testimonials');
 var photoshot = require('./routes/photoshot');
+var blog = require('./routes/blog');
 
 var app = express();
 
@@ -69,6 +70,7 @@ app.use('/login',login);
 app.use('/partner-api',partner_api);
 app.use('/testimonials',testimonials);
 app.use('/photoshot',photoshot);
+app.use('/blog',blog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
