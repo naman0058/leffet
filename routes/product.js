@@ -240,4 +240,114 @@ if(req.files.image){
 
 
 
+
+
+// menu management
+
+
+router.get('/manage',(req,res)=>{
+    if(req.session.adminid){
+    res.render('menu_manage')
+    }
+    else {
+        res.render('admin_login',{msg:'Please Login First'})
+    }
+})
+
+
+
+router.post('/menu/insert',upload.single('image'),(req,res)=>{
+	let body = req.body
+    
+    // let discount = ((+req.body.price)*(+req.body.discount))/100
+    // console.log("discount",discount)
+    //  let net_amount = (req.body.price) - (discount)
+    //  body['net_amount'] = req.body.price
+    body['image'] = req.file.filename;
+
+console.log('ddghjg',req.body)
+
+	pool.query(`insert into ${table} set ?`,body,(err,result)=>{
+		if(err) {
+            console.log('hidj',err)
+            res.json({
+                status:500,
+                type : 'error',
+                description:err
+            })
+        }
+		else {
+            console.log('hidj',result)
+            res.json({
+                status:200,
+                type : 'success',
+                description:'successfully added'
+            })
+        }
+	})
+})
+
+
+
+router.get('/menu/all',(req,res)=>{
+	pool.query(`select s.* , 
+    (select c.name from category c where c.id = s.categoryid) as categoryname,
+    (select sub.name from subcategory sub where sub.id = s.subcategoryid) as subcategoryname
+    from ${table} s order by s.name `,(err,result)=>{
+		if(err) throw err;
+        else res.json(result)
+	})
+})
+
+
+
+
+
+
+
+router.get('/menu/delete', (req, res) => {
+    const { id } = req.query
+    pool.query(`delete from ${table} where id = ${id}`, (err, result) => {
+        if(err) {
+            res.json({
+                status:500,
+                type : 'error',
+                description:err
+            })
+        }
+        else {
+            res.json({
+                status:200,
+                type : 'success',
+                description:'successfully delete'
+            })
+        }
+    })
+})
+
+
+router.post('/menu/update', (req, res) => {
+    let body = req.body
+    console.log(req.body)
+   //  body['net_amount'] = net_amount
+    pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+        if(err) {
+            res.json({
+                status:500,
+                type : 'error',
+                description:err
+            })
+        }
+        else {
+            res.json({
+                status:200,
+                type : 'success',
+                description:'successfully update'
+            })
+        }
+    })
+})
+
+
+
 module.exports = router;

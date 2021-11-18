@@ -1,0 +1,403 @@
+<%- include ('./adminheader.ejs') %>
+
+
+<div class="layout-content">
+
+<div class="container flex-grow-1 container-p-y">
+<h4 class="font-weight-bold py-3 mb-0">Menu Manage</h4>
+<div class="text-muted small mt-0 mb-4 d-block breadcrumb">
+<ol class="breadcrumb">
+<li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+<li class="breadcrumb-item active">Menu Manage</li>
+</ol>
+</div>
+
+<div class="card mb-4" id='insertdiv'>
+<h6 class="card-header">Menu Manage  <span style="float: right;"><button type="button" class="btn btn-primary show" id="show">Show</button></span> </h6>
+
+<div class="card-body">
+
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+        <label class="form-label">Product Name</label>
+        <select class="form-control" placeholder="Email" id="categoryid" name="id" required></select>
+        <div class="clearfix"></div>
+        </div>
+        </div>
+        
+
+<div class="form-row">
+<div class="form-group col-md-6">
+<label class="form-label">Quantity</label>
+<select class="form-control" name="quantity" id="quantity">
+    <option value="1 Kg">1 Kg</option>
+    <option value="2 Kg">2 Kg</option>
+    <option value="3 kg">3 Kg</option>
+    <option value="4 kg">4 kg</option>
+    <option value="5 Kg">5 Kg</option>
+    <option value="10 Kg">10 Kg</option>
+    <option value="100 gm">100 gm</option>
+    <option value="200 gm">200 gm</option>
+    <option value="250 gm">250 gm</option>
+    <option value="500 gm">500 gm</option>
+    <option value="1 pc">1 pc</option>
+
+
+
+</select>
+<div class="clearfix"></div>
+</div>
+<div class="form-group col-md-6">
+<label class="form-label">Price</label>
+<input type="number" class="form-control" name='price' placeholder="Price" id="price" required>
+<div class="clearfix"></div>
+</div>
+</div>
+
+<button type="button" id='submit' class="btn btn-primary">Submit</button>
+
+</div>
+</div>
+
+
+
+
+<div class="card mb-4" id='result'></div>
+
+
+<div class="card mb-4" id='editdiv'>
+<h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back1" style="margin:10px">Back</button></span>Edit Data</h6>
+
+<div class="card-body">
+
+    <form>
+        <div class="form-row">
+
+
+            <div class="form-group col-md-12">
+                <label class="form-label">ID</label>
+                <input type="text" class="form-control" placeholder="Email" id="pid" readonly>
+                <div class="clearfix"></div>
+                </div>
+
+        </div>
+        
+
+        <div class="form-row">
+
+
+            <div class="form-group col-md-6">
+                <label class="form-label">Quantity</label>
+<select class="form-control" name="pquantity" id="pquantity">
+    <option value="1 Kg">1 Kg</option>
+    <option value="2 Kg">2 Kg</option>
+    <option value="3 kg">3 Kg</option>
+    <option value="4 kg">4 kg</option>
+    <option value="5 Kg">5 Kg</option>
+    <option value="10 Kg">10 Kg</option>
+    <option value="100 gm">100 gm</option>
+    <option value="200 gm">200 gm</option>
+    <option value="250 gm">250 gm</option>
+    <option value="500 gm">500 gm</option>
+    <option value="1 pc">1 pc</option>
+
+
+</select>
+
+                <div class="clearfix"></div>
+                </div>
+
+        <div class="form-group col-md-6">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" name='price' placeholder="Price" id="pprice" required>
+        <div class="clearfix"></div>
+        </div>
+     
+        </div>
+
+
+        
+        <button type="button" id='update' class="btn btn-primary">Submit</button>
+        </form>
+</div>
+</div>
+
+
+
+<div class="card mb-4" id="updateimagediv">
+<h6 class="card-header"><span><button type="button" class="btn btn-primary show" id="back2" style="margin:10px">Back</button></span>Upload Image</h6>
+<div class="card-body">
+
+    <form action="/admin/pannel/subcategory/update_image" method="POST" enctype="multipart/form-data">
+        <div class="form-row">
+   
+            <div class="form-group col-md-6">
+                <label class="form-label">ID</label>
+                <input type="text" class="form-control" placeholder="Email" id="peid" name="id" readonly>
+                <div class="clearfix"></div>
+                </div>
+
+
+        <div class="form-group col-md-6">
+        <label class="form-label">Image</label>
+        <input type="file" class="form-control" name='image' placeholder="Password">
+        <div class="clearfix"></div>
+        </div>
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+</div>
+</div>
+
+
+
+
+<!-- 
+<nav class="layout-footer footer footer-light">
+<div class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
+<div class="pt-3">
+<span class="float-md-right d-none d-lg-block">&copy; Exclusive on Themeforest | Hand-crafted &amp; Made with <i class="fas fa-heart text-danger mr-2"></i></span>
+</div>
+<div>
+<a href="javascript:" class="footer-link pt-3">About Us</a>
+<a href="javascript:" class="footer-link pt-3 ml-4">Help</a>
+<a href="javascript:" class="footer-link pt-3 ml-4">Contact</a>
+<a href="javascript:" class="footer-link pt-3 ml-4">Terms &amp; Conditions</a>
+</div>
+</div>
+</nav> -->
+
+</div>
+
+</div>
+
+</div>
+
+<div class="layout-overlay layout-sidenav-toggle"></div>
+</div>
+
+ <!-- General JS Scripts -->
+ <script src="/light/assets/js/app.min.js"></script>   
+ <!-- JS Libraies -->
+ <!-- Page Specific JS File -->
+ <!-- Template JS File -->
+ <script src="/light/assets/js/scripts.js"></script>
+ <!-- Custom JS File -->
+ <script src="/light/assets/js/custom.js"></script>
+
+
+ <script src="/javascripts/product.js"></script>
+
+ 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+ <script>
+ 
+   $('.uploadImage').submit(function (e) {
+     e.preventDefault();
+     let description = $("#editor").html().trim();
+     // var title = $('#title').val(); 
+ 
+     $(this).ajaxSubmit({
+        data: {description: description},
+       contentType: 'application/json',
+       success: function (response) {
+         console.log(response)
+         if(response.status=='300' || response.status==300) alert(response.description)
+         else {
+        alert('successfully')
+         window.location.reload()
+         }
+       }
+     });
+     return false;
+   });
+ 
+ 
+ 
+ </script>
+
+
+
+<script>
+ // Move caret back to 
+function placeCaretAtEnd(el) {
+ el.focus();
+ if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+   var range = document.createRange();
+   range.selectNodeContents(el);
+   range.collapse(false);
+   var sel = window.getSelection();
+   sel.removeAllRanges();
+   sel.addRange(range);
+ } else if (typeof document.body.createTextRange != "undefined") {
+   var textRange = document.body.createTextRange();
+   textRange.moveToElementText(el);
+   textRange.collapse(false);
+   textRange.select();
+ }
+}
+
+// Clean HTML tags using sanitize-html
+function cleanHtml() {  
+ let value = $("#editor").html();
+ let clean = sanitizeHtml(value, {
+   allowedTags: ['div', 'blockquote', 'b', 'strong', 'i', 'em', 'ul', 'ol', 'li'],
+   allowedAttributes: {
+     'blockquote': ['style']
+   }
+ });
+
+ let cleanValue = clean.trim();  
+ setContent();
+}
+
+// Paste from MS Word    *CREDIT: https://gist.github.com/sbrin/6801034
+(function($) {
+   $.fn.msword_html_filter = function(options) {
+     let settings = $.extend( {}, options);
+
+     function word_filter(editor){
+       let content = editor.html();
+
+       // Word comments like conditional comments etc
+       content = content.replace(/<!--[\s\S]+?-->/gi, '');
+
+       // Remove comments, scripts (e.g., msoShowComment), XML tag, VML content,
+       // MS Office namespaced tags, and a few other tags
+       content = content.replace(/<(!|script[^>]*>.*?<\/script(?=[>\s])|\/?(\?xml(:\w+)?|img|meta|link|style|\w:\w+)(?=[\s\/>]))[^>]*>/gi, '');
+
+       // Convert <s> into <strike> for line-though
+       content = content.replace(/<(\/?)s>/gi, "<$1strike>");
+
+       // Replace nbsp entites to char since it's easier to handle
+       //content = content.replace(/&nbsp;/gi, "\u00a0");
+       content = content.replace(/&nbsp;/gi, ' ');
+
+       // Convert <span style="mso-spacerun:yes">___</span> to string of alternating
+       // breaking/non-breaking spaces of same length
+       content = content.replace(/<span\s+style\s*=\s*"\s*mso-spacerun\s*:\s*yes\s*;?\s*"\s*>([\s\u00a0]*)<\/span>/gi, function(str, spaces) {
+         return (spaces.length > 0) ? spaces.replace(/./, " ").slice(Math.floor(spaces.length/2)).split("").join("\u00a0") : '';
+       });
+
+       editor.html(content);
+
+       // Parse out list indent level for lists
+       $('p', editor).each(function(){
+         let str = $(this).attr('style');
+         let matches = /mso-list:\w+ \w+([0-9]+)/.exec(str);
+         if (matches) {
+           $(this).data('_listLevel',  parseInt(matches[1], 10));
+         }
+       });
+
+       // Parse Lists
+       let last_level=0;
+       let pnt = null;
+       $('p', editor).each(function(){
+           let cur_level = $(this).data('_listLevel');
+           if(cur_level != undefined){
+               let txt = $(this).text();
+               let list_tag = '<ul></ul>';
+               if (/^\s*\w+\./.test(txt)) {
+                   let matches = /([0-9])\./.exec(txt);
+                   if (matches) {
+                       let start = parseInt(matches[1], 10);
+                       list_tag = start>1 ? '<ol start="' + start + '"></ol>' : '<ol></ol>';
+                   }else{
+                       list_tag = '<ol></ol>';
+                   }
+               }
+
+               if(cur_level>last_level){
+                 if(last_level==0){
+                   $(this).before(list_tag);
+                   pnt = $(this).prev();
+                 }else{
+                   pnt = $(list_tag).appendTo(pnt);
+                 }
+               }
+               if(cur_level<last_level){
+                 for(let i=0; i<last_level-cur_level; i++){
+                   pnt = pnt.parent();
+                 }
+               }
+               $('span:first', this).remove();
+               pnt.append('<li>' + $(this).html().replace(/\d+\./g, '') + '</li>')
+               $('b:empty').remove();
+               $(this).remove();
+               last_level = cur_level;
+           }else{
+               last_level = 0;
+           }
+       })
+
+       $('[style]', editor).removeAttr('style');
+       $('[align]', editor).removeAttr('align');
+       $('span', editor).replaceWith(function() {return $(this).contents();});
+       $('span:empty', editor).remove();
+       $("[class^='Mso']", editor).removeAttr('class');
+       $('p:empty', editor).remove();
+     }
+
+     return this.each(function() {
+       let self = this;
+       $(self).on('keyup paste', function(){
+         
+         setTimeout(function() {
+            let content = $(self).html();
+           (/class="?Mso|style="[^"]*\bmso-|style='[^'']*\bmso-|w:WordDocument/i.test( content )) ? word_filter( $(self) ) : cleanHtml();
+         }, 400);           
+       });
+     });
+   };
+})( jQuery )
+
+
+$(function(){  
+ $('#editor').msword_html_filter(); 
+})
+
+function setContent() {
+ let value = $(this).html();
+ 
+ let el = $("#editor").get(0);
+ placeCaretAtEnd(el);
+}
+
+
+//### EVENTS/ACTIONS ###//
+
+//execCommand(aCommandName, aShowDefaultUI, aValueArgument)
+function runCommand(el, commandName, arg) {  
+ if (commandName === "createLink") {
+   let argument = prompt("Insert link:");
+   document.execCommand(commandName, false, argument);
+ }else {    
+   document.execCommand(commandName, false, arg);
+ }  
+ $("#editor").focus();
+ return false;
+}
+
+// Capture wysiwyg val and assign to textarea val
+// $("#editor").keyup(function() {
+//   let value = $(this).html();
+//   $("#messageText").val(value);  
+// });
+
+// Show submitted data
+$('#submit').click(function(e) {
+ e.preventDefault();
+ let content = $("#editor").html().trim();
+ alert("VALUE SUBMITTED: \n" + content);  
+});
+</script>
+
+
+</body>
+
+
+</html>

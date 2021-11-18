@@ -2743,4 +2743,49 @@ router.get('/celebrity',(req,res)=>{
     
     })
 
+
+
+
+
+
+    router.get('/blogs',(req,res)=>{
+      // console.log(req.session.usernumber)
+      if(req.session.usernumber){
+        var query = `select * from category order by id desc;`
+        var query1 = `select * from product where categoryid = '${req.query.id}';`
+        var query2 = `select * from category where id = '${req.query.id}';`
+        var query6 = `select * from users where id = '${req.session.usernumber}';`
+          var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+          var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+          var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+      
+      
+        pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+          if(err) throw err;
+          else if(result[1][0]) res.render('blogs',{result:result,login:true})
+          else  res.render('blogs',{result,login:true})
+        })
+      }
+      else{
+        var query = `select * from category order by id desc;`
+        var query1 = `select * from product where categoryid = '${req.query.id}';`
+        var query2 = `select * from category where id = '${req.query.id}';`
+        var query6 = `select * from users where id = '84';`
+          var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+          var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+          var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+      
+      
+        pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+           if(err) throw err;
+          else if(result[1][0]) res.render('blogs',{result:result,login:false})
+          else  res.render('blogs',{result,login:false})
+        })
+      }
+      
+        
+       
+      })
+ 
+
 module.exports = router;
