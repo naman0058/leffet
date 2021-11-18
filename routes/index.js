@@ -22,7 +22,7 @@ console.log(req.session.usernumber)
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
   var query9 = `select * from testimonials order by id desc;`
-  var query10 = `select * from banner where type='About Video' limit 1;`
+  var query10 = `select * from banner where type='About Video' order by id desc limit 1;`
 
 
 
@@ -42,7 +42,7 @@ console.log(req.session.usernumber)
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
   var query9 = `select * from testimonials order by id desc;`
-  var query10 = `select * from banner where type='About Video' limit 1;`
+  var query10 = `select * from banner where type='About Video' order by id desc limit 1;`
 
 
 
@@ -1810,7 +1810,7 @@ router.get('/about',(req,res)=>{
     var query6 = `select * from users where id = '${req.session.usernumber}';`
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
-    var query10 = `select * from banner where type='About Video' limit 1;`
+    var query10 = `select * from banner where type='About Video' order by id desc limit 1;`
 
     pool.query(query+query1+query2+query6+query7+query8+query10,(err,result)=>{
       if(err) throw err;
@@ -1826,7 +1826,7 @@ router.get('/about',(req,res)=>{
     var query6 = `select * from users where id = '84';`
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
-    var query10 = `select * from banner where type='About Video' limit 1;`
+    var query10 = `select * from banner where type='About Video' order by id desc limit 1;`
 
     pool.query(query+query1+query2+query6+query7+query8+query10,(err,result)=>{
       if(err) throw err;
