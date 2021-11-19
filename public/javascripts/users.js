@@ -19,6 +19,7 @@ document.write('<script type="text/javascript" src="/javascripts/common.js" ></s
 
 function makeTable(categories){
     let table = ` <div class="table-responsive">
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px">Export Data</button>
 
     <input type="text"  class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search Here.." title="Type in a name" style='margin-bottom:20px;margin-left:20px;margin-right:20px;margin-top:20px'>
               
@@ -196,4 +197,19 @@ $('#result').on('click', '.updateimage', function() {
     $('#editdiv').hide()
 })
 
+
+
+
+$(document).ready(function () {
+    $('#result').on('click', '#exportBtn1', function() {
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Users.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    
 

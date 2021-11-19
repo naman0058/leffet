@@ -1013,11 +1013,12 @@ router.get('/shipping',(req,res)=>{
  var query5 = `select * from users where id = '${req.session.usernumber}';`
  var query7 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
  var query8 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
- pool.query(query+query1+query2+query3+query4+query5+query7+query8,(err,result)=>{
+ var query9 = `select charges from country where name = (select id_country from address where id = '${req.session.address_id}');`
+ pool.query(query+query1+query2+query3+query4+query5+query7+query8+query9,(err,result)=>{
   if(err) throw err;
    else{
    res.render('shipping',{result:result,addressid:req.session.address_id,login:true})
-
+// res.json(result)
   }
 
 }) 
@@ -1045,9 +1046,12 @@ router.get('/payment',(req,res)=>{
  var query5 = `select * from users where id = '${req.session.usernumber}';`
  var query7 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
  var query8 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
- pool.query(query+query1+query2+query3+query4+query5+query7+query8,(err,result)=>{
+ var query9 = `select charges from country where name = (select id_country from address where id = '${req.session.address_id}');`
+
+ pool.query(query+query1+query2+query3+query4+query5+query7+query8+query9,(err,result)=>{
   if(err) throw err;
    else{
+     req.session.shipping_charges = result[8][0].charges;
    res.render('payment',{result:result,addressid:req.session.address_id,message:req.session.message,login:true})
 
   }
@@ -1362,6 +1366,7 @@ router.post('/order-now',(req,res)=>{
           result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
       }
      orderid = result;
+     req.session.orderid = orderid;
     
     
         body['address'] = req.body.address1 + ',' + req.body.address2 + ',' + req.body.city + ',' + req.body.state + ',' + req.body.pincode;
@@ -2037,6 +2042,7 @@ pool.query(`select firstname , lastname from users where id = '${req.session.use
   if(err) throw err;
   else {
     body['name'] = result[0].firstname + ' ' + result[0].lastname ;
+    body['shipping_charges'] =  req.session.shipping_charges;
 
 // res.send(result[0])
     body['status'] = 'pending'
@@ -2533,9 +2539,14 @@ router.get('/confirmation',(req,res)=>{
   if(req.session.usernumber){
     var query = `select * from category order by id desc;`
     var query1 = `select * from booking order by id desc limit 1;`
-    pool.query(query+query1,(err,result)=>{
+    var query2 = `select * from category where id = '${req.query.id}';`
+    var query6 = `select * from users where id = '${req.session.usernumber}';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+      var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+    pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
-      else res.render('confirmation',{result,login:true})
+      else res.render('confirmation',{result,login:true,orderid:req.session.orderid});
     })
   }
   else {

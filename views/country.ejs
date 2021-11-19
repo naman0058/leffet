@@ -13,10 +13,19 @@
                   <div class="card-body">
                   
                       <div class="row">
-                          <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Country Name</label>
                                 <input type="text" class="form-control" id="name" required>
+                              </div>
+                              
+                          </div>
+
+
+                          <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Shipping Charges</label>
+                                <input type="text" class="form-control" id="charges" required>
                               </div>
                               
                           </div>
@@ -49,14 +58,24 @@
         <form>
             <div class="form-row">
     
-    
+                <input type="hidden" class="form-control" placeholder="Email" id="pid" name="id" readonly>
+
              
     
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
             <label class="form-label">Country</label>
             <input type="text" class="form-control" placeholder="Email" id="pname">
             <div class="clearfix"></div>
             </div>
+
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label>Shipping Charges</label>
+                    <input type="text" class="form-control" id="pcharges" required>
+                  </div>
+                  
+              </div>
 
     
          
@@ -132,9 +151,9 @@
     
       else {
           let name = $('#name').val()
-          let quantity_type = $('#quantity_type').val()
+          let charges = $('#charges').val()
       
-          $.post('/country/insert',{name,quantity_type},data=>{
+          $.post('/country/insert',{name,charges},data=>{
            
           if(data.status=='300' || data.status==300) alert(data.description)
           else {

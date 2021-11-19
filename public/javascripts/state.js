@@ -16,7 +16,7 @@ $.getJSON(`${table}/all`, data => {
 
 
 $.getJSON(`country/all`, data => {
-    categories = data
+    countries = data
     fillDropDown('countryid', data, 'Choose Country', 0)
   
 })
@@ -43,6 +43,8 @@ function makeTable(categories){
     let table = ` <div class="table-responsive">
 
     <button type="button" id="back" class="btn btn-primary" style="margin:20px">BacK</button>
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px">Export Data</button>
+  
     <input type="text"  class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search Here.." title="Type in a name" style='margin-bottom:20px;margin-left:20px;margin-right:20px;'>
               
 <table id="myTable" class="table table-bordered table-striped mb-0">
@@ -96,6 +98,7 @@ $('#result').on('click', '.deleted', function() {
 $('#result').on('click', '.edits', function() {
     const id = $(this).attr('id')
     const result = categories.find(item => item.id == id);
+    fillDropDown('pcountryid', countries, 'Choose Country', result.countryid);
   
     $('#editdiv').show()
     $('#result').hide()
@@ -103,6 +106,8 @@ $('#result').on('click', '.edits', function() {
     $('#pid').val(result.id)
     $('#pname').val(result.name)
      $('#pquantity_type').val(result.quantity_type)
+     $('#pcountryid').val(result.countryid)
+
   
    
  })
@@ -122,13 +127,14 @@ $('#update').click(function(){  //data insert in database
     let updateobj = {
         id: $('#pid').val(),
         name: $('#pname').val(),
-        quantity_type:$('#pquantity_type').val(),
+        countryid:$('#pcountryid').val(),
      
         }
 
-    $.post(`${table}/update`, updateobj , function(data) {
-       update()
-    })
+        $.post(`${table}/update`, updateobj , function(data) {
+            if(data.status==300 || data.status == '300') alert(data.description);
+            else update()
+        })
 })
 
 
@@ -181,3 +187,16 @@ $('#result').on('click', '.updateimage', function() {
 })
 
 
+
+$(document).ready(function () {
+    $('#result').on('click', '#exportBtn1', function() {
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "States.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    

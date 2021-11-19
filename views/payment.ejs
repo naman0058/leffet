@@ -450,7 +450,7 @@ The selected address will be used both as your personal address (for invoice) an
                         </div>
                                                             <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
                           <span class="label">Shipping</span>
-                          <span class="value">Free</span>
+                          <span class="value">₹<%=result[8][0].charges%></span>
                         </div>
                                               
               
@@ -467,7 +467,7 @@ The selected address will be used both as your personal address (for invoice) an
                 
                   <div class="cart-summary-line cart-total">
                     <span class="label">Total (tax incl.)</span>
-                    <span class="value">₹<%=result[2][0].totalprice%></span>
+                    <span class="value">₹<%=(+result[2][0].totalprice) + (+result[8][0].charges)%></span>
                   </div>
                 
                   <input type="hidden" class="amount" value="<%=result[2][0].totalprice%>">

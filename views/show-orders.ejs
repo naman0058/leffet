@@ -6,12 +6,13 @@
             <div class="row">
               <div class="col-12 col-md-12 col-lg-12">
               
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px;margin-bottom: 20px;">Export Data</button>
             
                 
                 <div class="table-responsive">
 
      
-                    <table id="report-table" class="table table-bordered table-striped mb-0">
+                    <table id="myTable" class="table table-bordered table-striped mb-0">
                     <thead>
                     <tr>
                     
@@ -100,9 +101,45 @@
       return false;
     });
   
+
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(function () {
+      $('#exportBtn1').click(function(){
+
+   
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Orders.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    
+
   
   
   </script>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

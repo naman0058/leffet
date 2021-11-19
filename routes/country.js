@@ -40,6 +40,8 @@ router.post('/insert',(req,res)=>{
         else{
             pool.query(`insert into ${table} set ?`,body,(err,result)=>{
                 if(err) {
+            console.log(err)
+
                     res.json({
                         status:500,
                         type : 'error',

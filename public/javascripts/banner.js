@@ -17,6 +17,8 @@ function makeTable(categories){
       let table = ` <div class="table-responsive">
 
       <button type="button" id="back" class="btn btn-primary" style="margin:20px">BacK</button>
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px">Export Data</button>
+
 <table id="report-table" class="table table-bordered table-striped mb-0">
 <thead>
 <tr>
@@ -150,3 +152,16 @@ $('#result').on('click', '.updateimage', function() {
 })
 
 
+
+$(document).ready(function () {
+    $('#result').on('click', '#exportBtn1', function() {
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Banners.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    

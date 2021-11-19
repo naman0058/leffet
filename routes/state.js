@@ -65,11 +65,26 @@ router.post('/insert',(req,res)=>{
 
 
 router.get('/all',(req,res)=>{
-	pool.query(`select * from ${table} `,(err,result)=>{
+	pool.query(`select s.* , 
+    (select c.name from country c where c.id = s.countryid) as countryname
+     from ${table} s `,(err,result)=>{
 		if(err) throw err;
         else res.json(result)
 	})
 })
+
+
+
+
+router.get('/all/indian',(req,res)=>{
+	pool.query(`select s.* , 
+    (select c.name from country c where c.id = s.countryid) as countryname
+     from ${table} s where countryid = '4';`,(err,result)=>{
+		if(err) throw err;
+        else res.json(result)
+	})
+})
+
 
 
 
@@ -94,43 +109,48 @@ router.get('/delete', (req, res) => {
 })
 
 
+
 router.post('/update', (req, res) => {
-
-
-    pool.query(`select * from ${table} where name = '${req.body.name}'`,(err,result)=>{
+    console.log(req.body)
+    pool.query(`select * from ${table} where name='${req.body.name}'`,(err,result)=>{
         if(err) throw err;
         else if(result[0]){
-       res.json({
-           status : 300,
-           type:'exists',
-           description:'State Already Exists'
-       })
-        }
-        else{
-
-
-    pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
-        if(err) {
-            res.json({
-                status:500,
-                type : 'error',
-                description:err
-            })
+            if(result[0].id != req.body.id){
+                res.json({
+                    status : 300,
+                    type:'exists',
+                    description:'State Already Exists'
+                })
+            }
+            else {
+                pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+                    if(err) throw err;
+                    else {
+                        res.json({
+                            status:200,
+                            type : 'success',
+                            description:'successfully update'
+                        })
+                    }
+                })
+            }
+           
         }
         else {
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully update'
+            pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+                if(err) throw err;
+                else {
+                    res.json({
+                        status:200,
+                        type : 'success',
+                        description:'successfully update'
+                    })
+                }
             })
-
-            
         }
     })
-}
-    })
+ 
 })
-
 
 
 

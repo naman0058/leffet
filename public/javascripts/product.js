@@ -79,6 +79,8 @@ function makeTable(categories){
     let table = ` <div class="table-responsive">
 
     <button type="button" id="back" class="btn btn-primary" style="margin:20px">BacK</button>
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px">Export Data</button>
+   
     <input type="text"  class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search Here.." title="Type in a name" style='margin-bottom:20px;margin-left:20px;margin-right:20px;'>
               
 <table id="myTable" class="table table-bordered table-striped mb-0">
@@ -363,3 +365,19 @@ $('#result').on('click', '.updateimage', function() {
     $('#insertdiv').hide()
     $('#editdiv').hide()
 })
+
+
+$(document).ready(function () {
+    $('#result').on('click', '#exportBtn1', function() {
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Products.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    
+    
+    

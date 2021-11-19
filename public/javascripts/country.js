@@ -20,12 +20,16 @@ function makeTable(categories){
     let table = ` <div class="table-responsive">
 
     <button type="button" id="back" class="btn btn-primary" style="margin:20px">BacK</button>
+    <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px">Export Data</button>
+    
     <input type="text"  class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search Here.." title="Type in a name" style='margin-bottom:20px;margin-left:20px;margin-right:20px;'>
               
 <table id="myTable" class="table table-bordered table-striped mb-0">
 <thead>
 <tr>
 <th>Country</th>
+<th>Charges</th>
+
 <th>Options</th>
 </tr>
 </thead>
@@ -35,6 +39,8 @@ $.each(categories,(i,item)=>{
 table+=`<tr>
 
 <td>${item.name}</td>
+<td>${item.charges}</td>
+
 
 
 <td>
@@ -75,7 +81,7 @@ $('#result').on('click', '.edits', function() {
     $('#insertdiv').hide() 
     $('#pid').val(result.id)
     $('#pname').val(result.name)
-     $('#pquantity_type').val(result.quantity_type)
+     $('#pcharges').val(result.charges)
   
    
  })
@@ -95,12 +101,13 @@ $('#update').click(function(){  //data insert in database
     let updateobj = {
         id: $('#pid').val(),
         name: $('#pname').val(),
-        quantity_type:$('#pquantity_type').val(),
+        charges:$('#pcharges').val(),
      
         }
 
     $.post(`${table}/update`, updateobj , function(data) {
-       update()
+        if(data.status==300 || data.status == '300') alert(data.description);
+        else update()
     })
 })
 
@@ -154,3 +161,16 @@ $('#result').on('click', '.updateimage', function() {
 })
 
 
+
+$(document).ready(function () {
+    $('#result').on('click', '#exportBtn1', function() {
+    
+            TableToExcel.convert(document.getElementById("myTable"), {
+                name: "Countries.xlsx",
+                sheet: {
+                name: "Sheet1"
+                }
+              });
+            });
+      });
+    

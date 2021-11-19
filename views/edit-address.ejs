@@ -428,46 +428,11 @@
 
       
         
-          <select class="form-control form-control-select" name="id_state" required>
+          <select class="form-control form-control-select" name="id_state" id="stateid" required>
             <option value disabled selected>-- please choose --</option>
             <option value="<%=result[5][0].id_state%>" selected><%=result[5][0].id_state%></option>
             
-                          <option value="325" >Andhra Pradesh</option>
-                          <option value="326" >Arunachal Pradesh</option>
-                          <option value="327" >Assam</option>
-                          <option value="328" >Bihar</option>
-                          <option value="329" >Chhattisgarh</option>
-                          <option value="330" >Goa</option>
-                          <option value="331" >Gujarat</option>
-                          <option value="332" >Haryana</option>
-                          <option value="333" >Himachal Pradesh</option>
-                          <option value="334" >Jammu and Kashmir</option>
-                          <option value="335" >Jharkhand</option>
-                          <option value="336" >Karnataka</option>
-                          <option value="337" >Kerala</option>
-                          <option value="338" >Madhya Pradesh</option>
-                          <option value="339" >Maharashtra</option>
-                          <option value="340" >Manipur</option>
-                          <option value="341" >Meghalaya</option>
-                          <option value="342" >Mizoram</option>
-                          <option value="343" >Nagaland</option>
-                          <option value="344" >Orissa</option>
-                          <option value="345" >Punjab</option>
-                          <option value="346" >Rajasthan</option>
-                          <option value="347" >Sikkim</option>
-                          <option value="348" >Tamil Nadu</option>
-                          <option value="349" >Telangana</option>
-                          <option value="350" >Tripura</option>
-                          <option value="351" >Uttar Pradesh</option>
-                          <option value="352" >Uttarakhand</option>
-                          <option value="353" >West Bengal</option>
-                          <option value="354" >Andaman and Nicobar Islands</option>
-                          <option value="355" >Chandigarh</option>
-                          <option value="356" >Dadra and Nagar Haveli</option>
-                          <option value="357" >Daman and Diu</option>
-                          <option value="358" >Delhi</option>
-                          <option value="359" >Lakshadweep</option>
-                          <option value="360" >Pondicherry</option>
+                         
                       </select>
         
 
@@ -501,71 +466,12 @@
           <select
           class="form-control form-control-select js-country"
           name="id_country"
-          required          >
+          id="countryid"
+          required >
             <option value disabled selected>-- please choose --</option>
           <option value="<%=result[5][0].id_country%>" selected><%=result[5][0].id_country%></option>
 
-                          <option value="231" >Afghanistan</option>
-                          <option value="39" >American Samoa</option>
-                          <option value="43" >Antigua and Barbuda</option>
-                          <option value="45" >Armenia</option>
-                          <option value="47" >Azerbaijan</option>
-                          <option value="48" >Bahamas</option>
-                          <option value="49" >Bahrain</option>
-                          <option value="50" >Bangladesh</option>
-                          <option value="51" >Barbados</option>
-                          <option value="55" >Bermuda</option>
-                          <option value="56" >Bhutan</option>
-                          <option value="59" >Brunei</option>
-                          <option value="61" >Burma (Myanmar)</option>
-                          <option value="63" >Cambodia</option>
-                          <option value="4" >Canada</option>
-                          <option value="5" >China</option>
-                          <option value="238" >Christmas Island</option>
-                          <option value="239" >Cocos (Keeling) Islands</option>
-                          <option value="80" >East Timor</option>
-                          <option value="93" >Georgia</option>
-                          <option value="22" >HongKong</option>
-                          <option value="110"  selected >India</option>
-                          <option value="111" >Indonesia</option>
-                          <option value="112" >Iran</option>
-                          <option value="113" >Iraq</option>
-                          <option value="29" >Israel</option>
-                          <option value="11" >Japan</option>
-                          <option value="117" >Jordan</option>
-                          <option value="118" >Kazakhstan</option>
-                          <option value="121" >Korea, Dem. Republic of</option>
-                          <option value="122" >Kuwait</option>
-                          <option value="123" >Kyrgyzstan</option>
-                          <option value="124" >Laos</option>
-                          <option value="126" >Lebanon</option>
-                          <option value="132" >Macau</option>
-                          <option value="136" >Malaysia</option>
-                          <option value="137" >Maldives</option>
-                          <option value="145" >Mexico</option>
-                          <option value="149" >Mongolia</option>
-                          <option value="156" >Nepal</option>
-                          <option value="164" >Oman</option>
-                          <option value="165" >Pakistan</option>
-                          <option value="167" >Palestinian Territories</option>
-                          <option value="172" >Philippines</option>
-                          <option value="175" >Qatar</option>
-                          <option value="188" >Saudi Arabia</option>
-                          <option value="25" >Singapore</option>
-                          <option value="28" >South Korea</option>
-                          <option value="197" >Sri Lanka</option>
-                          <option value="202" >Syria</option>
-                          <option value="203" >Taiwan</option>
-                          <option value="204" >Tajikistan</option>
-                          <option value="206" >Thailand</option>
-                          <option value="212" >Turkmenistan</option>
-                          <option value="217" >United Arab Emirates</option>
-                          <option value="21" >United States</option>
-                          <option value="219" >Uzbekistan</option>
-                          <option value="222" >Vietnam</option>
-                          <option value="223" >Virgin Islands (British)</option>
-                          <option value="224" >Virgin Islands (U.S.)</option>
-                          <option value="227" >Yemen</option>
+                        
                       </select>
         
 
@@ -814,4 +720,82 @@
     </section>
 
 <%- include ('./indexfooter.ejs') %> 
+
+
+
+
+<script>
+
+
+
+  $.getJSON(`country/all`, data => {
+      countries = data
+      fillDropDown1('countryid', data, 'Choose Country', 0)
+    
+  })
+
+
+  
+
+
+  
+$.getJSON(`/state/all`, data => {
+    subcategories = data
+    // fillDropDown('stateid', [], 'Choose State', 0)
+})
+
+
+
+
+$('#countryid').change(() => {
+  console.log(subcategories)
+
+    const filteredData = subcategories.filter(item => item.countryname == $('#countryid').val())
+    console.log(filteredData)
+    fillDropDown('stateid', filteredData, 'Choose States', 0)
+})
+
+  
+  
+  
+  function fillDropDown(id, data, label, selectedid = 0) {
+      $(`#${id}`).empty()
+      // $(`#${id}`).append($('<option>').val("null").text(label))
+  
+      $.each(data, (i, item) => {
+          if (item.id == selectedid) {
+              $(`#${id}`).append($('<option selected>').val(item.name).text(item.name))
+          } else {
+              $(`#${id}`).append($('<option>').val(item.name).text(item.name))
+          }
+      })
+  }
+  
+  
+
+
+  function fillDropDown1(id, data, label, selectedid = 0) {
+      $(`#${id}`).empty()
+      $(`#${id}`).append($('<option>').val(value).text(value))
+  
+      $.each(data, (i, item) => {
+          if (item.id == selectedid) {
+              $(`#${id}`).append($('<option selected>').val(value).text(value))
+          } else {
+              $(`#${id}`).append($('<option>').val(item.name).text(item.name))
+          }
+      })
+  }
+  
+
+  var value = $('#countryid')[0].value;
+// alert(value)
+
+  </script>
+  
+
+
+
+
+
   
