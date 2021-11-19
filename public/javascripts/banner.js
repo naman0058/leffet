@@ -24,6 +24,7 @@ function makeTable(categories){
 <tr>
 <th>Image</th>
 <th>Type</th>
+<th>Link</th>
 <th>Options</th>
 </tr>
 </thead>
@@ -35,6 +36,8 @@ table+=`<tr>
 <img src="/images/${item.image}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">
 </td>
 <td>${item.type}</td>
+<td>${item.link}</td>
+
 <td>
 <a href="#!" class="btn btn-info btn-sm edits" id="${item.id}"><i class="feather icon-edit"></i>&nbsp;Edit </a>
 <a href="#!" class="btn btn-info btn-sm updateimage"  id="${item.id}"><i class="feather icon-edit"></i>&nbsp;Edit Image </a>
@@ -72,6 +75,8 @@ $('#result').on('click', '.edits', function() {
     $('#insertdiv').hide() 
     $('#pid').val(result.id)
     $('#pname').val(result.name)
+    $('#plink').val(result.link)
+
 
      $('#ptype').val(result.type)
    
@@ -94,6 +99,8 @@ $('#update').click(function(){  //data insert in database
         id: $('#pid').val(),
         name :$('#pname').val(),
         type: $('#ptype').val(),
+        link: $('#plink').val(),
+
        
         }
 
