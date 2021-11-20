@@ -16,6 +16,19 @@ $.getJSON(`/category/all`, data => {
 })
 
 
+
+$.getJSON(`/purchase-product/all`, data => {
+    categories = data
+    fillDropDown('productid', data, 'Choose Product', 0)
+})
+
+
+$.getJSON(`/size/all`, data => {
+    categories = data
+    fillDropDown('sizeid', data, 'Choose Size', 0)
+})
+
+
 $.getJSON(`/size/all`, data => {
     sizes = data
     fillDropDown('sizeid', data, 'Choose Size', 0)
@@ -90,11 +103,6 @@ function makeTable(categories){
 <th>Type</th>
 <th>Product</th>
 <th>Category</th>
-<th>Weight</th>
-<th>Price</th>
-<th>Discount</th>
-<th>Net Amount</th>
-<th>Quantity</th>
 <th>Product Detail</th>
 <th>Product Description</th>
 
@@ -111,12 +119,6 @@ table+=`<tr>
 <td>${item.type}</td>
 <td>${item.name}</td>
 <td>${item.categoryname}</td>
-<td>${item.weight}</td>
-
-<td>${item.price}</td>
-<td>${item.discount}</td>
-<td>${item.net_amount}</td>
-<th>${item.quantity}</td>
 <th>${item.description}</td>
 <th>${item.short_description}</td>
 
@@ -193,14 +195,10 @@ $('#result').on('click', '.edits', function () {
     $('#pname').val(result.name)
     $('#psubcategoryid').val(result.subcategoryid)
     $('#pcategoryid').val(result.categoryid);
-    $('#pweight').val(result.weight);
-
-    $('#pdiscount').val(result.discount);
-    $('#pprice').val(result.price);
+    
     $('#pbrandid').val(result.branid);
     $('#pshort_name').val(result.short_name);
     $('#psizeid').val(result.sizeid);
-    $('#pquantity').val(result.quantity);
     $('#pdescription').val(result.description);
 
     $('#pfb_link').val(result.fb_link);
@@ -247,16 +245,13 @@ $('#update').click(function () {  //data insert in database
     let updateobj = {
          id: $('#pid').val(),
          categoryid: $('#pcategoryid').val(),
-         weight:$('#pweight').val(),
          name: $('#pname').val(),
          description : content,
          keywords : $('#pkeywords').val(),
          pintrest_link : $('#ppintrest_link').val(),
          twitter_link : $('#ptwitter_link').val(),
          fb_link : $('#fb_link').val(),
-         price : $('#pprice').val(),
-         quantity : $('#pquantity').val(),
-         discount : $('#pdiscount').val(),
+        
          type : $('#ptype').val(),
          short_description : $('#pshort_description').val(),
 

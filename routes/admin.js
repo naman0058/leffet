@@ -82,8 +82,8 @@ router.get('/dashboard',(req,res)=>{
     var query8 = `select sum(price) as total from booking where date = '${today}';`
     var query9 = `select b.* , 
                 (select p.name from product p where p.id = b.booking_id) as productname,
-                (select u.number from users u where u.id = b.usernumber) as usermobilenumber
-                from booking b where b.status != 'Completed' order by id desc;`
+                (select u.email from users u where u.id = b.usernumber) as usermobilenumber
+                from booking b where b.status != 'Completed' and status != 'Cancel' order by id desc;`
     var query10 = `select * from delivery_charges;`
     pool.query(query+query2+query3+query4+query5+query6+query7+query8+query9+query10,(err,result)=>{
 if(err) throw err;
@@ -99,9 +99,28 @@ else res.render('dashboard',{result:result})
 
 
 router.get('/update-status',(req,res)=>{
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    
+    today = mm + '/' + dd + '/' + yyyy;
+
     pool.query(`update booking set status = '${req.query.status}' where id = '${req.query.id}'`,(err,result)=>{
         if(err) throw err;
-        else res.redirect('/admin/dashboard')
+        else {
+            pool.query(`select * from booking where id = '${req.query.id}'`,(err,result)=>{
+                if(err) throw err;
+                else {
+                    pool.query(`insert into alert(usernumber,status,orderid,date) values ('${result[0].usernumber}' , '${req.query.status}' , '${result[0].orderid}','${today}')`,(err,result)=>{
+                        if(err) throw err;
+                        else res.redirect('/admin/dashboard')
+                    })
+                }
+            })
+        }
+
     })
 })
 

@@ -63,7 +63,7 @@ console.log(req.session.usernumber)
 
 router.get('/order-history',(req,res)=>{
   pool.query(`select  b.* , (select p.name from product p where p.id = b.booking_id) as productname,
-  (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+  (select u.email from users u where u.id = b.usernumber) as usermobilenumber
   
   from booking b where b.status =  'completed' order by id desc;`,(err,result)=>{
     if(err) throw err;
@@ -74,9 +74,9 @@ router.get('/order-history',(req,res)=>{
 
 router.get('/running-order',(req,res)=>{
   pool.query(`select  b.* , (select p.name from product p where p.id = b.booking_id) as productname ,
-  (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+  (select u.email from users u where u.id = b.usernumber) as usermobilenumber
   
-  from booking b where b.status != 'completed' order by id desc;`,(err,result)=>{
+  from booking b where b.status != 'completed' and b.status != 'Cancel' order by id desc;`,(err,result)=>{
     if(err) throw err;
     else res.render('show-orders',{result:result})
   })
@@ -85,9 +85,9 @@ router.get('/running-order',(req,res)=>{
 
 router.get('/cancel-order',(req,res)=>{
   pool.query(`select  b.* , (select p.name from product p where p.id = b.booking_id) as productname ,
-  (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+  (select u.email from users u where u.id = b.usernumber) as usermobilenumber
   
-  from booking b where b.status = 'cancel' order by id desc `,(err,result)=>{
+  from booking b where b.status = 'Cancel' order by id desc `,(err,result)=>{
     if(err) throw err;
     else res.render('show-orders',{result:result})
   })
@@ -105,7 +105,7 @@ router.get('/purchase-report',(req,res)=>{
 
 router.get('/sales-report',(req,res)=>{
   pool.query(`select b.*,
-  (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+  (select u.email from users u where u.id = b.usernumber) as usermobilenumber
   
   from booking b order by id desc `,(err,result)=>{
     if(err) throw err;
@@ -1248,8 +1248,9 @@ router.get('/alert',(req,res)=>{
   var query6 = `select * from users where id = '${req.session.usernumber}';`
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+  var query9 = `select * from alert where usernumber = '${req.session.usernumber}' order by id desc limit 20;`
   if(req.session.usernumber){
-    pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
+    pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
       else res.render('alert',{result:result,msg:'',login:true})
     })
@@ -1466,9 +1467,9 @@ router.get('/myorder',(req,res)=>{
     var query = `select * from category order by id desc;`
     var query1 = `select b.* , (select p.name from product p where p.id = b.booking_id) as bookingname,
     (select p.image from product p where p.id = b.booking_id) as bookingimage,
-    (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+    (select u.email from users u where u.id = b.usernumber) as usermobilenumber
 
-    from booking b where usernumber = '${req.session.usernumber}' order by id desc;`
+    from booking b where usernumber = '${req.session.usernumber}' and status!='Cancel' order by id desc;`
     var query6 = `select * from users where id = '${req.session.usernumber}';`
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
@@ -1491,9 +1492,9 @@ router.get('/credit-slip',(req,res)=>{
     var query = `select * from category order by id desc;`
     var query1 = `select b.* , (select p.name from product p where p.id = b.booking_id) as bookingname,
     (select p.image from product p where p.id = b.booking_id) as bookingimage,
-    (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+    (select u.email from users u where u.id = b.usernumber) as usermobilenumber
 
-    from booking b where usernumber = '${req.session.usernumber}' and status = 'cancel'  order by id desc;`
+    from booking b where usernumber = '${req.session.usernumber}' and status = 'Cancel'  order by id desc;`
     var query6 = `select * from users where id = '${req.session.usernumber}';`
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
@@ -2233,10 +2234,30 @@ router.get('/delete-address',(req,res)=>{
 
 
 router.get('/cancel-orders',(req,res)=>{
-  pool.query(`delete from booking where id = '${req.query.id}'`,(err,result)=>{
+
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  
+  today = mm + '/' + dd + '/' + yyyy;
+
+  pool.query(`select * from booking where id = '${req.query.id}'`,(err,result)=>{
     if(err) throw err;
-    else res.redirect('/myorder')
-  })
+    else {
+        pool.query(`insert into alert(usernumber,status,orderid,date) values ('${result[0].usernumber}' , 'Cancel' , '${result[0].orderid}','${today}')`,(err,result)=>{
+            if(err) throw err;
+           else{
+            pool.query(`update booking set status = 'Cancel' where id = '${req.query.id}'`,(err,result)=>{
+              if(err) throw err;
+              else res.redirect('/myorder')
+            })
+           }
+        })
+    }
+})
+ 
 })
 
 
@@ -2519,13 +2540,33 @@ router.get('/invoice',(req,res)=>{
     var query1 = `select c.*,
     (select p.name from product p where p.id = c.booking_id) as bookingname,
     (select p.image from product p where p.id = c.booking_id) as bookingimage,
-    (select u.number from users u where u.id = b.usernumber) as usermobilenumber
+    (select u.email from users u where u.id = c.usernumber) as usermobilenumber,
+    (select a.address1 from address a where a.id = c.address ) as useraddress1,
+    (select a.address2 from address a where a.id = c.address ) as useraddress2,
+    (select a.city from address a where a.id = c.address ) as usercity,
+    (select a.postcode from address a where a.id = c.address ) as userpostcode,
+    (select a.id_state from address a where a.id = c.address ) as userstate,
+    (select a.id_country from address a where a.id = c.address ) as usercountry
+
+
 
     from booking c where c.orderid = '${req.query.orderid}';`
-    var query2 = `select sum(price) as totalamount from booking where orderid = '${req.query.orderid}';`
-    pool.query(query+query1+query2,(err,result)=>{
+    var query10= `select sum(price) as totalamount from booking where orderid = '${req.query.orderid}';`
+
+
+    var query2 = `select * from category where id = '${req.query.id}';`
+    var query6 = `select * from users where id = '${req.session.usernumber}';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+      var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
+
+  
+  
+    pool.query(query+query1+query2+query6+query7+query8+query9+query10,(err,result)=>{
       if(err) throw err;
-      else res.render('invoice',{login:true,result})
+       else res.render('invoice',{login:true,result})
+      // else res.json(result)
     })
   }
   else{

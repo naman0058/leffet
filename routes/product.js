@@ -43,15 +43,7 @@ router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'im
     // console.log('dta',req.body)
     
 
-  if(req.body.discount == 0) {
-    price = 0
-  }
-  else {
-    price = (req.body.price)/(req.body.discount)
-  }
-  
-    let net_price = (req.body.price)-price
-    body['net_amount'] = Math.round(net_price);
+
 
       
 
@@ -133,15 +125,7 @@ router.post('/update', (req, res) => {
 
 let body = req.body
 
-if(req.body.discount == 0) {
-    price = 0
-  }
-  else {
-    price = (req.body.price)/(req.body.discount)
-  }
-  
-    let net_price = (req.body.price)-price
-    body['net_amount'] = Math.round(net_price);
+
 
     console.log('data',req.body)
 

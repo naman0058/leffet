@@ -1,7 +1,7 @@
 <%- include ('./adminheader.ejs') %>
 
 
-<div class="layout-content">
+<div class="layout-" style="margin-left: 150px;">
 
 <div class="container flex-grow-1 container-p-y">
 <h4 class="font-weight-bold py-3 mb-0">Menu Manage</h4>
@@ -13,7 +13,8 @@
 </div>
 
 <div class="card mb-4" id='insertdiv'>
-<h6 class="card-header">Menu Manage  <span style="float: right;"><button type="button" class="btn btn-primary show" id="show">Show</button></span> </h6>
+<h6 class="card-header">Menu Manage  <span style="float: right;">
+  <button type="button" class="btn btn-primary float-right show" id="show" style="float: right;">Show</button></span> </h6>
 
 <div class="card-body">
 
@@ -21,34 +22,33 @@
     <div class="form-row">
         <div class="form-group col-md-12">
         <label class="form-label">Product Name</label>
-        <select class="form-control" placeholder="Email" id="categoryid" name="id" required></select>
+        <select class="form-control" placeholder="Email" id="productid" name="id" required></select>
         <div class="clearfix"></div>
         </div>
         </div>
         
 
 <div class="form-row">
-<div class="form-group col-md-6">
-<label class="form-label">Quantity</label>
-<select class="form-control" name="quantity" id="quantity">
-    <option value="1 Kg">1 Kg</option>
-    <option value="2 Kg">2 Kg</option>
-    <option value="3 kg">3 Kg</option>
-    <option value="4 kg">4 kg</option>
-    <option value="5 Kg">5 Kg</option>
-    <option value="10 Kg">10 Kg</option>
-    <option value="100 gm">100 gm</option>
-    <option value="200 gm">200 gm</option>
-    <option value="250 gm">250 gm</option>
-    <option value="500 gm">500 gm</option>
-    <option value="1 pc">1 pc</option>
+<div class="form-group col-md-4">
+<label class="form-label">Size</label>
 
-
-
+<select class="form-control" name="size" id="sizeid">
+   
 </select>
 <div class="clearfix"></div>
 </div>
-<div class="form-group col-md-6">
+
+
+<div class="form-group col-md-4">
+  <label class="form-label">Quantity</label>
+  
+  <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
+     
+  <div class="clearfix"></div>
+  </div>
+
+
+<div class="form-group col-md-4">
 <label class="form-label">Price</label>
 <input type="number" class="form-control" name='price' placeholder="Price" id="price" required>
 <div class="clearfix"></div>

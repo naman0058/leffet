@@ -974,7 +974,9 @@ $(".dor-page-loading").css("display", "none");
 <th class="wishlist-datecreate-head">Created</th>
 <th>Status</th>
 <!--- <th>Default</th> ---->
-<th>Cancel Order</th>
+<% if(title!='Credit Slips'){ %>
+  <th>Cancel Order</th>
+  <% } %>
 </tr>
 </thead>
 <tbody>
@@ -982,13 +984,14 @@ $(".dor-page-loading").css("display", "none");
 
 <% for(i=0;i<result[1].length;i++){ %>
 								<tr>					 
-		<td>
-		<a href="javascript:void(0)" class="view-wishlist-product" data-name-wishlist="a" data-id-wishlist="3"><i class="material-icons">&#xE8EF;</i><%=result[1][i].bookingname%></a><div class="leo-view-wishlist-product-loading leo-view-wishlist-product-loading-3 cssload-speeding-wheel"></div>
-			</td>
+                  <td class="wishlist-numberproduct wishlist-numberproduct-3"><%=result[1][i].bookingname%></td>
+	
 		<td class="wishlist-numberproduct wishlist-numberproduct-3"><%=result[1][i].quantity%></td>
 		<td><%=result[1][i].price%></td>
 		<td class="wishlist-datecreate"><%=result[1][i].date%></td>							
 		<td><a class="view-wishlist" data-token="00A2197C2222A04F" target="_self"  title="View"><%=result[1][i].status%></a></td>
+		<td><a href='/invoice?orderid=<%=result[1][i].orderid%>'><button type="button" class="btn btn-primary">Invoice</button></a></td>
+
 	<!--	<td>
 			
 				<label class="form-check-label">
@@ -996,11 +999,20 @@ $(".dor-page-loading").css("display", "none");
 				</label>
 		
 		</td> ---->
-		<td><a  href="/cancel-orders?id=<%=result[1][i].id%>" title="Delete"><i class="material-icons">&#xE872;</i></a></td>
-	</tr>
-	<% } %>						
-					
 
+<% if(result[1][i].status != 'Completed') { %>
+
+  <% if( title!='Credit Slips') {%>
+
+  <td><a  href="/cancel-orders?id=<%=result[1][i].id%>" title="Delete"><i class="material-icons">&#xE872;</i></a></td>
+
+  <% } } else { %>						
+    <td></td>
+<% } %>
+
+	</tr>
+
+<% } %>
 
 </tbody>
 </table>
