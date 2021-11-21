@@ -95,20 +95,22 @@ $('.selector').css('background-position','0 0px !important');
 			<th>Department</th>
 			<th>Priority</th>
 			<th>Status</th>
-			<th>Threads</th>
 		</tr>
 	</thead>
 	<tbody>
+		<% for(i=0;i<result[6].length;i++) { %>
+
 					<tr onclick="window.location.href='https://leffet.in/helpdesk?ticket_id=68&detail=1'" style="cursor: pointer;">
-		<td>68</td>
-		<td>ggh</td>
-		<td>Nov 11, 2021</td>
-		<td></td>
-		<td>Software</td>
-		<td>Critical</td>
-		<td>Open</td>
-		<td>0</td>
+		
+		<td><%=result[6][i].ticket_number%></td>
+		<td><%=result[6][i].ticket_subject%></td>
+		<td><%=result[6][i].date%></td>
+		<td><%=result[6][i].update_date%></td>
+		<td><%=result[6][i].t_department_id%></td>
+		<td><%=result[6][i].t_priority_id%></td>
+		<td><%=result[6][i].status%></td>
 	</tr>
+	<% } %>
 					</tbody>
 </table>
 </div>
@@ -120,7 +122,7 @@ $('.selector').css('background-position','0 0px !important');
 <p class="required"> <sup>*</sup> Required field</p>
 
 <div class="box">
-<form action="https://leffet.in/helpdesk" method="post" id="add_ticket" name="helpdesk_form" enctype="multipart/form-data" class="std">
+<form action="/helpdesk/insert" method="post" id="add_ticket" name="helpdesk_form" enctype="multipart/form-data" class="std uploadImage">
 <h3 class="page-subheading">Post a New Ticket</h3>
 <div class="form-group">
 <div class="required text">
@@ -131,10 +133,10 @@ $('.selector').css('background-position','0 0px !important');
 	<label for="t_department_id">Department <sup>*</sup> </label>
 	<select name="t_department_id" id="t_department_id" title="Department " class="form-control" style="width: 500px !important;">
 		<option value="">Select Department</option>
-							<option value="1">Software</option>
-							<option value="2">Accounts</option>
-							<option value="3">Shipping</option>
-							<option value="4">Delivery</option>
+							<option value="Software">Software</option>
+							<option value="Accounts">Accounts</option>
+							<option value="Shipping">Shipping</option>
+							<option value="Delivery">Delivery</option>
 						</select>
 </div>
 							
@@ -142,9 +144,9 @@ $('.selector').css('background-position','0 0px !important');
 	<label for="priority">Priority <sup>*</sup> </label>
 	<select name="t_priority_id" id="t_priority_id" title="Priority " class="form-control" style="width: 500px !important;">
 		<option value="">Select Priority</option>
-							<option value="1">Critical</option>
-							<option value="2">Scheduled</option>
-							<option value="3">Major</option>
+							<option value="Critical">Critical</option>
+							<option value="Scheduled">Scheduled</option>
+							<option value="Major">Major</option>
 						</select>
 </div>
 						<div class="required form-group">
@@ -157,8 +159,9 @@ $('.selector').css('background-position','0 0px !important');
 </div>
 <p class="inline-infos required">Supported Types: jpg,doc,pdf,jpeg,png</p>						
 			<p class="submit2">
-	<input type="hidden" name="action" id="action" value="ticketsubmit" />
-	<input type="submit" class="btn btn-primary button" value="Post Ticket"  id="submitAddress" name="submitAddress">
+
+
+				<input type="submit" class="btn btn-primary button" value="Post Ticket"  id="submitAddress">
 </p>
 
 </div>
@@ -202,3 +205,34 @@ function VerifyCallback(response) { $('.DataTrigger_test').show('submit');}
 </section>
 
 <%- include ('./indexfooter.ejs') %> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+
+<script>
+  
+    $('.uploadImage').submit(function (e) {
+      e.preventDefault();
+
+      // var title = $('#title').val(); 
+  
+      $(this).ajaxSubmit({
+        
+        contentType: 'application/json',
+        success: function (response) {
+          console.log(response)
+          if(response.status=='300' || response.status==300) alert(response.description)
+          else {
+         alert('Successfully..')
+          window.location.reload()
+          }
+         
+        }
+      });
+      return false;
+    });
+  
+  
+  
+  </script>
+

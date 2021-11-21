@@ -12,14 +12,14 @@
                 <div class="table-responsive">
 
      
-                    <table id="report-table" class="table table-bordered table-striped mb-0">
+                    <table id="myTable" class="table table-bordered table-striped mb-0">
                     <thead>
                     <tr>
                     
                     <th>Product Name</th>
-                    <th>Short Name</th>
-                    <th>Category Name</th>
                     <th>Available Stock</th>
+                    <th>Size</th>
+
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Net Amount</th>
@@ -34,10 +34,10 @@
                         <% for(i=0;i<result.length;i++){ %>
                   <tr>
 
-                    <td><%=result[i].name%></td>
-                    <td><%=result[i].short_name%></td>
                     <td><%=result[i].categoryname%></td>
                     <td><%=result[i].quantity%></td>
+                    <td><%=result[i].sizeid%></td>
+
                     <td><%=result[i].price%></td>
                     <td><%=result[i].discount%></td>
                     <td><%=result[i].net_amount%></td>

@@ -20,26 +20,28 @@
 
 
     <div class="form-row">
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
         <label class="form-label">Product Name</label>
         <select class="form-control" placeholder="Email" id="productid" name="id" required></select>
         <div class="clearfix"></div>
         </div>
+
+        <div class="form-group col-md-6">
+          <label class="form-label">Size</label>
+          
+          <select class="form-control" name="size" id="sizeid">
+             
+          </select>
+          <div class="clearfix"></div>
+          </div>
         </div>
         
 
 <div class="form-row">
-<div class="form-group col-md-4">
-<label class="form-label">Size</label>
-
-<select class="form-control" name="size" id="sizeid">
-   
-</select>
-<div class="clearfix"></div>
-</div>
 
 
-<div class="form-group col-md-4">
+
+<div class="form-group col-md-6">
   <label class="form-label">Quantity</label>
   
   <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Quantity">
@@ -48,12 +50,34 @@
   </div>
 
 
-<div class="form-group col-md-4">
+<div class="form-group col-md-6">
 <label class="form-label">Price</label>
 <input type="number" class="form-control" name='price' placeholder="Price" id="price" required>
 <div class="clearfix"></div>
 </div>
 </div>
+
+
+
+<div class="form-row">
+
+
+
+  <div class="form-group col-md-6">
+    <label class="form-label">Discount</label>
+    
+    <input type="text" class="form-control" name="discount" id="discount" placeholder="Discount">
+       
+    <div class="clearfix"></div>
+    </div>
+  
+  
+  <div class="form-group col-md-6">
+  <label class="form-label">Weight</label>
+  <input type="number" class="form-control" name='weight' placeholder="Weight" id="weight" required>
+  <div class="clearfix"></div>
+  </div>
+  </div>
 
 <button type="button" id='submit' class="btn btn-primary">Submit</button>
 
@@ -189,7 +213,7 @@
  <script src="/light/assets/js/custom.js"></script>
 
 
- <script src="/javascripts/product.js"></script>
+ <script src="/javascripts/menu_manage.js"></script>
 
  
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
@@ -389,11 +413,7 @@ function runCommand(el, commandName, arg) {
 // });
 
 // Show submitted data
-$('#submit').click(function(e) {
- e.preventDefault();
- let content = $("#editor").html().trim();
- alert("VALUE SUBMITTED: \n" + content);  
-});
+
 </script>
 
 

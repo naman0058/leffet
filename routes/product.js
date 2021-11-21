@@ -240,44 +240,62 @@ router.get('/manage',(req,res)=>{
 
 
 
-router.post('/menu/insert',upload.single('image'),(req,res)=>{
+router.post('/menu/insert',(req,res)=>{
 	let body = req.body
     
-    // let discount = ((+req.body.price)*(+req.body.discount))/100
-    // console.log("discount",discount)
-    //  let net_amount = (req.body.price) - (discount)
-    //  body['net_amount'] = req.body.price
-    body['image'] = req.file.filename;
+    if(req.body.discount == 0) {
+        price = 0
+      }
+      else {
+        price = (req.body.price)/(req.body.discount)
+      }
+      
+        let net_price = (req.body.price)-price
+        body['net_amount'] = Math.round(net_price);
 
 console.log('ddghjg',req.body)
 
-	pool.query(`insert into ${table} set ?`,body,(err,result)=>{
-		if(err) {
-            console.log('hidj',err)
+    pool.query(`select * from product_manage where productid = '${req.body.productid}' and sizeid = '${req.body.sizeid}'`,(err,result)=>{
+        if(err) throw err;
+        else if(result[0]){
             res.json({
-                status:500,
-                type : 'error',
-                description:err
+                status : 300,
+                type:'exists',
+                description:'Product Size Already Exists'
             })
         }
-		else {
-            console.log('hidj',result)
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully added'
+        else{
+            pool.query(`insert into product_manage set ?`,body,(err,result)=>{
+                if(err) {
+                    console.log('hidj',err)
+                    res.json({
+                        status:500,
+                        type : 'error',
+                        description:err
+                    })
+                }
+                else {
+                    console.log('hidj',result)
+                    res.json({
+                        status:200,
+                        type : 'success',
+                        description:'successfully added'
+                    })
+                }
             })
         }
-	})
+    })
+
+
 })
 
 
 
 router.get('/menu/all',(req,res)=>{
 	pool.query(`select s.* , 
-    (select c.name from category c where c.id = s.categoryid) as categoryname,
-    (select sub.name from subcategory sub where sub.id = s.subcategoryid) as subcategoryname
-    from ${table} s order by s.name `,(err,result)=>{
+    (select c.name from product c where c.id = s.productid) as productname,
+    (select sub.name from size sub where sub.id = s.sizeid) as sizename
+    from product_manage s order by id desc `,(err,result)=>{
 		if(err) throw err;
         else res.json(result)
 	})

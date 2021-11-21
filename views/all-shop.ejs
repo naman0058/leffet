@@ -380,7 +380,7 @@ line-height: 28px;
   <div class="product-image">
 <!-- @file modules\appagebuilder\views\templates\front\products\file_tpl -->
 
-      <a href="/product?id=<%=result[1][i].id%>" class="thumbnail product-thumbnail">
+      <a href="/product?id=<%=result[1][i].id%>&size=S" class="thumbnail product-thumbnail">
     <img
       class="img-fluid"
       src = "/images/<%=result[1][i].image%>"
@@ -464,6 +464,11 @@ data-link-action="quickview"
   <input type="hidden" name="id_customization" value="" class="product_customization_id">
   <input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
   <input type="hidden" class="input-group form-control qty qty_product qty_product_85" name="qty" value="1" data-min="1">
+
+  <% if(result[1][i].quantity == 0 || result[1][i].quantity < 0) { %>
+
+    <% } else { %>
+
     <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_85 addToCart" data-bs-toggle="modal" data-bs-target="#exampleModal"
        
   booking_id="<%=result[1][i].id%>" 
@@ -471,6 +476,8 @@ data-link-action="quickview"
     categoryid = '<%=result[1][i].categoryid%>' 
     productname = '<%=result[1][i].name%>'
     imageurl='/images/<%=result[1][i].image%>'
+  totalquantity = '<%=result[1][i].quantity%>'
+
     data-button-action="add-to-cart" type="button">
     <span class="leo-loading cssload-speeding-wheel"></span>
     <span class="leo-bt-cart-content">
@@ -479,6 +486,9 @@ data-link-action="quickview"
     </span>
   </button>
   
+
+  <% } %>
+
 </form>
 </div>
 
@@ -529,7 +539,7 @@ data-link-action="quickview"
   <div class="product-meta">
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
 
-<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[1][i].id%>"><%=result[1][i].name%></a></h3>
+<h3 class="h3 product-title" itemprop="name"><a href="/product?id=<%=result[1][i].id%>&size=S"><%=result[1][i].name%></a></h3>
 
 
 <!-- @file modulesappagebuilderviewstemplatesfrontproductsfile_tpl -->
@@ -724,18 +734,21 @@ var scrollCountLinks ={"1":{"type":"page","page":1,"clickable":false,"current":t
 
 
 
-    
-  $('.addToCart').click(function(){
-                          let booking_id = $(this).attr('booking_id');
+
+    $('.addToCart').click(function(){
+                            //  alert('hi')
+                            // id="<%=result[1][0].id%>" price="<%=result[1][0].net_amount%>" categoryid = '<%=result[1][0].categoryid%>' vendorid = '<%=result[1][0].vendorid%>' 
+                            // let quantity = $('#userquantity').val()
+                            let booking_id = $(this).attr('booking_id');
                             let price = $(this).attr('price');
                             let oneprice = $(this).attr('price');
                             let categoryid = $(this).attr('categoryid');
-                            let name = $(this).attr('productname');
-                            let imageurl = $(this).attr('imageurl');
-
-
                             let size = 'S';
-                            let quantity = 1;
+                            let quantity = 1
+                            let name = $(this).attr('productname')
+
+                            let totalquantity = $(this).attr('totalquantity')
+                            let imageurl = $(this).attr('imageurl');
 
 
                             let tableimage= ` <img class="product-image img-fluid" src="${imageurl}" alt="" title="" itemprop="image">
@@ -756,21 +769,26 @@ var scrollCountLinks ={"1":{"type":"page","page":1,"clickable":false,"current":t
 
                             let table1 = `<span>${quantity}</span>`
                             $('#addedquantity').html(table1)
-                            
-                            // let subcategoryid = $(this).attr('subcategoryid');
-                            // let totalquantity = $(this).attr('totalquantity');/
-                            // let categoryname = $(this).attr('categoryname')
+                          
 
+                            if(totalquantity==0){
+                           alert('Out of Stock')
+                            }
                 
-                            // let vendorid = $(this).attr('vendorid');
+                            else if((+quantity) > +(+totalquantity)){
+									
+									alert(`We have only ${totalquantity} stock availbale`)
+								}
                 
-                
+							
+								else {
                                 price = price*quantity
+                                // alert(price)
 
-                                // console.log()
+                              
                         
                         $.post('/cart-handler1',{booking_id,price,categoryid,oneprice,quantity,size},data=>{
-                            // swal(categoryname, "Successfully added to cart", "success");
+                           
                             console.log(data[0][0].counter)
 
 
@@ -784,9 +802,11 @@ var scrollCountLinks ={"1":{"type":"page","page":1,"clickable":false,"current":t
                             $('#exampleModal').modal('show');
 
                         })  
+                      
+                }
                       })
-  
-  
+                
+        
 
   
   </script>

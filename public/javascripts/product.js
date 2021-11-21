@@ -17,22 +17,7 @@ $.getJSON(`/category/all`, data => {
 
 
 
-$.getJSON(`/purchase-product/all`, data => {
-    categories = data
-    fillDropDown('productid', data, 'Choose Product', 0)
-})
 
-
-$.getJSON(`/size/all`, data => {
-    categories = data
-    fillDropDown('sizeid', data, 'Choose Size', 0)
-})
-
-
-$.getJSON(`/size/all`, data => {
-    sizes = data
-    fillDropDown('sizeid', data, 'Choose Size', 0)
-})
 
 
 
