@@ -7,7 +7,7 @@ var table = 'blog';
 
 router.get('/',(req,res)=>{
     if(req.session.adminid){
-    res.render('Blog')
+    res.render('blog')
     }
     else{
         res.render('admin_login',{msg:'Please Login First'})
