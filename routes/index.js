@@ -1667,9 +1667,12 @@ router.get('/search',(req,res)=>{
   if(req.session.usernumber){
     var query = `select * from category order by id desc;`
     var query1 = `select p.* ,
-    (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount
+    (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+    (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+  
     from product p where p.keywords Like '%${req.query.search_query}%' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
-   
+  
+    
     var query2 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
     var query6 = `select * from users where id = '${req.session.usernumber}';`
       var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
