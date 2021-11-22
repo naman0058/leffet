@@ -93,44 +93,50 @@ router.get('/delete', (req, res) => {
 })
 
 
+
+
+
 router.post('/update', (req, res) => {
-
-
-    pool.query(`select * from ${table} where name = '${req.body.name}'`,(err,result)=>{
+    console.log(req.body)
+    pool.query(`select * from ${table} where name='${req.body.name}'`,(err,result)=>{
         if(err) throw err;
         else if(result[0]){
-       res.json({
-           status : 300,
-           type:'exists',
-           description:'Country Already Exists'
-       })
-        }
-        else{
-
-
-    pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
-        if(err) {
-            res.json({
-                status:500,
-                type : 'error',
-                description:err
-            })
+            if(result[0].id != req.body.id){
+                res.json({
+                    status : 300,
+                    type:'exists',
+                    description:'Category Already Exists'
+                })
+            }
+            else {
+                pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+                    if(err) throw err;
+                    else {
+                        res.json({
+                            status:200,
+                            type : 'success',
+                            description:'successfully update'
+                        })
+                    }
+                })
+            }
+           
         }
         else {
-            res.json({
-                status:200,
-                type : 'success',
-                description:'successfully update'
+            pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+                if(err) throw err;
+                else {
+                    res.json({
+                        status:200,
+                        type : 'success',
+                        description:'successfully update'
+                    })
+                }
             })
-
-            
         }
     })
-}
-    })
+ 
 })
-
-
 
 
 

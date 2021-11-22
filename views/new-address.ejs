@@ -1434,7 +1434,7 @@ $.getJSON(`/state/all/indian`, data => {
   
 $.getJSON(`/state/all`, data => {
     subcategories = data
-    fillDropDown('stateid', [], 'Choose State', 0)
+    fillDropDown('stateid', data, 'Choose State', 0)
 })
 
 

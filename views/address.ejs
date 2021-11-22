@@ -512,52 +512,7 @@
 
       
       <select id="stateid" name="id_state" class="form-control" required></select>
-        
-          <!-- <select class="form-control form-control-select" name="id_state" required>
-            <option value disabled selected>-- please choose --</option>
-                          <option value="325" >Andhra Pradesh</option>
-                          <option value="326" >Arunachal Pradesh</option>
-                          <option value="327" >Assam</option>
-                          <option value="328" >Bihar</option>
-                          <option value="329" >Chhattisgarh</option>
-                          <option value="330" >Goa</option>
-                          <option value="331" >Gujarat</option>
-                          <option value="332" >Haryana</option>
-                          <option value="333" >Himachal Pradesh</option>
-                          <option value="334" >Jammu and Kashmir</option>
-                          <option value="335" >Jharkhand</option>
-                          <option value="336" >Karnataka</option>
-                          <option value="337" >Kerala</option>
-                          <option value="338" >Madhya Pradesh</option>
-                          <option value="339" >Maharashtra</option>
-                          <option value="340" >Manipur</option>
-                          <option value="341" >Meghalaya</option>
-                          <option value="342" >Mizoram</option>
-                          <option value="343" >Nagaland</option>
-                          <option value="344" >Orissa</option>
-                          <option value="345" >Punjab</option>
-                          <option value="346" >Rajasthan</option>
-                          <option value="347" >Sikkim</option>
-                          <option value="348" >Tamil Nadu</option>
-                          <option value="349" >Telangana</option>
-                          <option value="350" >Tripura</option>
-                          <option value="351" >Uttar Pradesh</option>
-                          <option value="352" >Uttarakhand</option>
-                          <option value="353" >West Bengal</option>
-                          <option value="354" >Andaman and Nicobar Islands</option>
-                          <option value="355" >Chandigarh</option>
-                          <option value="356" >Dadra and Nagar Haveli</option>
-                          <option value="357" >Daman and Diu</option>
-                          <option value="358" >Delhi</option>
-                          <option value="359" >Lakshadweep</option>
-                          <option value="360" >Pondicherry</option>
-                      </select> -->
-        
-
       
-      
-              
-
     </div>
 
     <div class="col-md-3 form-control-comment">
@@ -833,8 +788,9 @@ $.getJSON(`/state/all/indian`, data => {
 
   
 $.getJSON(`/state/all`, data => {
+  
     subcategories = data
-    fillDropDown('stateid', [], 'Choose State', 0)
+    fillDropDown('stateid', data, 'Choose State', 0)
 })
 
 

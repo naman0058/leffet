@@ -154,23 +154,6 @@ router.get('/stock-report',(req,res)=>{
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 router.get('/shop',(req,res)=>{
 // console.log(req.session.usernumber)
 if(req.session.usernumber){
@@ -190,8 +173,8 @@ if(req.session.usernumber){
   pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
     if(err) throw err;
     // else res.json(result)
-    else if(result[1][0]) res.render('shop',{result:result,login:true})
-    else  res.render('shop',{result,login:true})
+    else if(result[1][0]) res.render('shop',{result:result,login:true,title:result[2][0].name})
+    else  res.render('shop',{result,login:true,title:result[2][0].name})
   })
 }
 else{
@@ -211,17 +194,14 @@ else{
 
   pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
      if(err) throw err;
-    else if(result[1][0]) res.render('shop',{result:result,login:false})
-    else  res.render('shop',{result,login:false})
+    else if(result[1][0]) res.render('shop',{result:result,login:false,title:result[2][0].name})
+    else  res.render('shop',{result,login:false,title:result[2][0].name})
   })
 }
 
   
  
 })
-
-
-
 
 
 
@@ -277,9 +257,6 @@ router.get('/shop/all-collections',(req,res)=>{
 
 
 
-
-
-
   router.get('/shop/most-loved',(req,res)=>{
 
     if(req.session.usernumber){
@@ -331,6 +308,7 @@ router.get('/shop/all-collections',(req,res)=>{
     })
 
 
+
 router.get('/shop/subcategory',(req,res)=>{
 
  pool.query(`select categoryid from subcategory where id = '${req.query.id}'`,(err,result)=>{
@@ -359,29 +337,20 @@ router.get('/shop/subcategory',(req,res)=>{
         else  res.render('not_found',{result,login:false})
       })
     }
-    
-
-
    }
  })
-
-
- 
-    
-   
   })
+
 
 
 
 router.get('/product',(req,res)=>{
 // req.session.usernumber = 85
-pool.query(`select categoryid from product where id = '${req.query.id}'`,(err,result)=>{
+  pool.query(`select categoryid from product where id = '${req.query.id}'`,(err,result)=>{
   if(err) throw err;
-  
   else if(result[0]) {
     let categoryid = result[0].categoryid
-
-    if(req.session.usernumber){
+  if(req.session.usernumber){
       var query = `select * from category order by id desc;`
 
       var query1 = `select p.* ,
@@ -403,7 +372,7 @@ pool.query(`select categoryid from product where id = '${req.query.id}'`,(err,re
      var query10 = `select * from product_manage where productid = '${req.query.id}';`
       pool.query(query+query1+query2+query6+query7+query8+query9+query10,(err,result)=>{
         if(err) throw err;
-        else res.render('view-product', { title: 'Express',login:true, result : result,sizerequest:req.query.size});
+        else res.render('view-product', { title: 'Express',login:true, result : result,sizerequest:req.query.size,title:result[1][0].name});
       })
       
   
@@ -433,7 +402,7 @@ pool.query(`select categoryid from product where id = '${req.query.id}'`,(err,re
 
       pool.query(query+query1+query2+query6+query7+query8+query9+query10,(err,result)=>{
         if(err) throw err;
-         else res.render('view-product', { title: 'Express',login:false , result : result,sizerequest:req.query.size});
+         else res.render('view-product', { title: 'Express',login:false , result : result,sizerequest:req.query.size,title:result[1][0].name});
   // else res.json(result)
       })
   
@@ -795,11 +764,11 @@ router.get('/mycart',(req,res)=>{
       else{
 
 if(result[2][0].totalprice > 500) {
-  res.render('cart', { title: 'Express',login:true,result , shipping_charges : 0 });
+  res.render('cart', { title: 'Cart',login:true,result , shipping_charges : 0 });
 
 }
 else {
-  res.render('cart', { title: 'Express',login:true,result , shipping_charges : 500 });
+  res.render('cart', { title: 'Cart',login:true,result , shipping_charges : 500 });
 
 }
 
@@ -832,11 +801,11 @@ else {
      
 
         if(result[2][0].totalprice > 500) {
-          res.render('cart', { title: 'Express',login:false,result , shipping_charges : 0 });
+          res.render('cart', { title: 'Cart',login:false,result , shipping_charges : 0 });
         
         }
         else {
-          res.render('cart', { title: 'Express',login:false,result , shipping_charges : 500 });
+          res.render('cart', { title: 'Cart',login:false,result , shipping_charges : 500 });
         
         }
         
@@ -1196,7 +1165,7 @@ router.get('/size-chart',(req,res)=>{
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
     pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
-    res.render('sizechart',{result:result,login:true})
+    res.render('sizechart',{result:result,login:true,title:'Size Chart'})
     })
   }
   else{
@@ -1208,7 +1177,7 @@ router.get('/size-chart',(req,res)=>{
     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
     pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
-    res.render('sizechart',{result:result,login:false})
+    res.render('sizechart',{result:result,login:false,title:'Size Chart'})
     })
   }
 
@@ -1228,7 +1197,7 @@ router.get('/wishlist',(req,res)=>{
   if(req.session.usernumber){
 pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
   if(err) throw err;
-  else res.render('wishlist',{result:result,msg:'',login:true})
+  else res.render('wishlist',{result:result,msg:'',login:true,title:'My Wishlist'})
 })
   }
   else{
@@ -1343,7 +1312,7 @@ router.get('/alert',(req,res)=>{
   if(req.session.usernumber){
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
-      else res.render('alert',{result:result,msg:'',login:true})
+      else res.render('alert',{result:result,msg:'',login:true,title:'Alert'})
     })
       }
       else{
@@ -1364,7 +1333,7 @@ router.get('/helpdesk',(req,res)=>{
   if(req.session.usernumber){
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
-      else res.render('helpdesk',{result:result,msg:'',login:true})
+      else res.render('helpdesk',{result:result,msg:'',login:true,title:'Helpdesk'})
     })
       }
       else{
@@ -2767,7 +2736,8 @@ var query = `select * from category order by id desc;`
   var query9=`select w.*,
   (select p.name from product p where p.id = w.booking_id) as productname,
   (select p.image from product p where p.id = w.booking_id) as productimage,
-  (select p.price from product p where p.id = w.booking_id) as productprice,
+  (select m.net_amount from product_manage m where m.productid = w.booking_id and m.sizeid = 'S') as productprice,
+
   (select p.categoryid from product p where p.id = w.booking_id) as productcategoryid
 
   from wishlist w where w.wishlistid = '${req.query.id}';`
@@ -2777,7 +2747,7 @@ var query = `select * from category order by id desc;`
     pool.query(query+query1+query2+query6+query7+query8+query9+query10+query11,(err,result)=>{
     if(err) throw err;
     // else res.json(result)
-    else res.render('view-wishlist',{result:result,login:true})
+    else res.render('view-wishlist',{result:result,login:true,title:'Wishlist'})
   })
 })
 
@@ -2812,12 +2782,13 @@ router.get('/celebrity',(req,res)=>{
       var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
       var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
       var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+      
   
   
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
-      else if(result[1][0]) res.render('celebrity-list',{result:result,login:true})
-      else  res.render('celebrity-list',{result,login:true})
+      else if(result[1][0]) res.render('celebrity-list',{result:result,login:true,title:'Celebrity Closet'})
+      else  res.render('celebrity-list',{result,login:true,title:'Celebrity Closet'})
     })
   }
   else{
@@ -2832,8 +2803,8 @@ router.get('/celebrity',(req,res)=>{
   
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
        if(err) throw err;
-      else if(result[1][0]) res.render('celebrity-list',{result:result,login:false})
-      else  res.render('celebrity-list',{result,login:false})
+      else if(result[1][0]) res.render('celebrity-list',{result:result,login:false,title:'Celebrity Closet'})
+      else  res.render('celebrity-list',{result,login:false,title:'Celebrity Closet'})
     })
   }
   
@@ -2868,7 +2839,7 @@ router.get('/celebrity',(req,res)=>{
          var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
           pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
             if(err) throw err;
-            else res.render('celebrity-details', { title: 'Express',login:true, result : result});
+            else res.render('celebrity-details', { title: 'Express',login:true, result : result,title:result[1][0].name});
           })
           
       
@@ -2885,7 +2856,7 @@ router.get('/celebrity',(req,res)=>{
     
           pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
             if(err) throw err;
-            else res.render('celebrity-details', { title: 'Express',login:false , result : result});
+            else res.render('celebrity-details', { title: 'Express',login:false , result : result,result : result,title:result[1][0].name});
       
           })
       
@@ -2913,8 +2884,8 @@ router.get('/celebrity',(req,res)=>{
       
         pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
           if(err) throw err;
-          else if(result[1][0]) res.render('blogs',{result:result,login:true})
-          else  res.render('blogs',{result,login:true})
+          else if(result[1][0]) res.render('blogs',{result:result,login:true,title:'Editorial'})
+          else  res.render('blogs',{result,login:true,title:'Editorial'})
         })
       }
       else{
@@ -2930,8 +2901,8 @@ router.get('/celebrity',(req,res)=>{
       
         pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
            if(err) throw err;
-          else if(result[1][0]) res.render('blogs',{result:result,login:false})
-          else  res.render('blogs',{result,login:false})
+          else if(result[1][0]) res.render('blogs',{result:result,login:false,title:'Editorial'})
+          else  res.render('blogs',{result,login:false,title:'Editorial'})
         })
       }
       
@@ -3086,6 +3057,88 @@ pool.query(`insert into reply set ?`,body,(err,result)=>{
     
                 
   })
+
+
+
+
+
+
+
+
+
+
+
+
+  router.get('/shop/all-collections/filter',(req,res)=>{
+
+    if(req.session.usernumber){
+      var query = `select * from category order by id desc;`
+
+ if(req.query.filter == 'high-to-low') {
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null order by (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') desc;;`
+  
+ }
+ else if(req.query.filter=='low-to-high'){
+
+ }
+ else if(req.query.filter=='z-to-a'){
+   
+}
+else if(req.query.filter=='a-to-z'){
+   
+}
+else if(req.query.filter=='best-sellers'){
+   
+}
+else {
+   
+}
+
+   
+     
+      var query2 = `select * from category where id = '${req.query.id}';`
+      var query6 = `select * from users where id = '${req.session.usernumber}';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+      var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+  
+    
+      pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+        if(err) throw err;
+        else if(result[1][0]) res.render('all-shop',{result:result,login:true,title:'All Collections'})
+        else  res.render('all-shop',{result,login:true,title:'All Collections'})
+      })
+    }
+    else{
+      var query = `select * from category order by id desc;`
+      var query1 = `select p.* ,
+      (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+      (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+    
+      from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+      
+      var query2 = `select * from category where id = '${req.query.id}';`
+      var query6 = `select * from users where id = '84';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+      var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+  
+  
+      pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+         if(err) throw err;
+        else if(result[1][0]) res.render('all-shop',{result:result,login:false,title:'All Collections'})
+        else  res.render('all-shop',{result,login:false,title:'All Collections'})
+      })
+    }
+    
+      
+     
+    })
+
 
 
 module.exports = router;
