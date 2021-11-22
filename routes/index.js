@@ -17,7 +17,12 @@ console.log(req.session.usernumber)
   var query2 = `select * from banner where type = 'Front Banner' order by id desc;`
   var query3 = `select * from users where id = '${req.session.usernumber}';`
   var query4 = `select * from banner where type = 'Instagram Banner' order by id desc;`
-  var query5 = `select * from product where type ='Most Loved' order by id desc;`
+  var query5 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where type ='Most Loved'  and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+ 
   var query6 = `select * from banner where type = 'Art Elements Banner' order by id desc;`
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
@@ -37,7 +42,15 @@ console.log(req.session.usernumber)
   var query2 = `select * from banner where type = 'Front Banner' order by id desc;`
   var query3 = `select * from cart where usernumber = '${req.session.ipaddress}';`
   var query4 = `select * from banner where type = 'Instagram Banner' order by id desc;`
-  var query5 = `select * from product where type ='Most Loved' order by id desc;`
+  
+
+  var query5 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where  type ='Most Loved'  and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+ 
+
   var query6 = `select * from banner where type = 'Art Elements Banner' order by id desc;`
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`

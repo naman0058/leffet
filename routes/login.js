@@ -48,6 +48,16 @@ router.post('/new-user',(req,res)=>{
   let body = req.body;
   if(req.body.otp == req.session.reqotp){
     body['number'] = req.session.numberverify
+
+
+    var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+
+    body['date'] = today;
   
 
 pool.query(`select * from users where number = '${req.session.numberverify}'`,(err,result)=>{
