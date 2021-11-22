@@ -12,44 +12,37 @@
                 <div class="table-responsive">
 
      
-                    <table id="myTable" class="table table-bordered table-striped mb-0">
+                    <table id="" class="table table-bordered table-striped mb-0">
                     <thead>
                     <tr>
                     
                         <th>Ticket Number</th>
-                   
                         <th>Subject</th>
                     <th>Department</th>
                     <th>Priority</th>
                     <th>Content</th>
                     <th>Attachment</th>
                   <th>Status</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                 
                     </tr>
                     </thead>
                     <tbody>
                     
 
 
-                        <% for(i=0;i<result.length;i++){ %>
+                        <% for(i=0;i<result[0].length;i++){ %>
                   <tr>
-                    <td><%=result[i].ticket_number%></td>
+                    <td><%=result[0][0].ticket_number%></td>
 
-                    <td><%=result[i].ticket_subject%></td>
-                    <td><%=result[i].t_department_id%></td>
-                    <td><%=result[i].t_priority_id %>
+                    <td><%=result[0][0].ticket_subject%></td>
+                    <td><%=result[0][0].t_department_id%></td>
+                    <td><%=result[0][0].t_priority_id %>
 </td>
-                    <td><%=result[i].content%></td>
-                    <td><%=result[i].helpdesk_attachment%></td>
-                    <td><%=result[i].status%></td>
-                    <td><%=result[i].date%></td>
+                    <td><%=result[0][0].content%></td>
+                    <td><%=result[0][0].helpdesk_attachment%></td>
+                    <td><%=result[0][0].status%></td>
                    
-                        <td>
-                            <a href="/view-replied?id=<%=result[i].id%>">
-                        <button type="button" class="btn btn-primary" value="<%=result[i].id%>">View Details</button>
-                    </a>
-                    </td>
+                    
                 
                   
                     </tr>
@@ -59,6 +52,41 @@
                     </tbody>
                     </table>
                     </div>
+
+
+
+
+
+                    <div class="table-responsive" style="margin-top: 50px;">
+
+     
+                        <table id="myTable" class="table table-bordered table-striped mb-0">
+                        <thead>
+                        <tr>
+                        
+                            <th>
+                                Replied
+                            </th>
+                       
+                           
+                     
+                        </tr>
+                        </thead>
+                        <tbody>
+                        
+    
+    
+                            <% for(i=0;i<result[1].length;i++){ %>
+   
+                                <tr>
+                        <td><%=result[1][i].reply%> -  <%=result[1][i].type%></td>
+                         </tr>
+  
+                         <% } %>
+    
+                        </tbody>
+                        </table>
+                        </div>
 
 
 

@@ -3039,8 +3039,53 @@ today = mm + '/' + dd + '/' + yyyy;
 
 
 
+    router.get('/view-replied',(req,res)=>{
+      var query = `select * from helpdesk where id = '${req.query.id}';`
+      var query1 = `select * from replied where helpdeskid = '${req.query.id}';`
+      pool.query(query+query1,(err,result)=>{
+        if(err) throw err;
+        else {
+          res.render('replied_list',{result:result})
+        }
+      })
+    })
 
 
+
+
+    router.post('/replied', (req, res) => {
+      console.log(req.body)
+
+      var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+today = mm + '/' + dd + '/' + yyyy;
+
+body['update_date'] = today;
+
+
+pool.query(`insert into reply set ?`,body,(err,result)=>{
+  if(err) throw err;
+  else {
+    pool.query(`update helpdesk set update_date = ''${today}' where id = '${req.body.helpdeskid}'`, (err, result) => {
+      if(err) throw err;
+      else {
+          res.json({
+              status:200,
+              type : 'success',
+              description:'successfully update'
+          })
+      }
+  })
+
+  }
+})
+
+    
+                
+  })
 
 
 module.exports = router;

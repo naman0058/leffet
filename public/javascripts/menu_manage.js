@@ -23,7 +23,7 @@ $.getJSON(`/purchase-product/all`, data => {
 
 
 $.getJSON(`/size/all`, data => {
-    categories = data
+    sizes = data
     fillDropDown1('sizeid', data, 'Choose Size', 0)
 })
 
@@ -31,7 +31,7 @@ $.getJSON(`/size/all`, data => {
 
 
 $.getJSON(`/admin/pannel/services/all`, data => {
-    categories = data
+    menus = data
     fillDropDown('categoryid', data, 'Choose Category', 0)
   
 })
@@ -128,16 +128,35 @@ $('#result').on('click', '.deleted', function() {
 
 
 
+
+
+
 $('#result').on('click', '.edits', function() {
     const id = $(this).attr('id')
     const result = subcategories.find(item => item.id == id);
-    fillDropDown('pcategoryid', categories, 'Choose Category', result.categoryid)
+    fillDropDown('pproductid', categories, 'Choose Product', result.productname)
+    fillDropDown1('psizeid', sizes, 'Choose Size', result.sizeid)
+
+    // fillDropDown('psizeid', sizes, 'Choose Size', result.sizename)
+    // fillDropDown('psizeid', sizes, 'Choose Size', result.sizeid)
+
+     $('#psizeid').append($('<option>').val(result.sizeid).text(result.sizeid))
+
+
     $('#editdiv').show()
     $('#result').hide()
     $('#insertdiv').hide() 
     $('#pid').val(result.id)
      $('#pprice').val(result.price)
      $('#pquantity').val(result.quantity)
+     $('#pproductid').val(result.productid)
+     $('#psizeid').val(result.sizeid)
+
+
+
+     $('#pdiscount').val(result.discount)
+     $('#pweight').val(result.weight)
+
    
  })
 
@@ -159,6 +178,12 @@ $('#update').click(function(){  //data insert in database
         id: $('#pid').val(),
         quantity: $('#pquantity').val(),
         price:$('#pprice').val(),
+        productid:$('#pproductid').val(),
+        sizeid:$('#psizeid').val(),
+        weight:$('#pweight').val(),
+        discount:$('#pdiscount').val(),
+
+    
        
         }
 

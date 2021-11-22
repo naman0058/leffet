@@ -247,7 +247,8 @@ router.post('/menu/insert',(req,res)=>{
         price = 0
       }
       else {
-        price = (req.body.price)/(req.body.discount)
+        price = ((req.body.price)*(req.body.discount))/100;
+
       }
       
         let net_price = (req.body.price)-price
@@ -309,7 +310,7 @@ router.get('/menu/all',(req,res)=>{
 
 router.get('/menu/delete', (req, res) => {
     const { id } = req.query
-    pool.query(`delete from ${table} where id = ${id}`, (err, result) => {
+    pool.query(`delete from product_manage where id = ${id}`, (err, result) => {
         if(err) {
             res.json({
                 status:500,
@@ -331,9 +332,19 @@ router.get('/menu/delete', (req, res) => {
 router.post('/menu/update', (req, res) => {
     let body = req.body
     console.log(req.body)
+    if(req.body.discount == 0) {
+        price = 0
+      }
+      else {
+        price = ((req.body.price)*(req.body.discount))/100;
+      }
+      
+        let net_price = (req.body.price)-price
+        body['net_amount'] = Math.round(net_price);
    //  body['net_amount'] = net_amount
-    pool.query(`update ${table} set ? where id = ?`, [req.body, req.body.id], (err, result) => {
+    pool.query(`update product_manage set ? where id = ?`, [req.body, req.body.id], (err, result) => {
         if(err) {
+            console.log(err)
             res.json({
                 status:500,
                 type : 'error',
