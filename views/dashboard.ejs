@@ -230,7 +230,10 @@
                         <td><%=result[8][i].name%></td>
                         <td><%=result[8][i].usermobilenumber%></td>
                         <td class="font-weight-600"><%=result[8][i].productname%></td>
-                        <td class="font-weight-600"><%=result[8][i].address%></td>
+                        <td class="font-weight-600">
+                          <%=result[i].useraddress1 , result[i].useraddress2  , result[i].userstate , result[i].usercity , result[i].userpostcode , result[i].usercountry %>
+
+                        </td>
                         <td class="font-weight-600"><%=result[8][i].payment_mode%></td>
 
                         <td class="font-weight-600"><%=result[8][i].status%></td>

@@ -82,7 +82,13 @@ router.get('/dashboard',(req,res)=>{
     var query8 = `select sum(price) as total from booking where date = '${today}';`
     var query9 = `select b.* , 
                 (select p.name from product p where p.id = b.booking_id) as productname,
-                (select u.email from users u where u.id = b.usernumber) as usermobilenumber
+                (select u.email from users u where u.id = b.usernumber) as usermobilenumber,
+                (select a.address1 from address a where a.id = b.address ) as useraddress1,
+                (select a.address2 from address a where a.id = b.address ) as useraddress2,
+                (select a.city from address a where a.id = b.address ) as usercity,
+                (select a.postcode from address a where a.id = b.address ) as userpostcode,
+                (select a.id_state from address a where a.id = b.address ) as userstate,
+                (select a.id_country from address a where a.id = b.address ) as usercountry
                 from booking b where b.status != 'Completed' and status != 'Cancel' order by id desc;`
     var query10 = `select * from delivery_charges;`
     pool.query(query+query2+query3+query4+query5+query6+query7+query8+query9+query10,(err,result)=>{

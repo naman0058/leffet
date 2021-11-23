@@ -91,6 +91,8 @@ router.get('/order-history',(req,res)=>{
 })
 
 
+
+
 router.get('/running-order',(req,res)=>{
   pool.query(`select  b.* , (select p.name from product p where p.id = b.booking_id) as productname ,
   (select u.email from users u where u.id = b.usernumber) as usermobilenumber,
@@ -761,13 +763,17 @@ router.get('/mycart',(req,res)=>{
 
     pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
       if(err) throw err;
+      else if(result[0]){
+        res.render('not_found1',{result,login:true,searchname:req.query.search_query,title:'My Cart'})
+
+      }
       else{
 
 if(result[2][0].totalprice > 500) {
   res.render('cart', { title: 'Cart',login:true,result , shipping_charges : 0 });
 
 }
-else {
+else if(result[1][0]) {
   res.render('cart', { title: 'Cart',login:true,result , shipping_charges : 500 });
 
 }
@@ -797,6 +803,10 @@ else {
 
     pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
       if(err) throw err;
+      else if(result[0]){
+        res.render('not_found1',{result,login:true,searchname:req.query.search_query,title:'My Cart'})
+
+      }
       else{
      
 
@@ -1010,7 +1020,47 @@ router.post('/login',(req,res)=>{
       // res.redirect('/address')
     }
     else{
-      res.render('checkout',{msg:'Invalid Credentials'})
+
+      var query = `select * from category order by id desc;`
+      var query1 = `select c.* , 
+      (select p.name from product p where p.id = c.booking_id) as bookingname,
+      (select p.image from product p where p.id = c.booking_id) as bookingimage,
+      (select p.quantity from product p where p.id = c.booking_id) as availablequantity
+  
+      
+       from cart c where c.usernumber = '${req.session.ipaddress}';`
+     var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.ipaddress}';`              
+     var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+  
+     var query6 = `select * from users where id = '84';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+  
+  
+      pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
+        if(err) throw err;
+        else{
+       
+  
+          if(result[2][0].totalprice > 500) {
+            res.render('checkout', { title: 'Express',login:true,result , shipping_charges : 0 ,msg:'Invalid Credentials' });
+          
+          }
+          else {
+            res.render('checkout', { title: 'Express',login:true,result , shipping_charges : 500,msg:'Invalid Credentials' });
+          
+          }
+          
+     
+        }
+     
+     
+         })
+    
+
+
+
+      // res.render('checkout',{msg:'Invalid Credentials'})
 
     }
   })
