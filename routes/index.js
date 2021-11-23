@@ -2657,7 +2657,7 @@ router.get('/confirmation',(req,res)=>{
       var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
-      else res.render('confirmation',{result,login:true,orderid:req.session.orderid});
+      else res.render('confirmation',{result,login:true,orderid:req.session.orderid,title:'Confirmation'});
     })
   }
   else {
