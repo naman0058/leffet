@@ -763,12 +763,11 @@ router.get('/mycart',(req,res)=>{
 
     pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
       if(err) throw err;
-      else if(result[0]){
+      else if(!result[1][0]){
         res.render('not_found1',{result,login:true,searchname:req.query.search_query,title:'My Cart'})
 
       }
       else{
-
 if(result[2][0].totalprice > 500) {
   res.render('cart', { title: 'Cart',login:true,result , shipping_charges : 0 });
 
@@ -803,7 +802,7 @@ else if(result[1][0]) {
 
     pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
       if(err) throw err;
-      else if(result[0]){
+      else if(!result[1][0]){
         res.render('not_found1',{result,login:true,searchname:req.query.search_query,title:'My Cart'})
 
       }
