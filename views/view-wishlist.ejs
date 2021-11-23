@@ -253,7 +253,7 @@
 									<div class="thumbnail-container clearfix">
 										<div class="product-image">
 											
-											  <a href="/product?id=<%=result[6][i].booking_id%>" target="_blank" class="thumbnail product-thumbnail">
+											  <a href="/product?id=<%=result[6][i].booking_id%>&size=<%=result[6][i].size%>" target="_blank" class="thumbnail product-thumbnail">
 												<img class="img-fluid"
 												  src = "/images/<%=result[6][i].productimage%>"
 												  alt = ""
@@ -269,7 +269,7 @@
 										</div>
 										<div class="product-meta">
 											
-												<h3 class="h3 product-title"  itemprop="name"><a href="/product?id=<%=result[6][i].booking_id%>" target="_blank"><%=result[6][i].productname%></a></h3>
+												<h3 class="h3 product-title"  itemprop="name"><a href="/product?id=<%=result[6][i].booking_id%>&size=<%=result[6][i].size%>" target="_blank"><%=result[6][i].productname%></a></h3>
 											
 											
 																									<div class="product-price-and-shipping">
@@ -327,7 +327,6 @@
 
 											<div class="product-add-to-cart">
 											<div class="button-container cart">
-	<form action="https://leffet.in/cart" method="post">
 		<input type="hidden" name="token" value="4c28ed65e35170fc38ffa6eb2355a58c">
 		<input type="hidden" value="10" class="quantity_product quantity_product_117" name="quantity_product">
 		<input type="hidden" value="1" class="minimal_quantity minimal_quantity_117" name="minimal_quantity">
@@ -335,7 +334,7 @@
 		<input type="hidden" value="117" class="id_product" name="id_product">
 		<input type="hidden" name="id_customization" value="" class="product_customization_id">
 		<input type="hidden" name="custom_attribute" value="" id="custom_attribute">	
-		<input type="hidden" class="input-group form-control qty qty_product qty_product_117" name="qty" value="1" data-min="1">
+		<input type="hidden" class="input-group form-control qty qty_product qty_product_117" id="qty" name="qty" data-min="1">
 		  <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_117 addToCart" data-button-action="add-to-cart" type="button" 
           data-bs-toggle="modal" data-bs-target="#exampleModal"
           booking_id="<%=result[6][i].booking_id%>" 
@@ -344,6 +343,7 @@
           productname = '<%=result[6][i].productname%>'
           imageurl='/images/<%=result[6][i].productimage%>'
           size = '<%=result[6][i].size%>' 
+          totalquantity = '<%=result[6][i].productquantity%>'
 
           >
 			<span class="leo-loading cssload-speeding-wheel"></span>
@@ -353,7 +353,6 @@
 			</span>
 		</button>
 		
-	</form>
 </div>
 
 
@@ -435,9 +434,15 @@
         let categoryid = $(this).attr('categoryid');
         let size = $(this).attr('size');
         let imageurl = $(this).attr('imageurl');
+        let quantity = $('.wishlist-quantity-spin').val()
 
+        
 
-        let quantity = '1'
+        let totalquantity = $(this).attr('totalquantity')
+
+    
+
+        // let quantity = '1'
 
 
         let tableimage= ` <img class="product-image img-fluid" src="${imageurl}" alt="" title="" itemprop="image">
@@ -465,7 +470,15 @@
 
                 
                             // let vendorid = $(this).attr('vendorid');
+                            if(totalquantity==0){
+                           alert('Out of Stock')
+                            }
                 
+                            else if((+quantity) > +(+totalquantity)){
+									
+									alert(`We have only ${totalquantity} stock availbale`)
+								}
+                else {
                 
                                 price = price*quantity
 
@@ -486,6 +499,7 @@
                             $('#exampleModal').modal('show');
 
                         })  
+                }
                       })
                 
   

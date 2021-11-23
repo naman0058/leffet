@@ -1248,10 +1248,12 @@ today = mm + '/' + dd + '/' + yyyy;
     if(err){
       throw err;
     }
-    else res.json({msg:'success'})
+    else {
+      res.json({msg:'success'})
+    }
   })
 
-  // res.json({msg:'s'})
+  // res.json({msg:'success'})
 })
 
 
@@ -2673,7 +2675,7 @@ router.get('/confirmation',(req,res)=>{
 router.post('/add_wishlist',(req,res)=>{
   let body = req.body;
   body['usernumber'] = req.session.usernumber
-  // console.log(body)
+  console.log(body)
   pool.query(`select * from wishlist where wishlistid = '${req.body.wishlistid}' and usernumber = '${req.session.usernumber}' and booking_id = '${req.body.booking_id}'`,(err,result)=>{
     
     
@@ -2691,7 +2693,7 @@ router.post('/add_wishlist',(req,res)=>{
   pool.query(`insert into wishlist set ?`,body,(err,result)=>{
     if(err) throw err;
     else {
-      pool.query(`update wishlist_name set quantity = quantity+1 where id = '${req.body.booking_id}'`,(err,result)=>{
+      pool.query(`update wishlist_name set quantity = quantity+1 where id = '${req.body.wishlistid}'`,(err,result)=>{
         if(err) throw err;
         else res.json({msg:'The product was successfully added to your wishlist'})
       })
@@ -2733,10 +2735,15 @@ var query = `select * from category order by id desc;`
   var query6 = `select * from users where id = '${req.session.usernumber}';`
   var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
   var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+
+
+
+
   var query9=`select w.*,
   (select p.name from product p where p.id = w.booking_id) as productname,
   (select p.image from product p where p.id = w.booking_id) as productimage,
-  (select m.net_amount from product_manage m where m.productid = w.booking_id and m.sizeid = 'S') as productprice,
+  (select m.net_amount from product_manage m where m.productid = w.booking_id and m.sizeid = w.size) as productprice,
+  (select m.quantity from product_manage m where m.productid = w.booking_id and m.sizeid = w.size) as productquantity,
 
   (select p.categoryid from product p where p.id = w.booking_id) as productcategoryid
 

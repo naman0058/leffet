@@ -32,6 +32,9 @@ function LeoWishlistButtonAction() {
                   var e = $(this).data("id-product"),
                       l = $(this).data("id-wishlist"),
                       booking_id = $(this).data("bookingid"),
+                      size = $(this).data("sizerequest"),
+
+                     
                       t = $(this).data("id-product-attribute"),
                       a = wishlist_remove + '. <a href="' + wishlist_url + '" target="_blank"><strong>' + wishlist_viewwishlist + ".</strong></a>",
                       o = wishlist_add + '. <a href="' + wishlist_url + '" target="_blank"><strong>' + wishlist_viewwishlist + ".</strong></a>";
@@ -49,7 +52,7 @@ function LeoWishlistButtonAction() {
                                 url: '/add-wishlist',
                                 async: !0,
                                 cache: !1,
-                                data: { ajax: 1, action: "remove", id_product: e, id_wishlist: l, id_product_attribute: t, quantity: 1, token: leo_token , booking_id :booking_id },
+                                data: { ajax: 1, action: "remove", id_product: e, id_wishlist: l, id_product_attribute: t, quantity: 1, token: leo_token , booking_id :booking_id , size:size },
                                 success: function (t) {
                                     var s,
                                         i = $.parseJSON(t);
@@ -82,7 +85,7 @@ function LeoWishlistButtonAction() {
                                 url: '/add_wishlist',
                                 async: !0,
                                 cache: !1,
-                                data: { wishlistid: l ,booking_id:booking_id},
+                                data: { wishlistid: l , size:size , booking_id:booking_id  },
                                 success: function (t) {
                                    console.log(t)
                                     var s,

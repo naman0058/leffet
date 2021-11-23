@@ -242,7 +242,7 @@ $('#update').click(function () {  //data insert in database
          keywords : $('#pkeywords').val(),
          pintrest_link : $('#ppintrest_link').val(),
          twitter_link : $('#ptwitter_link').val(),
-         fb_link : $('#fb_link').val(),
+         fb_link : $('#pfb_link').val(),
          price : $('#pprice').val(),
          quantity : $('#pquantity').val(),
          discount : $('#pdiscount').val(),
