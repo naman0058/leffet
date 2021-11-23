@@ -902,7 +902,43 @@ router.post('/order-as-a-guest',(req,res)=>{
   pool.query(`select * from users where email = '${req.body.email}'`,(err,result)=>{
     if(err) throw err;
     else if(result[0]){
-    res.render('checkout',{msg:'Email Already Exists'})
+      req.session.page = '1'
+      var query = `select * from category order by id desc;`
+      var query1 = `select c.* , 
+      (select p.name from product p where p.id = c.booking_id) as bookingname,
+      (select p.image from product p where p.id = c.booking_id) as bookingimage,
+      (select p.quantity from product p where p.id = c.booking_id) as availablequantity
+  
+      
+       from cart c where c.usernumber = '${req.session.ipaddress}';`
+     var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.ipaddress}';`              
+     var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+  
+     var query6 = `select * from users where id = '84';`
+      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+  
+  
+      pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
+        if(err) throw err;
+        else{
+       
+  
+          if(result[2][0].totalprice > 500) {
+            res.render('checkout', { title: 'Express',login:true,result , shipping_charges : 0 ,msg:'Email Already Exists' });
+          
+          }
+          else {
+            res.render('checkout', { title: 'Express',login:true,result , shipping_charges : 500,msg:'Email Already Exists' });
+          
+          }
+          
+     
+        }
+     
+     
+         })
+    // res.render('checkout',{msg:'Email Already Exists'})
     }
     else{
       pool.query(`insert into users set ?`,body,(err,result)=>{

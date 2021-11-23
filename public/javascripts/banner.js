@@ -13,17 +13,62 @@ $.getJSON(`/${table}/all`, data => {
 
 })
 
+
+
+$(function () {
+    $('#result').on('click', 'th', function() {
+    
+      
+            var index = $(this).index(),
+                rows = [],
+                thClass = $(this).hasClass('asc') ? 'desc' : 'asc';
+      
+            $('#myTable th').removeClass('asc desc');
+            $(this).addClass(thClass);
+      
+            $('#myTable tbody tr').each(function (index, row) {
+              rows.push($(row).detach());
+            });
+      
+            rows.sort(function (a, b) {
+              var aValue = $(a).find('td').eq(index).text(),
+                  bValue = $(b).find('td').eq(index).text();
+      
+              return aValue > bValue
+                   ? 1
+                   : aValue < bValue
+                   ? -1
+                   : 0;
+            });
+      
+            if ($(this).hasClass('desc')) {
+              rows.reverse();
+            }
+      
+            $.each(rows, function (index, row) {
+              $('#myTable tbody').append(row);
+            });
+          });
+      });
+    
+
+      
+document.write('<script type="text/javascript" src="/javascripts/common.js" ></script>');
+
+
 function makeTable(categories){
       let table = ` <div class="table-responsive">
 
       <button type="button" id="back" class="btn btn-primary" style="margin:20px">BacK</button>
     <button type="button" class="btn btn-primary float-right" id="exportBtn1" style="float: right;margin-top:25px;margin-right:20px">Export Data</button>
+    <input type="text"  class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search Here.." title="Type in a name" style='margin-bottom:20px;margin-left:20px;margin-right:20px;'>
 
-<table id="report-table" class="table table-bordered table-striped mb-0">
+    <table id="myTable" class="table table-bordered table-striped mb-0">
 <thead>
 <tr>
-<th>Image</th>
 <th>Type</th>
+
+<th>Image</th>
 <th>Link</th>
 <th>Options</th>
 </tr>
@@ -32,10 +77,11 @@ function makeTable(categories){
 
 $.each(categories,(i,item)=>{
 table+=`<tr>
+<td>${item.type}</td>
+
 <td>
 <img src="/images/${item.image}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">
 </td>
-<td>${item.type}</td>
 <td>${item.link}</td>
 
 <td>
@@ -63,6 +109,8 @@ $('#result').on('click', '.deleted', function() {
         refresh()
     })
 })
+
+
 
 
 

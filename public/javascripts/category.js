@@ -63,7 +63,7 @@ function makeTable(categories){
 
     <input type="text"  class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search Here.." title="Type in a name" style='margin-bottom:20px;margin-left:20px;margin-right:20px;'>
               
-<table id="myTable" class="table table-bordered table-striped mb-0">
+       <table id="myTable" class="table table-bordered table-striped mb-0">
 <thead>
 <tr>
 
