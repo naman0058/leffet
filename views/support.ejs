@@ -46,7 +46,7 @@
                     <td><%=result[i].date%></td>
                    
                         <td>
-                            <a href="/view-replied?id=<%=result[i].id%>">
+                            <a href="/view-replied?id=<%=result[i].ticket_number%>">
                         <button type="button" class="btn btn-primary" value="<%=result[i].id%>">View Details</button>
                     </a>
                     </td>
@@ -153,9 +153,7 @@ $('.reply').click(function(){
             }
 })
 
-      function getValue() {
-             
-            }
+     
 
   
   

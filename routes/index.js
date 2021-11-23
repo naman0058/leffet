@@ -1690,7 +1690,7 @@ router.get('/search',(req,res)=>{
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
       else if(result[1][0]) res.render('shop',{result:result,login:true})
-       else  res.render('not_found',{result,login:true,searchname:req.query.search_query})
+       else  res.render('not_found',{result,login:true,searchname:req.query.search_query,title:'Search'})
       // else res.json(result)
     })
   }
@@ -1707,7 +1707,7 @@ router.get('/search',(req,res)=>{
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
        if(err) throw err;
       else if(result[1][0]) res.render('shop',{result:result,login:false})
-      else  res.render('not_found',{result,login:true,searchname:req.query.search_query})
+      else  res.render('not_found',{result,login:true,searchname:req.query.search_query,title:'Search'})
 
     })
   }
@@ -3054,7 +3054,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
 
     router.get('/view-replied',(req,res)=>{
-      var query = `select * from helpdesk where id = '${req.query.id}';`
+      var query = `select * from helpdesk where ticket_number = '${req.query.id}';`
       var query1 = `select * from replied where helpdeskid = '${req.query.id}';`
       pool.query(query+query1,(err,result)=>{
         if(err) throw err;
@@ -3068,7 +3068,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
 
     router.post('/replied', (req, res) => {
-      console.log(req.body)
+      let body = req.body
 
       var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
@@ -3080,11 +3080,20 @@ today = mm + '/' + dd + '/' + yyyy;
 body['update_date'] = today;
 
 
-pool.query(`insert into reply set ?`,body,(err,result)=>{
-  if(err) throw err;
+console.log(req.body)
+
+pool.query(`insert into replied set ?`,body,(err,result)=>{
+  if(err) {
+    console.log(err)
+    throw err;
+  }
   else {
-    pool.query(`update helpdesk set update_date = ''${today}' where id = '${req.body.helpdeskid}'`, (err, result) => {
-      if(err) throw err;
+    console.log('ss',result)
+    pool.query(`update helpdesk set update_date = '${today}' where ticket_number = '${req.body.helpdeskid}'`, (err, result) => {
+      if(err) {
+        console.log(err)
+        throw err;
+      }
       else {
           res.json({
               status:200,
@@ -3106,6 +3115,19 @@ pool.query(`insert into reply set ?`,body,(err,result)=>{
 
 
 
+
+  router.get('/helpdesk-replied',(req,res)=>{
+    var query = `select * from helpdesk where ticket_number = '${req.query.id}';`
+    var query1 = `select * from replied where helpdeskid = '${req.query.id}';`
+    pool.query(query+query1,(err,result)=>{
+      if(err) throw err;
+      else {
+        
+        res.render('helpdesk-list',{result:result})
+      
+      }
+    })
+  })
 
 
 

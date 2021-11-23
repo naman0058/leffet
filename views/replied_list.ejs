@@ -57,9 +57,9 @@
 
 
 
-                    <div class="table-responsive" style="margin-top: 50px;">
+                    <div class="table-responsive" style="margin-top: 50px;margin-bottom: 50px;">
 
-     
+     <button type="button" class="btn btn-primary reply" style="margin:10px;float:right" value="<%=result[0][0].ticket_number%>"> Reply</button>
                         <table id="myTable" class="table table-bordered table-striped mb-0">
                         <thead>
                         <tr>
@@ -169,10 +169,11 @@
 
 $('.reply').click(function(){
     let helpdeskid = $(this).attr('value');
+    let type = 'Admin'
     var reply = prompt("Enter your reply : ", "your name here");
            if(reply==null || reply == 'null' || reply =='') alert('Enter Reply');
             else {
-                 $.post('/replied',{helpdeskid,reply},data=>{
+                 $.post('/replied',{helpdeskid,reply,type},data=>{
                      alert('Sent Successfully...');
                      window.location.reload();
 
