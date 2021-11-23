@@ -2635,7 +2635,7 @@ router.get('/invoice',(req,res)=>{
   
     pool.query(query+query1+query2+query6+query7+query8+query9+query10,(err,result)=>{
       if(err) throw err;
-       else res.render('invoice',{login:true,result})
+       else res.render('invoice',{login:true,result,title:'Invoice'})
       // else res.json(result)
     })
   }
