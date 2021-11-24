@@ -3239,24 +3239,52 @@ pool.query(`insert into replied set ?`,body,(err,result)=>{
   (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
   (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
 
-  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null order by (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') desc;;`
+  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null
+  order by (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') 
+  ;`
   
  }
  else if(req.query.filter=='low-to-high'){
 
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null
+  order by (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') desc
+  ;`
+
+
  }
  else if(req.query.filter=='z-to-a'){
-   
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null
+  order by name 
+  ;`
 }
 else if(req.query.filter=='a-to-z'){
-   
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null
+  order by name desc
+  ;`
 }
-else if(req.query.filter=='best-sellers'){
-   
+else if(req.query.filter=='Best Sellers'){
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null
+  and type='Best Sellers'
+
+  ;`
 }
-else {
-   
-}
+
 
    
      
