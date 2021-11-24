@@ -41,7 +41,20 @@
                     <td><%=result[i].t_priority_id %>
 </td>
                     <td><%=result[i].content%></td>
-                    <td><%=result[i].helpdesk_attachment%></td>
+
+
+                    <% if(result[i].helpdesk_attachment) { %>
+
+                      <td><img src='/images/<%=result[i].helpdesk_attachment%>' style="width: 100px;margin-top: 20px;"></td>
+
+                  
+                      <% } else { %>
+                          <td>-</td>
+                  
+                  
+                          <% } %>
+
+
                     <td><%=result[i].status%></td>
                     <td><%=result[i].date%></td>
                    

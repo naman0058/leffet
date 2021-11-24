@@ -114,7 +114,17 @@ $('.selector').css('background-position','0 0px !important');
         <td><%=result[1][0].t_priority_id %>
 </td>
         <td><%=result[1][0].content%></td>
-        <td><%=result[1][0].helpdesk_attachment%></td>
+
+<% if(result[1][0].helpdesk_attachment) { %>
+
+    <td><img src='/images/<%=result[1][0].helpdesk_attachment%>' style="width: 100px;"></td>
+
+    <% } else { %>
+        <td>-</td>
+
+
+        <% } %>
+
         <td><%=result[1][0].status%></td>
        
         

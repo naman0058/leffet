@@ -3086,7 +3086,17 @@ var yyyy = today.getFullYear();
 today = mm + '/' + dd + '/' + yyyy;
 
 
-        body['helpdesk_attachment'] = req.file.filename;
+console.log(req.body)
+
+if(req.file){
+  body['helpdesk_attachment'] = req.file.filename;
+}
+
+
+
+
+
+
         body['status'] = 'Online'
         body['date'] = today;
         console.log('body h',req.body)
