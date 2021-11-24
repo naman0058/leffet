@@ -203,11 +203,16 @@ router.get('/transacations',(req,res)=>{
 
 
 router.get('/orders',(req,res)=>{
-	pool.query(`select b*,
-    (select p.name from product p where p.id = c.booking_id) as productname
-    (select p.name from product p where p.id = c.booking_id) as productname
-
-    from booking b where number = '${req.query.number}' `,(err,result)=>{
+	pool.query(`select  b.* , (select p.name from product p where p.id = b.booking_id) as productname,
+    (select u.email from users u where u.id = b.usernumber) as usermobilenumber,
+    (select a.address1 from address a where a.id = b.address ) as useraddress1,
+    (select a.address2 from address a where a.id = b.address ) as useraddress2,
+    (select a.city from address a where a.id = b.address ) as usercity,
+    (select a.postcode from address a where a.id = b.address ) as userpostcode,
+    (select a.id_state from address a where a.id = b.address ) as userstate,
+    (select a.id_country from address a where a.id = b.address ) as usercountry
+    
+    from booking b where b.usernumber = '${req.query.number}' order by id desc`,(err,result)=>{
 		if(err) throw err;
         else res.render('show-orders',{result:result})
 	})

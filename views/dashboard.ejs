@@ -251,15 +251,19 @@
                    
 <% if(result[8][i].status=='pending') { %>
 
- <td> <a href="/admin/update-status?id=<%=result[8][i].id%>&status=In Transit">In Transit</a></td>
+ <td> <button type="button" id="<%=result[8][i].id%>" status="In Transit" class="btn btn-primary update-status">In Transit</button></td>
 
   <% } else if(result[8][i].status=='In Transit') { %>
    
-    <td> <a href="/admin/update-status?id=<%=result[8][i].id%>&status=Shipping">Shipping</a></td>
+    <td>
+      <button type="button" id="<%=result[8][i].id%>" status="Shipping" class="btn btn-primary update-status">Shipping</button>
 
     <% } else { %> 
 
-      <td> <a href="/admin/update-status?id=<%=result[8][i].id%>&status=Completed">Delivered</a></td>
+      <td>
+        
+      <button type="button" id="<%=result[8][i].id%>" status="Completed" class="btn btn-primary update-status">Delivered</button>
+        
 
       <% } %>
 
@@ -477,6 +481,29 @@ $('#charges_set').click(function(){
   })
 })
 
+
+
+
+$('.update-status').click(function(){
+  let status = $(this).attr('status')
+  let id = $(this).attr('id')
+
+  var txt;
+  var r = confirm("Are you sure you want to change status");
+  if (r == true) {
+   
+
+    $.getJSON('/admin/update-status',{id,status},data=>{
+   window.location.reload()
+  })
+
+
+  } else {
+    txt = "You pressed Cancel!";
+  }
+
+ 
+})
 
 
 </script>

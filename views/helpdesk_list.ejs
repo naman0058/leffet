@@ -84,91 +84,94 @@ $('.selector').css('background-position','0 0px !important');
 
 <div class="block"><h1 class="title_block page-subheading">My Tickets</h1></div>
 <div class="block-center" id="block-history">
-<table class="table table-bordered table-striped table-labeled">
-	<thead>
-		<tr>
-			<th>Ticket No.</th>
-			<th>Subject</th>
-			<th>Posted</th>
-			<th>Last Staff Response</th>
-			<th>Department</th>
-			<th>Priority</th>
-			<th>Status</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% for(i=0;i<result[6].length;i++) { %>
 
-					<tr onclick="window.location.href='/view-helpdesk?id=<%=result[6][i].ticket_number%>'" style="cursor: pointer;">
-		
-		<td><%=result[6][i].ticket_number%></td>
-		<td><%=result[6][i].ticket_subject%></td>
-		<td><%=result[6][i].date%></td>
-		<td><%=result[6][i].update_date%></td>
-		<td><%=result[6][i].t_department_id%></td>
-		<td><%=result[6][i].t_priority_id%></td>
-		<td><%=result[6][i].status%></td>
-	</tr>
-	<% } %>
-					</tbody>
-</table>
+
+
+    <table id="" class="table table-bordered table-striped mb-0">
+        <thead>
+        <tr>
+        
+            <th>Ticket Number</th>
+            <th>Subject</th>
+        <th>Department</th>
+        <th>Priority</th>
+        <th>Content</th>
+        <th>Attachment</th>
+      <th>Status</th>
+     
+        </tr>
+        </thead>
+        <tbody>
+        
+
+
+            <% for(i=0;i<result[1].length;i++){ %>
+      <tr>
+        <td><%=result[1][0].ticket_number%></td>
+
+        <td><%=result[1][0].ticket_subject%></td>
+        <td><%=result[1][0].t_department_id%></td>
+        <td><%=result[1][0].t_priority_id %>
+</td>
+        <td><%=result[1][0].content%></td>
+        <td><%=result[1][0].helpdesk_attachment%></td>
+        <td><%=result[1][0].status%></td>
+       
+        
+    
+      
+        </tr>
+
+<% } %>
+
+        </tbody>
+        </table>
+
+
 </div>
 
 <div style="clear:both;"></div>
 
 
 
-<p class="required"> <sup>*</sup> Required field</p>
-
-<div class="box">
-<form action="/helpdesk/insert" method="post" id="add_ticket" name="helpdesk_form" enctype="multipart/form-data" class="std uploadImage">
-<h3 class="page-subheading">Post a New Ticket</h3>
-<div class="form-group">
-<div class="required text">
-	<label for="title">Title <sup>*</sup> </label>
-	<input type="text" name="ticket_subject" id="ticket_subject" title="Title" class="form-control is_required validate" data-validate="isGenericName" />
-</div>
-						<div class="required form-group">
-	<label for="t_department_id">Department <sup>*</sup> </label>
-	<select name="t_department_id" id="t_department_id" title="Department " class="form-control" style="width: 500px !important;">
-		<option value="">Select Department</option>
-							<option value="Software">Software</option>
-							<option value="Accounts">Accounts</option>
-							<option value="Shipping">Shipping</option>
-							<option value="Delivery">Delivery</option>
-						</select>
-</div>
-							
-			<div class="required form-group">
-	<label for="priority">Priority <sup>*</sup> </label>
-	<select name="t_priority_id" id="t_priority_id" title="Priority " class="form-control" style="width: 500px !important;">
-		<option value="">Select Priority</option>
-							<option value="Critical">Critical</option>
-							<option value="Scheduled">Scheduled</option>
-							<option value="Major">Major</option>
-						</select>
-</div>
-						<div class="required form-group">
-	<label for="content">Message <sup>*</sup> </label>
-	<textarea name="content" id="content" title="Message" class="form-control" rows="3" cols="26"></textarea>
-</div>
-			<div class="form-group">
-	<label for="content">Attachment</label>
-	<input name="helpdesk_attachment" id="helpdesk_attachment" value="" class="form-control" type="file" />
-</div>
-<p class="inline-infos required">Supported Types: jpg,doc,pdf,jpeg,png</p>						
-			<p class="submit2">
 
 
-				<input type="submit" class="btn btn-primary button" value="Post Ticket"  id="submitAddress">
-</p>
+<div class="block" style="margin-top: 50px;"><h1 class="title_block page-subheading">Replied</h1></div>
+<button type="button" class="btn btn-primary reply" style="margin:10px;float:right" value="<%=result[1][0].ticket_number%>"> Reply</button>
+
+<div class="block-center" id="block-history">
+
+
+
+    <table id="" class="table table-bordered table-striped mb-0">
+        <thead>
+        <tr>
+        
+            <th>Replied</th>
+         
+     
+        </tr>
+        </thead>
+        <tbody>
+        
+
+
+            <% for(i=0;i<result[2].length;i++){ %>
+   
+                <tr>
+        <td><%=result[2][i].reply%> -  <%=result[2][i].type%></td>
+         </tr>
+
+         <% } %>
+
+        </tbody>
+        </table>
+
 
 </div>
 
-</form>
-</div>
 
-<ul class="footer_links">
+<ul class="footer_links" style="margin-top: 50px;">
 <li class="fleft">
 <a href="/myaccount">Back to your account.</a></li>
 </ul>
@@ -234,4 +237,74 @@ function VerifyCallback(response) { $('.DataTrigger_test').show('submit');}
   
   
   </script>
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+
+  $('.uploadImage').submit(function (e) {
+    e.preventDefault();
+
+    // var title = $('#title').val(); 
+
+    $(this).ajaxSubmit({
+      // data: {title: title},
+      contentType: 'application/json',
+      success: function (response) {
+        alert('successfully')
+      }
+    });
+    return false;
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+  $(document).ready(function () {
+    $('#exportBtn1').click(function(){
+
+ 
+  
+          TableToExcel.convert(document.getElementById("myTable"), {
+              name: "Orders.xlsx",
+              sheet: {
+              name: "Sheet1"
+              }
+            });
+          });
+    });
+
+    
+
+$('.reply').click(function(){
+  let helpdeskid = $(this).attr('value');
+  let type = 'User'
+  var reply = prompt("Enter your reply : ", "your name here");
+         if(reply==null || reply == 'null' || reply =='') alert('Enter Reply');
+          else {
+               $.post('/replied',{helpdeskid,reply,type},data=>{
+                   alert('Sent Successfully...');
+                   window.location.reload();
+
+                   
+               })
+          }
+})
+
+    function getValue() {
+           
+          }
+
+
+
+</script>
 

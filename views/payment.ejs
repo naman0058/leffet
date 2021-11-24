@@ -223,7 +223,14 @@ The selected address will be used both as your personal address (for invoice) an
                           </div>
                         </div>
                                                <div class="col-sm-2 col-xs-12 text-right">
-                          <span class="carrier-price font-weight-bold">Free</span>
+                                                <% if(result[8][0].charges==0 || result[8][0].charges=='0'){ %>
+                                                  <span class="carrier-price font-weight-bold">Free</span>
+                                                                        
+                                                                       <% } else { %>
+                                                                        <span class="carrier-price font-weight-bold">Paid</span>
+                        
+                        
+                                                                        <% } %>
                         </div>
                       </div>
                     </label>

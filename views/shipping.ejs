@@ -228,7 +228,14 @@
                           </div>
                         </div>
                                                <div class="col-sm-2 col-xs-12 text-right">
+                                                 <% if(result[8][0].charges==0 || result[8][0].charges=='0'){ %>
                           <span class="carrier-price font-weight-bold">Free</span>
+                                                
+                                               <% } else { %>
+                                                <span class="carrier-price font-weight-bold">Paid</span>
+
+
+                                                <% } %>
                         </div>
                       </div>
                     </label>

@@ -908,6 +908,19 @@ router.get('/checkout',(req,res)=>{
 
 router.post('/order-as-a-guest',(req,res)=>{
   let body = req.body;
+
+
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  
+  today = mm + '/' + dd + '/' + yyyy;
+  
+
+
+
   pool.query(`select * from users where email = '${req.body.email}'`,(err,result)=>{
     if(err) throw err;
     else if(result[0]){
@@ -959,10 +972,20 @@ router.post('/order-as-a-guest',(req,res)=>{
 
            pool.query(`update cart set usernumber = '${result.insertId}' where usernumber = '${req.session.ipaddress}'`,(err,result)=>{
              if(err) throw err;
-            //  else res.json(result)
-            else res.redirect('/address');
+
+
+      pool.query(`insert into wishlist_name(name,quantity,created,usernumber) values('My Wishlist' , '0' , '${today}' , '${req.session.usernumber}')`,(err,result)=>{
+        if(err){
+          throw err;
+        }
+        else {
+           res.redirect('/address');
+        }
+      })
+           
+            // 
            })
-          //  req.redirect('/address');
+          
         }
       })
       
@@ -975,6 +998,17 @@ router.post('/order-as-a-guest',(req,res)=>{
 
 router.post('/signup-insert',(req,res)=>{
   let body = req.body;
+
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  
+  today = mm + '/' + dd + '/' + yyyy;
+
+
+
   pool.query(`select * from users where email = '${req.body.email}'`,(err,result)=>{
     if(err) throw err;
     else if(result[0]){
@@ -994,7 +1028,15 @@ router.post('/signup-insert',(req,res)=>{
       pool.query(`insert into users set ?`,body,(err,result)=>{
         if(err) throw err;
         else {
-         res.redirect('/login')
+          pool.query(`insert into wishlist_name(name,quantity,created,usernumber) values('My Wishlist' , '0' , '${today}' , '${result.insertId}')`,(err,result)=>{
+            if(err){
+              throw err;
+            }
+            else {
+              res.redirect('/login')
+            }
+          })
+         
         }
       })
       
@@ -1020,41 +1062,22 @@ router.post('/login',(req,res)=>{
     }
     else{
 
-      var query = `select * from category order by id desc;`
-      var query1 = `select c.* , 
-      (select p.name from product p where p.id = c.booking_id) as bookingname,
-      (select p.image from product p where p.id = c.booking_id) as bookingimage,
-      (select p.quantity from product p where p.id = c.booking_id) as availablequantity
-  
-      
-       from cart c where c.usernumber = '${req.session.ipaddress}';`
-     var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.ipaddress}';`              
-     var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
-  
-     var query6 = `select * from users where id = '84';`
-      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
-      var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
-  
-  
-      pool.query(query+query1+query2+query3+query6+query7+query8,(err,result)=>{
-        if(err) throw err;
-        else{
-       
-  
-          if(result[2][0].totalprice > 500) {
-            res.render('checkout', { title: 'Express',login:true,result , shipping_charges : 0 ,msg:'Invalid Credentials' });
-          
-          }
-          else {
-            res.render('checkout', { title: 'Express',login:true,result , shipping_charges : 500,msg:'Invalid Credentials' });
-          
-          }
-          
-     
+
+      body['quantity'] = 0;
+    
+      body['created'] = today;
+      body['usernumber'] = req.session.usernumber;
+    
+      pool.query(`insert into wishlist_name set ?`,body,(err,result)=>{
+        if(err){
+          throw err;
         }
-     
-     
-         })
+        else {
+          res.json({msg:'success'})
+        }
+      })
+
+      
     
 
 
@@ -1325,7 +1348,7 @@ today = mm + '/' + dd + '/' + yyyy;
 
 
   body['quantity'] = 0;
-  body['viewed'] = 0;
+
   body['created'] = today;
   body['usernumber'] = req.session.usernumber;
 
@@ -3104,11 +3127,33 @@ today = mm + '/' + dd + '/' + yyyy;
 
     router.get('/view-replied',(req,res)=>{
       var query = `select * from helpdesk where ticket_number = '${req.query.id}';`
-      var query1 = `select * from replied where helpdeskid = '${req.query.id}';`
+      var query1 = `select * from replied where helpdeskid = '${req.query.id}' order by id desc;`
       pool.query(query+query1,(err,result)=>{
         if(err) throw err;
         else {
           res.render('replied_list',{result:result})
+        }
+      })
+    })
+
+
+
+    router.get('/view-helpdesk',(req,res)=>{
+
+      var query = `select * from category order by id desc;`
+      var query1 = `select * from helpdesk where ticket_number = '${req.query.id}';`
+      var query2 = `select * from replied where helpdeskid = '${req.query.id}' order by id desc;`
+      var query6 = `select * from users where id = '${req.session.usernumber}';`
+        var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+        var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+        var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+    
+    
+      pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+
+        if(err) throw err;
+        else {
+          res.render('helpdesk_list',{result:result,title:'Helpdesk',login:true})
         }
       })
     })
@@ -3129,6 +3174,7 @@ today = mm + '/' + dd + '/' + yyyy;
 body['update_date'] = today;
 
 
+
 console.log(req.body)
 
 pool.query(`insert into replied set ?`,body,(err,result)=>{
@@ -3138,7 +3184,7 @@ pool.query(`insert into replied set ?`,body,(err,result)=>{
   }
   else {
     console.log('ss',result)
-    pool.query(`update helpdesk set update_date = '${today}' where ticket_number = '${req.body.helpdeskid}'`, (err, result) => {
+    pool.query(`update helpdesk set update_date = '${today}' , status = 'Online' where ticket_number = '${req.body.helpdeskid}'`, (err, result) => {
       if(err) {
         console.log(err)
         throw err;
@@ -3253,6 +3299,21 @@ else {
      
     })
 
+
+
+
+
+    router.get('/support/update', (req, res) => {
+      console.log(req.body)
+    
+                  pool.query(`update helpdesk set ? where id = ?`, [req.query, req.query.id], (err, result) => {
+                      if(err) throw err;
+                      else {
+                          res.redirect('/admin/support')
+                      }
+                  })
+          
+  }) 
 
 
 module.exports = router;

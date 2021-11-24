@@ -48,8 +48,7 @@ table+=`<tr>
 
 
 
-<td><a href='/customers/orders/?number=${item.id}'>Orders</a></td>
-<td><a href='/customers/transacations/?number=${item.id}'>Tansacations</a></td>`
+<td><a href='/customers/orders/?number=${item.id}'>Orders</a></td>`
 
 
 

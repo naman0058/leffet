@@ -121,7 +121,8 @@ router.get('/update-status',(req,res)=>{
                 else {
                     pool.query(`insert into alert(usernumber,status,orderid,date) values ('${result[0].usernumber}' , '${req.query.status}' , '${result[0].orderid}','${today}')`,(err,result)=>{
                         if(err) throw err;
-                        else res.redirect('/admin/dashboard')
+                        // else res.redirect('/admin/dashboard')
+                        else res.json({msg:'success'})
                     })
                 }
             })
@@ -172,6 +173,22 @@ router.post('/charges/update',(req,res)=>{
 router.get('/support',(req,res)=>{
     if(req.session.adminid){
         pool.query(`select * from helpdesk where status = 'Online' order by id desc`,(err,result)=>{
+            if(err) throw err;
+            else res.render('support',{result:result});
+        })
+    }
+    else {
+        res.render('admin_login',{msg : 'Invalid Username & Password'})
+
+    }
+})
+
+
+
+
+router.get('/support-closed',(req,res)=>{
+    if(req.session.adminid){
+        pool.query(`select * from helpdesk where status = 'Closed' order by id desc`,(err,result)=>{
             if(err) throw err;
             else res.render('support',{result:result});
         })
