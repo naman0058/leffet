@@ -15,7 +15,7 @@ router.get('/',(req,res)=>{
 })
 
 
-router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 }]) ,(req,res)=>{
+router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image1', maxCount: 1 } , { name: 'image2', maxCount: 1 } , { name: 'image3', maxCount: 1 }]) ,(req,res)=>{
 	let body = req.body
     if(req.files.image){
         body['image'] = req.files.image[0].filename
@@ -26,6 +26,15 @@ router.post('/insert',upload.fields([{ name: 'image', maxCount: 1 }, { name: 'im
       if(req.files.image1){
           body['image1'] = req.files.image1[0].filename
         }
+
+        if(req.files.image2){
+            body['image2'] = req.files.image2[0].filename
+          }
+
+
+          if(req.files.image3){
+            body['image3'] = req.files.image3[0].filename
+          }
       
         
     

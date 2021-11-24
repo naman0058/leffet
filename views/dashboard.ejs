@@ -250,13 +250,12 @@
 
                    
 <% if(result[8][i].status=='pending') { %>
+  <td> <button type="button" id="<%=result[8][i].id%>" status="Order Accepted" class="btn btn-primary update-status">Order Accepted</button></td>
 
- <td> <button type="button" id="<%=result[8][i].id%>" status="In Transit" class="btn btn-primary update-status">In Transit</button></td>
+  <% } else if(result[8][i].status=='Order Accepted') { %>
 
-  <% } else if(result[8][i].status=='In Transit') { %>
-   
-    <td>
-      <button type="button" id="<%=result[8][i].id%>" status="Shipping" class="btn btn-primary update-status">Shipping</button>
+ <td> <button type="button" id="<%=result[8][i].id%>" status="Dispatched" class="btn btn-primary update-status">Dispatched</button></td>
+
 
     <% } else { %> 
 
@@ -268,6 +267,8 @@
       <% } %>
 
                         <td>
+ <td> <button type="button" id="<%=result[8][i].id%>" status="Cancel" class="btn btn-dark update-status">Cancel</button></td>
+
                           <!-- <select class="form-control update_status"  id='<%=result[8][i].id%>'>
                             <option value="-">Select Status</option>
                             <option value="Dispatch">Dispatch</option>

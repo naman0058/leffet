@@ -94,6 +94,9 @@ function makeTable(categories){
 <th>Pinterest Link</th>
 <th>Main Image</th>
 <th>Alternate Image</th>
+<th>Image 3</th>
+<th>Image 4</th>
+
 
 <th>Option</th>
 
@@ -115,6 +118,12 @@ table+=`<tr>
 </td>
 <td>
 <img src="/images/${item.image1}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">
+</td>
+<td>
+<img src="/images/${item.image2}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">
+</td>
+<td>
+<img src="/images/${item.image3}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">
 </td>
 <td>
 <a href="#!" class="btn btn-info btn-sm edits" id="${item.id}"><i class="feather icon-edit"></i>&nbsp;Edit </a>
