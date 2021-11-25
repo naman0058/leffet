@@ -365,7 +365,7 @@ router.get('/product',(req,res)=>{
       (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
       (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = '${req.query.size}') as quantity
 
-      from product p where p.categoryid = '${categoryid}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null order by id limit 8;`
+      from product p where p.categoryid = '${categoryid}' and p.id!= '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null order by id limit 8;`
      
      var query6 = `select * from users where id = '${req.session.usernumber}';`
      var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
@@ -393,7 +393,7 @@ router.get('/product',(req,res)=>{
       (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
       (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = '${req.query.size}') as quantity
 
-      from product p where p.categoryid = '${categoryid}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null order by id limit 8;`
+      from product p where p.categoryid = '${categoryid}' and p.id!= '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null order by id limit 8;`
      
 
      var query6 = `select * from users where id = '84';`
@@ -2947,7 +2947,7 @@ router.get('/celebrity',(req,res)=>{
         if(req.session.usernumber){
           var query = `select * from category order by id desc;`
           var query1 = `select p.* from photoshot p where p.id = '${req.query.id}';`
-         var query2 = `select * from photoshot;`
+         var query2 = `select * from photoshot p where p.id!= '${req.query.id}';`
          var query6 = `select * from users where id = '${req.session.usernumber}';`
          var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
          var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
@@ -2962,7 +2962,7 @@ router.get('/celebrity',(req,res)=>{
         else{
           var query = `select * from category order by id desc;`
           var query1 = `select p.* from photoshot p where p.id = '${req.query.id}';`
-         var query2 = `select * from photoshot;`
+         var query2 = `select * from photoshot p where p.id!= '${req.query.id}';`
          var query6 = `select * from users where id = '84';`
          var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
          var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
@@ -3136,7 +3136,11 @@ if(req.file){
 
 
     router.get('/view-replied',(req,res)=>{
-      var query = `select * from helpdesk where ticket_number = '${req.query.id}';`
+      var query = `select h.* ,
+      (select u.firstname from users u where u.id = h.usernumber) as userfirstname,
+        (select u.lastname from users u where u.id = h.usernumber) as userlasttname
+
+      from helpdesk h where h.ticket_number = '${req.query.id}';`
       var query1 = `select * from replied where helpdeskid = '${req.query.id}' order by id desc;`
       pool.query(query+query1,(err,result)=>{
         if(err) throw err;

@@ -99,7 +99,7 @@ table+=`</tbody>
 }
 
 
-$('#result').on('click', '.delete', function() {
+$('#result').on('click', '.deleted', function() {
     const id = $(this).attr('id')
     $.get(`/${table}/delete`,  { id }, data => {
         refresh()

@@ -172,7 +172,11 @@ router.post('/charges/update',(req,res)=>{
 
 router.get('/support',(req,res)=>{
     if(req.session.adminid){
-        pool.query(`select * from helpdesk where status = 'Online' order by id desc`,(err,result)=>{
+        pool.query(`select h.* , 
+        (select u.firstname from users u where u.id = h.usernumber) as userfirstname,
+        (select u.lastname from users u where u.id = h.usernumber) as userlasttname
+
+        from helpdesk h where h.status = 'Online' order by id desc`,(err,result)=>{
             if(err) throw err;
             else res.render('support',{result:result});
         })
@@ -188,7 +192,11 @@ router.get('/support',(req,res)=>{
 
 router.get('/support-closed',(req,res)=>{
     if(req.session.adminid){
-        pool.query(`select * from helpdesk where status = 'Closed' order by id desc`,(err,result)=>{
+        pool.query(`select h.* ,
+        (select u.firstname from users u where u.id = h.usernumber) as userfirstname,
+        (select u.lastname from users u where u.id = h.usernumber) as userlasttname
+
+        from helpdesk h where h.status = 'Closed' order by id desc`,(err,result)=>{
             if(err) throw err;
             else res.render('support',{result:result});
         })
@@ -204,7 +212,11 @@ router.get('/support-closed',(req,res)=>{
 
 router.get('/closed-ticket',(req,res)=>{
     if(req.session.adminid){
-        pool.query(`select * from helpdesk where status = 'Closed' order by id desc`,(err,result)=>{
+        pool.query(`select h.* 
+        (select u.firstname from users u where u.id = h.usernumber) as userfirstname,
+        (select u.lastname from users u where u.id = h.usernumber) as userlasttname
+
+        from helpdesk h where h.status = 'Closed' order by id desc`,(err,result)=>{
             if(err) throw err;
             else res.render('support',{result:result});
         })

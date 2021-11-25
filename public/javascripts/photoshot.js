@@ -92,6 +92,8 @@ function makeTable(categories){
 <th>FB Link</th>
 <th>Twitter Link</th>
 <th>Pinterest Link</th>
+<th>Description</th>
+
 <th>Main Image</th>
 <th>Alternate Image</th>
 <th>Image 3</th>
@@ -112,6 +114,8 @@ table+=`<tr>
 <td>${item.fb_link}</td>
 <td>${item.twitter_link}</td>
 <td>${item.pintrest_link}</td>
+<td>${item.description}</td>
+
 
 <td>
 <img src="/images/${item.image}" class="img-fluid img-radius wid-40" alt="" style="width:50px;height:50px">

@@ -17,7 +17,7 @@
                     <tr>
                     
                         <th>Ticket Number</th>
-                   
+                   <th>User Name</th>
                         <th>Subject</th>
                     <th>Department</th>
                     <th>Priority</th>
@@ -35,6 +35,8 @@
                         <% for(i=0;i<result.length;i++){ %>
                   <tr>
                     <td><%=result[i].ticket_number%></td>
+                    <td><%=result[i].userfirstname%>   <%=result[i].userlasttname%></td>
+
 
                     <td><%=result[i].ticket_subject%></td>
                     <td><%=result[i].t_department_id%></td>
