@@ -590,6 +590,75 @@ function OwlLoaded(el){
             </div>
 
     </div>            </div>
+
+
+
+
+
+
+
+
+
+
+
+	<div        class="container ApRow  has-bg bg-boxed"
+	style="background: no-repeat;"        data-bg_data=" no-repeat"        >
+					<!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
+<div    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12 p-0 section-product ApColumn "
+>
+<!-- @file modules\appagebuilder\views\templates\hook\ApModule -->
+<script>
+ var auto_play = 'true';
+</script>			<div class="template_slide">
+	<div class="page-top fadeOut_1_title">
+<div class="page-title-categoryslider">
+<span>Our Collections</span>
+</div> 
+</div>
+<div style="width: 100%;height: 100%" class="fadeOut_1 owl-carousel owl-theme saddd">
+				
+	
+	<% for(i=0;i<result[0].length;i++){ %>
+
+
+	<div style="" class="item slier_item">
+		<div class="item">
+			<div class="block-carousel-container">
+<div class="left-block">
+	<div class="block-carousel-image-container image">
+		<div class="ap-more-info" data-id="3"></div>
+										<a title="<%=result[0][i].name%>"  href="/shop?id=<%=result[0][i].id%>">
+		
+																					<img class="img-fluid" src="/images/<%=result[0][i].image%>" alt="<%=result[0][i].name%>"/>
+																													<div class="title"><%=result[0][i].name%></div>
+																																	</a>
+									</div>
+</div>
+</div>
+	</div>
+		</div>
+
+
+
+<% } %>
+
+	
+																			</div>
+</div>
+
+</div>            </div>
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- @file modules\appagebuilder\views\templates\hook\ApRow -->
     <div        class="container ApRow  has-bg bg-boxed"
                             style="background: no-repeat;"        data-bg_data=" no-repeat"        >
