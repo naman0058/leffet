@@ -470,126 +470,7 @@ function OwlLoaded(el){
 </div>
 </div>
     <!-- @file modules\appagebuilder\views\templates\hook\ApRow -->
-    <div        class="container ApRow  has-bg bg-boxed"
-                            style="background: no-repeat;"        data-bg_data=" no-repeat"        >
-                                            <!-- @file modules\appagebuilder\views\templates\hook\ApColumn -->
-<div    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12 p-0 section-collection ApColumn "
-	    >
-                    <!-- @file modules\appagebuilder\views\templates\hook\ApBlockCarousel -->
-    <div class="block block_carousel exclusive appagebuilder ApBlockCarousel">
-                <div class="block_content">
-                                                                                                <!-- @file modules\appagebuilder\views\templates\hook\ApBlockOwlCarouselItem -->
-	<h4 class="title_block">Our Collections</h4>
-<div class="owl-row">
-	<div class="timeline-wrapper clearfix prepare"
-		data-item="3" 
-		data-xl="3" 
-		data-lg="3" 
-		data-md="3" 
-		data-sm="2" 
-		data-m="1"
-	>
-					
-			<div class="timeline-parent">
-									<div class="timeline-item">
-						<div class="animated-background">					
-							<div class="background-masker content-top"></div>							
-							<div class="background-masker content-second-line"></div>							
-							<div class="background-masker content-third-line"></div>							
-							<div class="background-masker content-fourth-line"></div>
-						</div>
-					</div>
-							</div>
-					
-			<div class="timeline-parent">
-									<div class="timeline-item">
-						<div class="animated-background">					
-							<div class="background-masker content-top"></div>							
-							<div class="background-masker content-second-line"></div>							
-							<div class="background-masker content-third-line"></div>							
-							<div class="background-masker content-fourth-line"></div>
-						</div>
-					</div>
-							</div>
-					
-			<div class="timeline-parent">
-									<div class="timeline-item">
-						<div class="animated-background">					
-							<div class="background-masker content-top"></div>							
-							<div class="background-masker content-second-line"></div>							
-							<div class="background-masker content-third-line"></div>							
-							<div class="background-masker content-fourth-line"></div>
-						</div>
-					</div>
-							</div>
-			</div>
-	<div id="carousel-1967383136" class="owl-carousel owl-theme owl-loading">
-                 
-		<% for(i=0;i<result[0].length;i++){ %>
-            <div class="item">
-                                    <div class="block-carousel-container">
-                        <div class="left-block">
-                            <div class="block-carousel-image-container image">
-                                <div class="ap-more-info" data-id="3"></div>
-                                                                <a title="<%=result[0][i].name%>"  href="/shop?id=<%=result[0][i].id%>">
-                                
-                                                                                                            <img class="img-fluid" src="/images/<%=result[0][i].image%>" alt="<%=result[0][i].name%>"/>
-                                                                                                                                            <div class="title"><%=result[0][i].name%></div>
-                                							                                                                                                </a>
-                                                            </div>
-                        </div>
-                    </div>
-                            </div>
-
-							
-
-							<% } %>
-     
-            	</div>
-</div>
-<script type="text/javascript">
-ap_list_functions.push(function(){
-	$('#carousel-1967383136').imagesLoaded( function() {
-		$('#carousel-1967383136').owlCarousel({
-			items :             3,
-			itemsDesktop :      [1200,3],
-			itemsDesktopSmall : [992,3],
-			itemsTablet :       [768,2],
-			itemsMobile :       [576,1],
-			itemsCustom :       false,
-			singleItem :        false,       // true : show only 1 item
-			itemsScaleUp :      false,
-			slideSpeed :        200,        //  change speed when drag and drop a item
-			paginationSpeed :   800,       // change speed when go next page
-			autoPlay :          false,       // time to show each item
-			stopOnHover :       false,
-			navigation :        false,
-			navigationText :    ["&lsaquo;", "&rsaquo;"],
-			scrollPerPage :     false,
-			pagination :        false,       // show bullist
-			paginationNumbers : false,       // show number
-			responsive :        true,
-			lazyLoad :          false,
-			lazyFollow :        false,       // true : go to page 7th and load all images page 1...7. false : go to page 7th and load only images of page 7th
-			lazyEffect :        "fade",
-			autoHeight :        false,
-			mouseDrag :         true,
-			touchDrag :         true,
-			addClassActive :    true,
-			direction:          false,
-			afterInit: OwlLoaded,
-			afterAction : SetOwlCarouselFirstLast,
-		});
-	});
-});
-function OwlLoaded(el){
-    el.removeClass('owl-loading').addClass('owl-loaded').parents('.owl-row').addClass('hide-loading');
-};
-
-</script>                                                        </div>
-            </div>
-
-    </div>            </div>
+    
 
 
 
@@ -685,7 +566,7 @@ function OwlLoaded(el){
 
 							<div style="" class="item slier_item">
 									<div class="js-product-miniature" data-id-product="66" data-id-product-attribute="222">
-										<a href="/product?id=<%=result[4][i].id%>&size=S" title="">/
+										<a href="/product?id=<%=result[4][i].id%>&size=S" title="">
 											<img style="margin:auto;width:430px;height:645px;" class="img-responsive" src="/images/<%=result[4][i].image%>" alt="">
 										</a>
 																																																    										<div class="ad_info_pro">
