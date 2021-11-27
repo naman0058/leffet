@@ -1076,7 +1076,8 @@ var mailOptions = {
 
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    console.log(error);
+    res.redirect('/login')
+
   } else {
     res.redirect('/login')
   }
@@ -3474,7 +3475,30 @@ router.post('/password-recovery',(req,res)=>{
       
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
+          
+
+
+          var query = `select * from category order by id desc;`
+          var query1 = `select p.* ,
+          (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+          (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+        
+          from product p where p.categoryid = '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+          var query2 = `select * from category where id = '${req.query.id}';`
+          var query6 = `select * from users where id = '84';`
+            var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+            var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+            var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+        
+        
+          pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+            if(err) throw err;
+            else {
+              res.render('recovery',{result:result,login:false,title:'Recovery Password',msg:req.body.email,type:'success'})
+            }
+        })
+
+
         } else {
 
 
@@ -3623,7 +3647,8 @@ router.post('/change-password',(req,res)=>{
       
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
+          res.redirect('/login')
+
         } else {
           res.redirect('/login')
         }
