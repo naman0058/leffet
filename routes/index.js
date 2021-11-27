@@ -6,11 +6,26 @@ var table = 'category';
 const fs = require("fs");
 const fetch = require("node-fetch");
 
+
+var nodemailer = require('nodemailer');
+
+
+var bcrypt = require('bcryptjs');
+
+
+
+
+
+
+
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 console.log(req.session.usernumber)
    
-// req.session.usernumber = 85
+// req.session.usernumber = null;
 
  if(req.session.usernumber){
   var query1 = `select * from category;`
@@ -1028,12 +1043,45 @@ router.post('/signup-insert',(req,res)=>{
       pool.query(`insert into users set ?`,body,(err,result)=>{
         if(err) throw err;
         else {
+          console.log(result)
+          let email = req.body.email;
+          let password = req.body.password;
           pool.query(`insert into wishlist_name(name,quantity,created,usernumber) values('My Wishlist' , '0' , '${today}' , '${result.insertId}')`,(err,result)=>{
             if(err){
               throw err;
             }
             else {
-              res.redirect('/login')
+              
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'filemakr.design2018@gmail.com',
+    pass: 'Since2018'
+  }
+});
+
+var mailOptions = {
+  from: 'filemakr.design2018@gmail.com',
+  to: email,
+  subject: 'Thank You for creating a new account at leffet.in.',
+  text: `
+  ${req.body.firstname} ${req.body.lastname}
+
+
+  Your login details are.
+  Email: ${email} 
+  Password : ${password}
+  `
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    res.redirect('/login')
+  }
+});
+              // res.redirect('/login')
             }
           })
          
@@ -3357,5 +3405,234 @@ else if(req.query.filter=='Best Sellers'){
           
   }) 
 
+
+
+
+
+router.get('/password-recovery',(req,res)=>{
+  var query = `select * from category order by id desc;`
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where p.categoryid = '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+  var query2 = `select * from category where id = '${req.query.id}';`
+  var query6 = `select * from users where id = '84';`
+    var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+    var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+    var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
+
+  pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+    if(err) throw err;
+    else {
+      res.render('recovery',{result:result,login:false,title:'Recovery Password',msg:'',type:''})
+    }
+})
+
+})
+
+
+
+
+router.post('/password-recovery',(req,res)=>{
+  let body = req.body;
+  console.log(req.body)
+  pool.query(`select * from users where email = '${req.body.email}'`,(err,result)=>{
+    if(err) throw err;
+    else if(result[0]){
+
+      req.session.forgotemail = req.body.email;
+
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(`${req.body.email}/\/`, salt);
+      var reset_token = bcrypt.hashSync(`${hash}/\/`, salt);
+          
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'filemakr.design2018@gmail.com',
+          pass: 'Since2018'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'filemakr.design2018@gmail.com',
+        to: req.body.email,
+        subject: `Hi ${req.body.email}
+        
+        Thank You for creating a new account at leffet.in.`,
+        text: `You Have requested to reset your leffet login details Please note that this will change your current Password
+
+        In order to confirm this action, kindly click on the following link.
+
+        http://mlmdemos.in/new-password?token=${hash}&email=${req.body.email}&reset_token=${reset_token}
+
+
+        `
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+
+
+          var query = `select * from category order by id desc;`
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where p.categoryid = '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+  var query2 = `select * from category where id = '${req.query.id}';`
+  var query6 = `select * from users where id = '84';`
+    var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+    var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+    var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
+
+  pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+    if(err) throw err;
+    else {
+      res.render('recovery',{result:result,login:false,title:'Recovery Password',msg:req.body.email,type:'success'})
+    }
+})
+         
+        }
+      });
+
+
+    }
+    else{
+      var query = `select * from category order by id desc;`
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where p.categoryid = '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+  var query2 = `select * from category where id = '${req.query.id}';`
+  var query6 = `select * from users where id = '84';`
+    var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+    var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+    var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
+
+  pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+    if(err) throw err;
+    else {
+      res.render('recovery',{result:result,login:false,title:'Recovery Password',msg:'Email ID Not Exists',type:''})
+    }
+})
+    }
+  })
+})
+
+
+
+router.get('/new-password',(req,res)=>{
+ 
+  // var salt = bcrypt.genSaltSync(10);
+ 
+  // var hash = bcrypt.hashSync(`${req.session.forgotemail}/\/`, req.query.token);
+
+  // var a = bcrypt.compareSync(`${req.session.forgotemail}/\/`, hash); // true
+// var b = bcrypt.compareSync(a, hash); // false
+
+// console.log(a)
+// res.json(a)
+// console.log(b)
+
+
+// if(a == true && b == true){
+  var query = `select * from category order by id desc;`
+  var query1 = `select p.* ,
+  (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+  (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+  from product p where p.categoryid = '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+  var query2 = `select * from category where id = '${req.query.id}';`
+  var query6 = `select * from users where id = '84';`
+    var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+    var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+    var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
+
+  pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+    if(err) throw err;
+    else {
+      res.render('password',{result:result,login:false,title:'New Password',msg:req.session.forgotemail,type:''})
+    }
+})
+// }
+// else{
+    
+
+//   var query = `select * from category order by id desc;`
+//   var query1 = `select p.* ,
+//   (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+//   (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+
+//   from product p where p.categoryid = '${req.query.id}' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+//   var query2 = `select * from category where id = '${req.query.id}';`
+//   var query6 = `select * from users where id = '84';`
+//     var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
+//     var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
+//     var query9 = `select * from wishlist_name where usernumber = '${req.session.usernumber}';`
+
+
+//   pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
+//     if(err) throw err;
+//     else {
+//       res.render('recovery',{result:result,login:false,title:'Recovery Password',msg:'Token Expired',type:''})
+//     }
+// })
+
+
+// }
+
+  
+
+})
+
+
+router.post('/change-password',(req,res)=>{
+  let body = req.body;
+  pool.query(`update users set password = '${req.body.password}' where email = '${req.session.forgotemail}'`,(err,result)=>{
+    if(err) throw err;
+    else {
+      
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'filemakr.design2018@gmail.com',
+          pass: 'Since2018'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'filemakr.design2018@gmail.com',
+        to: req.session.forgotemail,
+        subject: 'Your password has been successfully updated.',
+        text: `
+        Hii ${req.session.forgotemail}
+      
+      
+        Your password has been successfully updated.
+        `
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          res.redirect('/login')
+        }
+      });
+    
+    }
+
+  })
+
+})
 
 module.exports = router;
