@@ -1056,7 +1056,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'filemakr.design2018@gmail.com',
-    pass: 'Since2018'
+    pass: 'Drivefilemakr2018@'
   }
 });
 
@@ -3452,7 +3452,7 @@ router.post('/password-recovery',(req,res)=>{
         service: 'gmail',
         auth: {
           user: 'filemakr.design2018@gmail.com',
-          pass: 'Since2018'
+          pass: 'Drivefilemakr2018@'
         }
       });
       
@@ -3605,7 +3605,7 @@ router.post('/change-password',(req,res)=>{
         service: 'gmail',
         auth: {
           user: 'filemakr.design2018@gmail.com',
-          pass: 'Since2018'
+          pass: 'Drivefilemakr2018@'
         }
       });
       
