@@ -123,6 +123,7 @@ router.post('/insert',upload.single('image'),(req,res)=>{
             else{
                 pool.query(`insert into ${table} set ?`,body,(err,result)=>{
                     if(err) {
+                        console.log(err)
                         res.json({
                             status:500,
                             type : 'error',
@@ -144,6 +145,7 @@ router.post('/insert',upload.single('image'),(req,res)=>{
     else {
         pool.query(`insert into ${table} set ?`,body,(err,result)=>{
             if(err) {
+                console.log(err)
                 res.json({
                     status:500,
                     type : 'error',
@@ -151,6 +153,8 @@ router.post('/insert',upload.single('image'),(req,res)=>{
                 })
             }
             else {
+                console.log(result)
+
                 res.json({
                     status:200,
                     type : 'success',
