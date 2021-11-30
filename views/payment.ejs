@@ -457,7 +457,14 @@ The selected address will be used both as your personal address (for invoice) an
                         </div>
                                                             <div class="cart-summary-line cart-summary-subtotals" id="cart-subtotal-shipping">
                           <span class="label">Shipping</span>
-                          <span class="value">₹<%=result[8][0].charges%></span>
+                          <% if(result[8][0].charges==0 || result[8][0].charges=='0'){ %>
+                            <span class="value">Free</span>
+                                                  
+                                                 <% } else { %>
+                                                  <span class="value">₹<%=result[8][0].charges%></span>
+  
+  
+                                                  <% } %>
                         </div>
                                               
               

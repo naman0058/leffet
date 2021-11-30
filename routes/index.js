@@ -1056,13 +1056,13 @@ router.post('/signup-insert',(req,res)=>{
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'filemakr.design2018@gmail.com',
-    pass: 'Drivefilemakr2018@'
+    user: 'leffetbysm@gmail.com',
+    pass: 'leffet20'
   }
 });
 
 var mailOptions = {
-  from: 'filemakr.design2018@gmail.com',
+  from: 'leffetbysm@gmail.com',
   to: email,
   subject: 'Thank You for creating a new account at leffet.in.',
   text: `
@@ -2917,6 +2917,7 @@ var query = `select * from category order by id desc;`
     pool.query(query+query1+query2+query6+query7+query8+query9+query10+query11,(err,result)=>{
     if(err) throw err;
     // else res.json(result)
+    
     else res.render('view-wishlist',{result:result,login:true,title:'Wishlist'})
   })
 })
@@ -3459,13 +3460,13 @@ router.post('/password-recovery',(req,res)=>{
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'filemakr.design2018@gmail.com',
-          pass: 'Drivefilemakr2018@'
+          user: 'leffetbysm@gmail.com',
+          pass: 'leffet20'
         }
       });
       
       var mailOptions = {
-        from: 'filemakr.design2018@gmail.com',
+        from: 'leffetbysm@gmail.com',
         to: req.body.email,
         subject: `Hi ${req.body.email}
         
@@ -3635,13 +3636,13 @@ router.post('/change-password',(req,res)=>{
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'filemakr.design2018@gmail.com',
-          pass: 'Drivefilemakr2018@'
+          user: 'leffetbysm@gmail.com',
+          pass: 'leffet20'
         }
       });
       
       var mailOptions = {
-        from: 'filemakr.design2018@gmail.com',
+        from: 'leffetbysm@gmail.com',
         to: req.session.forgotemail,
         subject: 'Your password has been successfully updated.',
         text: `
