@@ -883,7 +883,7 @@ router.get('/checkout',(req,res)=>{
     var query1 = `select c.* , 
     (select p.name from product p where p.id = c.booking_id) as bookingname,
     (select p.image from product p where p.id = c.booking_id) as bookingimage,
-    (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+    (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
     
      from cart c where c.usernumber = '${req.session.ipaddress}';`
@@ -945,7 +945,7 @@ router.post('/order-as-a-guest',(req,res)=>{
       var query1 = `select c.* , 
       (select p.name from product p where p.id = c.booking_id) as bookingname,
       (select p.image from product p where p.id = c.booking_id) as bookingimage,
-         (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+         (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
   
       
@@ -1178,7 +1178,7 @@ router.get('/address',(req,res)=>{
   var query1 = `select c.* , 
   (select p.name from product p where p.id = c.booking_id) as bookingname,
   (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
 
   
@@ -1222,7 +1222,7 @@ router.get('/shipping',(req,res)=>{
   var query1 = `select c.* , 
   (select p.name from product p where p.id = c.booking_id) as bookingname,
   (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
 
   
@@ -1256,7 +1256,7 @@ router.get('/payment',(req,res)=>{
   var query1 = `select c.* , 
   (select p.name from product p where p.id = c.booking_id) as bookingname,
   (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
 
   
@@ -2524,7 +2524,7 @@ router.get('/add-new-address',(req,res)=>{
   var query1 = `select c.* , 
   (select p.name from product p where p.id = c.booking_id) as bookingname,
   (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
 
   
@@ -2555,7 +2555,7 @@ router.get('/edit-address',(req,res)=>{
   var query1 = `select c.* , 
   (select p.name from product p where p.id = c.booking_id) as bookingname,
   (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.size = c.size) as availablequantity
+     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
 
   
