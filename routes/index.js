@@ -11,6 +11,7 @@ var nodemailer = require('nodemailer');
 
 
 var bcrypt = require('bcryptjs');
+const { Console } = require('console');
 
 
 
@@ -1007,7 +1008,6 @@ router.post('/order-as-a-guest',(req,res)=>{
     }
   })
 })
-
 
 
 
@@ -3162,6 +3162,7 @@ if(req.file){
 
         pool.query(`insert into helpdesk set ?`,body,(err,result)=>{
           if(err) {
+              console.log(err)
               res.json({
                   status:500,
                   type : 'error',
