@@ -172,10 +172,19 @@ router.post('/update_image',upload.single('image'), (req, res) => {
 
 
 router.get('/wishlist',(req,res)=>{
-	pool.query(`select c.* , (select p.name from product p where p.id = c.booking_id) as productname
-     from cart c where c.usernumber = '${req.query.number}' and c.status is null`,(err,result)=>{
+
+    var query9=`select w.*,
+    (select p.name from product p where p.id = w.booking_id) as productname,
+    (select p.image from product p where p.id = w.booking_id) as productimage,
+    (select m.net_amount from product_manage m where m.productid = w.booking_id and m.sizeid = w.size) as productprice,
+    (select m.quantity from product_manage m where m.productid = w.booking_id and m.sizeid = w.size) as productquantity,
+  
+    (select p.categoryid from product p where p.id = w.booking_id) as productcategoryid
+  
+    from wishlist w where w.usernumber = '${req.query.number}';`
+	pool.query(query9,(err,result)=>{
 		if(err) throw err;
-       // else res.json(result)
+        // else res.json(result)
         else res.render('show-wishlist',{result:result})
 	})
 })
