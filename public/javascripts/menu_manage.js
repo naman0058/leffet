@@ -98,7 +98,7 @@ table+=`<tr>
 <td>${item.discount}</td>
 
 <td>${item.net_amount}</td>
-<td>${item.weight}</td>
+<td>${item.weight} (in gm)</td>
 
 
 <td>
