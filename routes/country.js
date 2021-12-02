@@ -28,7 +28,7 @@ router.post('/storeEditId',(req,res)=>{
 router.post('/insert',(req,res)=>{
 	let body = req.body
     
-    pool.query(`select * from ${table} where name = '${req.body.name}'`,(err,result)=>{
+    pool.query(`select * from ${table} where name = '${req.body.name}' and from_weight = '${req.body.from_weight}' and to_weight = '${req.body.to_weight}'`,(err,result)=>{
         if(err) throw err;
         else if(result[0]){
        res.json({
@@ -98,7 +98,7 @@ router.get('/delete', (req, res) => {
 
 router.post('/update', (req, res) => {
     console.log(req.body)
-    pool.query(`select * from ${table} where name='${req.body.name}'`,(err,result)=>{
+    pool.query(`select * from ${table} where name='${req.body.name}' and from_weight = '${req.body.from_weight}' and to_weight = '${req.body.to_weight}'`,(err,result)=>{
         if(err) throw err;
         else if(result[0]){
             if(result[0].id != req.body.id){

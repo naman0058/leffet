@@ -82,6 +82,9 @@ $('#result').on('click', '.edits', function() {
     $('#pid').val(result.id)
     $('#pname').val(result.name)
      $('#pcharges').val(result.charges)
+     $('#pfrom_weight').val(result.from_weight)
+     $('#pto_weight').val(result.to_weight)
+
   
    
  })
@@ -102,6 +105,9 @@ $('#update').click(function(){  //data insert in database
         id: $('#pid').val(),
         name: $('#pname').val(),
         charges:$('#pcharges').val(),
+        from_weight:$('#pfrom_weight').val(),
+        to_weight:$('#pto_weight').val(),
+
      
         }
 

@@ -1218,30 +1218,62 @@ router.get('/mylogout',(req,res)=>{
 router.get('/shipping',(req,res)=>{
   console.log('query',req.query)
   req.session.address_id = req.query.id_address_delivery
-  var query = `select * from category order by id desc;`
-  var query1 = `select c.* , 
-  (select p.name from product p where p.id = c.booking_id) as bookingname,
-  (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
+
+  var queryold = `select c.booking_id , c.usernumber , 
+  (select weight from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as totalweighthai
+   from cart c where c.usernumber = '${req.session.usernumber}'`
+   pool.query(queryold,(err,result)=>{
+     if(err) throw err;
+     else {
+       console.log(result)
+let totalweight = 0;
+for(i=0;i<result.length;i++){
+
+totalweight = (+totalweight) + (+result[i].totalweighthai)
+
+}
 
 
-  
-   from cart c where c.usernumber = '${req.session.usernumber}';`
- var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.usernumber}';`              
- var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';` 
- var query4 = `select * from address where usernumber = '${req.session.usernumber}';` 
- var query5 = `select * from users where id = '${req.session.usernumber}';`
- var query7 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
- var query8 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
- var query9 = `select charges from country where name = (select id_country from address where id = '${req.session.address_id}');`
- pool.query(query+query1+query2+query3+query4+query5+query7+query8+query9,(err,result)=>{
-  if(err) throw err;
-   else{
-   res.render('shipping',{result:result,addressid:req.session.address_id,login:true})
-// res.json(result)
-  }
+
+var query = `select * from category order by id desc;`
+var query1 = `select c.* , 
+(select p.name from product p where p.id = c.booking_id) as bookingname,
+(select p.image from product p where p.id = c.booking_id) as bookingimage,
+
+   (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
+
+
+
+ from cart c where c.usernumber = '${req.session.usernumber}';`
+var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.usernumber}';`              
+var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';` 
+var query4 = `select * from address where usernumber = '${req.session.usernumber}';` 
+var query5 = `select * from users where id = '${req.session.usernumber}';`
+var query7 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+var query8 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+var query9 = `select charges from country where name = (select id_country from address where id = '${req.session.address_id}') and from_Weight < ${totalweight} and to_weight >  ${totalweight}; `
+// res.json(totalweight)
+
+pool.query(query+query1+query2+query3+query4+query5+query7+query8+query9,(err,result)=>{
+if(err) throw err;
+ else{
+  req.session.shipping_charges = result[8][0].charges;
+
+  res.render('shipping',{result:result,addressid:req.session.address_id,login:true})
+// res.json(req.session.shipping_charges)
+}
 
 }) 
+
+
+
+
+     }
+   })
+
+
+
+
   // res.render('shipping') 
 })
 
@@ -1251,33 +1283,55 @@ router.get('/shipping',(req,res)=>{
 router.get('/payment',(req,res)=>{
   console.log(req.query)
   req.session.message = req.query.message
-  
-  var query = `select * from category order by id desc;`
-  var query1 = `select c.* , 
-  (select p.name from product p where p.id = c.booking_id) as bookingname,
-  (select p.image from product p where p.id = c.booking_id) as bookingimage,
-     (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
 
 
-  
-   from cart c where c.usernumber = '${req.session.usernumber}';`
- var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.usernumber}';`              
- var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';` 
- var query4 = `select * from address where usernumber = '${req.session.usernumber}';` 
- var query5 = `select * from users where id = '${req.session.usernumber}';`
- var query7 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
- var query8 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
- var query9 = `select charges from country where name = (select id_country from address where id = '${req.session.address_id}');`
+  var queryold = `select c.booking_id , c.usernumber , 
+  (select weight from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as totalweighthai
+   from cart c where c.usernumber = '${req.session.usernumber}'`
+   pool.query(queryold,(err,result)=>{
+     if(err) throw err;
+     else {
+       console.log(result)
+let totalweight = 0;
+for(i=0;i<result.length;i++){
 
- pool.query(query+query1+query2+query3+query4+query5+query7+query8+query9,(err,result)=>{
-  if(err) throw err;
-   else{
-     req.session.shipping_charges = result[8][0].charges;
-   res.render('payment',{result:result,addressid:req.session.address_id,message:req.session.message,login:true})
+totalweight = (+totalweight) + (+result[i].totalweighthai)
 
-  }
+}
+
+
+
+
+var query = `select * from category order by id desc;`
+var query1 = `select c.* , 
+(select p.name from product p where p.id = c.booking_id) as bookingname,
+(select p.image from product p where p.id = c.booking_id) as bookingimage,
+   (select p.quantity from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as availablequantity
+
+
+
+ from cart c where c.usernumber = '${req.session.usernumber}';`
+var query2 = `select sum(price) as totalprice from cart where usernumber = '${req.session.usernumber}';`              
+var query3 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';` 
+var query4 = `select * from address where usernumber = '${req.session.usernumber}';` 
+var query5 = `select * from users where id = '${req.session.usernumber}';`
+var query7 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+var query8 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
+var query9 = `select charges from country where name = (select id_country from address where id = '${req.session.address_id}') and from_Weight < ${totalweight} and to_weight >  ${totalweight}; `
+
+pool.query(query+query1+query2+query3+query4+query5+query7+query8+query9,(err,result)=>{
+if(err) throw err;
+ else{
+ res.render('payment',{result:result,addressid:req.session.address_id,message:req.session.message,login:true})
+
+}
 
 }) 
+     }
+
+
+     })
+  
   // res.render('shipping') 
 
 
@@ -2333,6 +2387,7 @@ pool.query(`select firstname , lastname from users where id = '${req.session.use
           data[i].id = null
          data[i].order_date = today
           data[i].razorpay_order_id = req.body.razorpay_order_id;
+          data[i].shipping_charges = req.session.shipping_charges;
           
           // if((+data[i].price) > 500){
           //   data[i].price = data[i].price
@@ -2812,7 +2867,7 @@ router.get('/invoice',(req,res)=>{
 router.get('/confirmation',(req,res)=>{
   if(req.session.usernumber){
     var query = `select * from category order by id desc;`
-    var query1 = `select * from booking order by id desc limit 1;`
+    var query1 = `select * from booking where usernumber = '${req.session.usernumber}' order by id desc limit 1 ;`
     var query2 = `select * from category where id = '${req.query.id}';`
     var query6 = `select * from users where id = '${req.session.usernumber}';`
       var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
