@@ -3523,9 +3523,7 @@ router.post('/password-recovery',(req,res)=>{
       var mailOptions = {
         from: 'leffetbysm@gmail.com',
         to: req.body.email,
-        subject: `Hi ${req.body.email}
-        
-        Thank You for creating a new account at leffet.in.`,
+        subject: `Password Change Request`,
         text: `You Have requested to reset your leffet login details Please note that this will change your current Password
 
         In order to confirm this action, kindly click on the following link.

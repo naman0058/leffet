@@ -28,6 +28,10 @@ function makeTable(categories){
 <thead>
 <tr>
 <th>Country</th>
+<th>From Weight</th>
+
+<th>To Weight</th>
+
 <th>Charges</th>
 
 <th>Options</th>
@@ -39,6 +43,9 @@ $.each(categories,(i,item)=>{
 table+=`<tr>
 
 <td>${item.name}</td>
+<td>${item.from_weight}</td>
+<td>${item.to_weight}</td>
+
 <td>${item.charges}</td>
 
 
