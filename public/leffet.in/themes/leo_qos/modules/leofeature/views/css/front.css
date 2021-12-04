@@ -821,7 +821,7 @@ div.star.star_on:before {
 
 .leo-wishlist-button-dropdown .leo-list-wishlist {
 	overflow: auto;
-	max-height: 124px;
+	max-height: 37px;
 	min-width: 130px;
 	top: 0
 }
