@@ -389,13 +389,17 @@ src: url("./fonts/sofiapro-light.otf"); */
           <span class="btn-title">Add to wishlist</span>
         </span>
       </button>
-                                                                                    <div class="dropdown-menu leo-list-wishlist leo-list-wishlist-66">
-                                                                                        <% for(j=0;j<result[6].length;j++){ %>
+                                                                                    <div class="dropdown-menu leo-list-wishlist leo-list-wishlist-66" style="float: left;">
 
-                                                                                            <a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="<%=result[6][j].id%>" data-id-product="true" data-id-product-attribute="<%=result[6][j].id%>" data-bookingid="<%=result[1][i].id%>" title="Add to Wishlist">
-                                                                                                <%=result[6][j].name%>
-                                                                                            </a>
-                                                                                            <% } %>
+                                                                                            <!-- <a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="4" data-id-product="85" data-id-product-attribute="210" title="Add to Wishlist">My</a>			
+				                                                                           	<a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="5" data-id-product="85" data-id-product-attribute="210" title="Add to Wishlist">new</a>			
+					                                                                        <a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="6" data-id-product="85" data-id-product-attribute="210" title="Add to Wishlist">ss</a> -->
+
+                                                                                            <% for(j=0;j<result[6].length;j++){ %>
+                                                                                                <a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="<%=result[6][j].id%>" data-id-product="true" data-id-product-attribute="<%=result[6][j].id%>" data-bookingid="<%=result[1][i].id%>" title="Add to Wishlist">
+                                                                                                    <%=result[6][j].name%>
+                                                                                                </a>
+                                                                                                <% } %>
 
                                                                                     </div>
                                                                                 </div>

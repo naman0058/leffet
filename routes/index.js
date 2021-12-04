@@ -1238,7 +1238,7 @@ router.get('/shipping',(req,res)=>{
   req.session.address_id = req.query.id_address_delivery
 
   var queryold = `select c.booking_id , c.usernumber , 
-  (select weight from product_manage p where p.productid = c.booking_id and p.sizeid = c.size) as totalweighthai
+  (select weight from product_manage p where p.productid = c.booking_id and p.sizeid = c.size)*c.quantity as totalweighthai
    from cart c where c.usernumber = '${req.session.usernumber}'`
    pool.query(queryold,(err,result)=>{
      if(err) throw err;
@@ -1249,7 +1249,10 @@ for(i=0;i<result.length;i++){
 
 totalweight = (+totalweight) + (+result[i].totalweighthai)
 
+
+
 }
+// res.json(totalweight)
 
 
 
@@ -1277,8 +1280,8 @@ if(err) throw err;
  else{
   req.session.shipping_charges = result[8][0].charges;
 
-  res.render('shipping',{result:result,addressid:req.session.address_id,login:true})
-// res.json(req.session.shipping_charges)
+   res.render('shipping',{result:result,addressid:req.session.address_id,login:true})
+//  res.json(result)
 }
 
 }) 
