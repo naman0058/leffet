@@ -534,7 +534,7 @@ button.close {
 
   
   <div id="product-description-short-85" class="description-short" itemprop="description">
-    <p><%=result[1][0].short_description%></p>
+    <p id="short_desc"></p>
   </div>
   
   
@@ -1168,10 +1168,18 @@ data-link-action="quickview"
         `
 
 
+        let table1 = `<p>
+   <p>${data[0][0].short_description}</p>
+   </p>
+        `
+
+
         let size = `<p>${data[1][0].net_amount}</p>`
 
         $('#result').html(table)
         $('#result1').html(table)
+        $('#short_desc').html(table1)
+
         $('#sizeshow').html(size)
 
 
