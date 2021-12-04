@@ -447,10 +447,10 @@ src: url("./fonts/sofiapro-light.otf"); */
 
                                                                                                     <% } else { %>
 
-                                                                                                        <button class="btn btn-primary btn-product add-to-cart leo-bt-cart leo-bt-cart_85 addToCart" data-bs-toggle="modal" data-bs-target="#exampleModal" booking_id="<%=result[1][i].id%>" price="<%=result[1][i].net_amount%>" categoryid='<%=result[1][i].categoryid%>'
-                                                                                                            productname='<%=result[1][i].name%>' imageurl='/images/<%=result[1][i].image%>' totalquantity='<%=result[1][i].quantity%>' data-button-action="add-to-cart"
+                                                                                                        <button class="btn btn-primary btn-produc addToCart" data-bs-toggle="modal" data-bs-target="#exampleModal" booking_id="<%=result[1][i].id%>" price="<%=result[1][i].net_amount%>" categoryid='<%=result[1][i].categoryid%>'
+                                                                                                            productname='<%=result[1][i].name%>' imageurl='/images/<%=result[1][i].image%>' totalquantity='<%=result[1][i].quantity%>' 
                                                                                                             type="button">
-    <span class="leo-loading cssload-speeding-wheel"></span>
+    <!-- <span class="leo-loading cssload-speeding-wheel"></span> -->
     <span class="leo-bt-cart-content">
       <i class="icomoon icon-cart"></i>
       <span class="btn-title">Add to cart</span>
@@ -778,8 +778,10 @@ src: url("./fonts/sofiapro-light.otf"); */
 
                         let table4 = `<span>${data[1][0].counter}</span>`
                         $('.newprice').html(table4)
+                        
 
                         $('#exampleModal').modal('show');
+                        
 
                     })
 

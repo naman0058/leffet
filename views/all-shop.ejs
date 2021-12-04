@@ -388,7 +388,7 @@ src: url("./fonts/sofiapro-light.otf"); */
           <span class="btn-title">Add to wishlist</span>
         </span>
       </button>
-                                                                                    <div class="dropdown-menu leo-list-wishlist leo-list-wishlist-66" style="margin-left:-110px;margin-top:-25px">
+                                                                                    <div class="dropdown-menu leo-list-wishlist leo-list-wishlist-66" style="margin-left:-10px;">
 
                                                                                             <!-- <a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="4" data-id-product="85" data-id-product-attribute="210" title="Add to Wishlist">My</a>			
 				                                                                           	<a href="#" class="dropdown-item list-group-item list-group-item-action wishlist-item" data-id-wishlist="5" data-id-product="85" data-id-product-attribute="210" title="Add to Wishlist">new</a>			
@@ -782,7 +782,10 @@ src: url("./fonts/sofiapro-light.otf"); */
 
                         let table4 = `<span>${data[1][0].counter}</span>`
                         $('.newprice').html(table4)
-
+                        $(".leo-bt-cart").show();
+                        $('.cssload-speeding-wheel').hide()
+                                          $(".leo-bt-cart-content").show();
+                                          $(".leo-bt-cart").removeClass("active");
                         $('#exampleModal').modal('show');
 
                     })
