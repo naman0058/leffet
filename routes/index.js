@@ -1160,7 +1160,25 @@ router.post('/login1',(req,res)=>{
       var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
         pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
             if(err) throw err;
-            else res.render('login',{msg : 'Invalid Credentials' , login:false,result:result})
+
+
+            var query = `select * from category order by id desc;`
+            var query1 = `select * from website_customize where name = 'pp';`
+            var query2 = `select * from website_customize where name = 'about';`
+          
+            var query6 = `select * from users where id = '84';`
+            var query7 = `select count(id) as counter from cart where usernumber = '${req.session.usernumber}';`
+            var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
+              pool.query(query+query1+query2+query6+query7+query8,(err,result)=>{
+                  if(err) throw err;
+                  else res.render('login',{msg : 'Invalid Credentials' , login:false,result:result})
+
+                  // else res.json(result)
+              })
+            
+
+
+
             // else res.json(result)
         })
 
@@ -1859,7 +1877,7 @@ router.get('/search',(req,res)=>{
     from product p where p.keywords Like '%${req.query.search_query}%' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
   
     
-    var query2 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
+    var query2 = `select * from product where keywords Like '%${req.query.search_query}%';`
     var query6 = `select * from users where id = '${req.session.usernumber}';`
       var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.usernumber}';`
       var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.usernumber}';`
@@ -1868,15 +1886,26 @@ router.get('/search',(req,res)=>{
   
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
       if(err) throw err;
-      else if(result[1][0]) res.render('shop',{result:result,login:true})
+      else if(result[1][0]) res.render('shop',{result:result,login:true,title:req.query.search_query})
        else  res.render('not_found',{result,login:true,searchname:req.query.search_query,title:'Search'})
       // else res.json(result)
     })
   }
   else{
+
     var query = `select * from category order by id desc;`
-    var query1 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
-    var query2 = `select * from product where keywords Like '%${req.query.search_query}%' order by quantity desc;`
+
+    var query1 = `select p.* ,
+    (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') as net_amount,
+    (select m.quantity from product_manage m where m.productid = p.id and m.sizeid = 'S') as quantity
+  
+    from product p where p.keywords Like '%${req.query.search_query}%' and (select m.net_amount from product_manage m where m.productid = p.id and m.sizeid = 'S') is not null;`
+  
+    
+    var query2 = `select * from product where keywords Like '%${req.query.search_query}%';`
+
+
+
     var query6 = `select * from users where id = '84';`
       var query7 = `select sum(quantity) as counter from cart where usernumber = '${req.session.ipaddress}';`
       var query8 = `select count(id) as counter from wishlist where usernumber = '${req.session.ipaddress}';`
@@ -1885,7 +1914,7 @@ router.get('/search',(req,res)=>{
   
     pool.query(query+query1+query2+query6+query7+query8+query9,(err,result)=>{
        if(err) throw err;
-      else if(result[1][0]) res.render('shop',{result:result,login:false})
+      else if(result[1][0]) res.render('shop',{result:result,login:false,title:req.query.search_query})
       else  res.render('not_found',{result,login:true,searchname:req.query.search_query,title:'Search'})
 
     })
