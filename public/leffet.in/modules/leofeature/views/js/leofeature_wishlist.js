@@ -88,6 +88,9 @@ function LeoWishlistButtonAction() {
                                 data: { wishlistid: l , size:size , booking_id:booking_id  },
                                 success: function (t) {
                                    console.log(t)
+                                   $(".leo-wishlist-bt-loading").hide();
+                                          $(".leo-wishlist-bt-content").show();
+                                          $(".leo-wishlist-button").removeClass("active");
                                     var s,
                                         i = t;
                                     i
