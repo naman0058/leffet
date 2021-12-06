@@ -495,7 +495,7 @@ src: url("./fonts/sofiapro-light.otf"); */
                                                                                                 <p><strong>Total shipping:</strong>&nbsp;Free </p>
                                                                                                 <p><strong>Total:</strong>&nbsp;₹<span class="newprice"></span> (tax incl.)</p>
                                                                                                 <div class="cart-content-btn">
-                                                                                                    <button type="button" class="btn btn-dark" style="background-color: black;color: white;" data-dismiss="modal">Continue shopping</button>
+                                                                                                    <button type="button" class="btn btn-dark conitunue" style="background-color: black;color: white;" data-dismiss="modal">Continue shopping</button>
                                                                                                     <a href="/mycart" class="btn btn-dark" style="background-color: black;color: white;"><img class="material-icons" src="/images/tick.png">proceed to checkout</a>
                                                                                                 </div>
                                                                                             </div>
@@ -784,9 +784,16 @@ src: url("./fonts/sofiapro-light.otf"); */
                                           $(".leo-bt-cart").removeClass("active");
                         $('#exampleModal').modal('show');
                         
+                        
 
                     })
 
                 }
             })
+
+
+$('.conitunue').click(function(){
+    window.location.reload()
+})
+
         </script>
