@@ -327,7 +327,7 @@ The selected address will be used both as your personal address (for invoice) an
           class="js-payment-option-form  ps-hidden "
         >
                       <form id="payment-form" method="POST" action="/payment-create">
-                        <input type="hidden" name="amount" value="<%=result[2][0].totalprice%>">
+                        <input type="hidden" name="amount" value="<%=(+result[2][0].totalprice) + (+result[8][0].charges)%>">
                             <button style="display:none" id="pay-with-payment-option-1" type="submit"></button>
             </form>
                   </div>

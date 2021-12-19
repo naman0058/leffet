@@ -1365,11 +1365,11 @@ if(err) throw err;
 
 router.post('/payment-create',(req,res)=>{
   
-  const url = `https://rzp_live_2AYlv8GRAaT63p:iIzpixX7YsDSUVPtAtbO5SMn@api.razorpay.com/v1/orders/`;
+  const url = `https://rzp_live_Yfnp0JSMDmIFvv:WuBf9SuLkWzXyENB29QTbUw0@api.razorpay.com/v1/orders/`;
 
   const data = {
-    // amount: req.body.amount* 100, // amount in the smallest currency unit
-    amount:100,
+    amount: req.body.amount* 100, // amount in the smallest currency unit
+    // amount:100,
     currency: "INR",
     payment_capture: true,
   };
@@ -3560,7 +3560,7 @@ router.post('/password-recovery',(req,res)=>{
 
         In order to confirm this action, kindly click on the following link.
 
-        http://mlmdemos.in/new-password?token=${hash}&email=${req.body.email}&reset_token=${reset_token}
+        http://demo4.in/new-password?token=${hash}&email=${req.body.email}&reset_token=${reset_token}
 
 
         `
