@@ -180,6 +180,58 @@ src: url("./fonts/sofiapro-light.otf"); */
                 font-size: 14px;
             }
         }
+	
+	
+	
+	
+	
+	
+
+    /* Extra small devices (phones, 600px and down) */
+
+    @media only screen and (max-width: 400) {
+    .ajax_block_product {width: 100%;height: 650px;}
+
+  /* .question{display: none;} */
+}
+
+    @media only screen and (min-width: 400px) {
+    .ajax_block_product {width: 100%;height: 700px;}
+
+  /* .question{display: none;} */
+}
+
+    @media only screen and (min-width: 440px) {
+    .ajax_block_product {width: 100%;height: 750px;}
+
+  /* .question{display: none;} */
+}
+
+@media only screen and (min-width: 486px) {
+    .ajax_block_product {width: 100%;height: 800px;}
+
+  /* .question{display: none;} */
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .ajax_block_product {width: 50%;height: 600px;}
+
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .ajax_block_product {width: 50%;height: 800px;}
+
+} 
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .ajax_block_product {width: 25%;height: 450px;}
+
+} 
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .ajax_block_product {width: 25%;height: 600px;}
+}
+	
     </style>
 
     <aside id="notifications">
@@ -363,10 +415,8 @@ src: url("./fonts/sofiapro-light.otf"); */
       src = "http://demo4.in/images/<%=result[1][i].image%>"
       alt = "<%=result[1][i].name%>"
       data-full-size-image-url = "/images/<%=result[1][i].image%>"
-      style='
-      height:auto;
-      width:auto;
-     '
+            style='object-fit: contain;'
+
     > 
             <span class="product-additional" data-idproduct="85"></span>
         </a>
